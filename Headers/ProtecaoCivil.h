@@ -2,6 +2,7 @@
 #define PROTECAOCIVIL_H_
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Posto.h"
 #include "Policia.h"
 #include "Inem.h"
@@ -12,6 +13,7 @@
 #include "IncendioDomestico.h"
 #include "IncendioFlorestal.h"
 #include "Assalto.h"
+#include "Erro.h"
 
 
 class ProtecaoCivil {
@@ -22,12 +24,13 @@ private:
 	const std::string ficheiroPostos;
 	const std::string ficheiroAcidentes;
 	const std::string ficheiroLocais;
+	void gravar() const;
 public:
 	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais);
 	~ProtecaoCivil();
 	bool addAcidente(/*TODO parametros*/);
 	bool rmAcidente(/*TODO parametros*/);
-	void gravar() const;
+	void openFiles();
 };
 
 #endif /* PROTECAOCIVIL_H_ */

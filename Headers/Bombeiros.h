@@ -15,7 +15,7 @@ public:
 	bool rmAmbulancias(unsigned int num);
 	unsigned int getNumAutotanques() const;
 	unsigned int getNumAmbulancias() const;
-
+	void printSimplifiedInfo(std::ostream &os) const;
 };
 
 #endif /* BOMBEIROS_H_ */

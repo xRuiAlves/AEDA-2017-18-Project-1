@@ -8,3 +8,10 @@ Inem::~Inem() {
 	// TODO Auto-generated destructor stub
 }
 
+const std::string Inem::getTipoVeiculo() const{
+	return tipoVeiculo;
+}
+
+void Inem::printSimplifiedInfo(std::ostream &os) const{
+	os << local << "/" << numSocorristas << "/" << numVeiculos << "/Inem/" << tipoVeiculo;
+}
