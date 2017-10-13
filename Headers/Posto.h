@@ -2,14 +2,15 @@
 #define POSTO_H_
 #include <string>
 #include <iostream>
+#include "Local.h"
 
 class Posto {
 protected:
-	const std::string local;
+	const Local* local;
 	unsigned int numSocorristas;
 	unsigned int numVeiculos;
 public:
-	Posto(const std::string &local, unsigned int numSocorristas, unsigned int numVeiculos);
+	Posto(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos);
 	virtual ~Posto();
 	void addVeiculos(unsigned int num);
 	void addSocorristas(unsigned int num);
@@ -17,8 +18,7 @@ public:
 	bool rmSocorristas(unsigned int num);
 	unsigned int getNumVeiculos() const;
 	unsigned int getNumSocorristas() const;
-	const std::string getLocal() const;
-	virtual void printSimplifiedInfo(std::ostream &os) const = 0;
+	const Local* getLocal() const;
 };
 
 #endif /* POSTO_H_ */

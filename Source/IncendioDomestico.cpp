@@ -1,6 +1,6 @@
 #include "IncendioDomestico.h"
 
-IncendioDomestico::IncendioDomestico(const std::string &data, const std::string &local, unsigned int numOcorrencia, unsigned int numCarrosNecess, unsigned int numAutotanquesNecess, const std::string &tipoCasa)
+IncendioDomestico::IncendioDomestico(const std::string &data, const Local* local, unsigned int numOcorrencia, unsigned int numCarrosNecess, unsigned int numAutotanquesNecess, const std::string &tipoCasa)
 	: Incendio(data,local,numOcorrencia,numCarrosNecess,numAutotanquesNecess) , tipoCasa(tipoCasa) {}
 
 

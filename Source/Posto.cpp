@@ -1,6 +1,6 @@
 #include "Posto.h"
 
-Posto::Posto(const std::string &local, unsigned int numSocorristas, unsigned int numVeiculos)
+Posto::Posto(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos)
 	: local(local) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) {}
 
 
@@ -43,6 +43,6 @@ unsigned int Posto::getNumSocorristas() const{
 	return numSocorristas;
 }
 
-const std::string Posto::getLocal() const{
+const Local* Posto::getLocal() const{
 	return local;
 }

@@ -8,7 +8,7 @@ private:
 	const std::string tipoCasa;
 	const bool haFeridos;
 public:
-	Assalto(const std::string &data, const std::string &local, unsigned int numOcorrencia, const std::string &tipoCasa, bool haFeridos);
+	Assalto(const std::string &data, const Local* local, unsigned int numOcorrencia, const std::string &tipoCasa, bool haFeridos);
 	~Assalto();
 	const std::string getTipoCasa() const;
 	bool existeFeridos() const;

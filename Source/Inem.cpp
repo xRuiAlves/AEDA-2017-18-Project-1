@@ -1,6 +1,6 @@
 #include "Inem.h"
 
-Inem::Inem(const std::string &local, unsigned int numSocorristas, unsigned int numVeiculos, const std::string &tipoVeiculo)
+Inem::Inem(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos, const std::string &tipoVeiculo)
 	: Posto(local,numSocorristas,numVeiculos) , tipoVeiculo(tipoVeiculo) {}
 
 
@@ -10,8 +10,4 @@ Inem::~Inem() {
 
 const std::string Inem::getTipoVeiculo() const{
 	return tipoVeiculo;
-}
-
-void Inem::printSimplifiedInfo(std::ostream &os) const{
-	os << local << "/" << numSocorristas << "/" << numVeiculos << "/Inem/" << tipoVeiculo;
 }

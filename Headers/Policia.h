@@ -6,10 +6,9 @@ class Policia : public Posto {
 private:
 	const std::string tipoVeiculo;
 public:
-	Policia(const std::string &local, unsigned int numSocorristas, unsigned int numVeiculos, const std::string &tipoVeiculo);
+	Policia(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos, const std::string &tipoVeiculo);
 	~Policia();
 	const std::string getTipoVeiculo() const;
-	void printSimplifiedInfo(std::ostream &os) const;
 };
 
 #endif /* POLICIA_H_ */

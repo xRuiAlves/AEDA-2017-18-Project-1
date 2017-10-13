@@ -1,6 +1,6 @@
 #include "Bombeiros.h"
 
-Bombeiros::Bombeiros(const std::string &local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias)
+Bombeiros::Bombeiros(const Local* local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias)
 	: Posto(local,numSocorristas,numAutotanques+numAmbulancias) , numAutotanques(numAutotanques) , numAmbulancias(numAmbulancias) {}
 
 
@@ -42,8 +42,4 @@ unsigned int Bombeiros::getNumAutotanques() const{
 
 unsigned int Bombeiros::getNumAmbulancias() const{
 	return numAmbulancias;
-}
-
-void Bombeiros::printSimplifiedInfo(std::ostream &os) const{
-	os << local << "/" << numSocorristas << "/" << numVeiculos << "/Bombeiros/" << numAutotanques << "/" << numAmbulancias;
 }
