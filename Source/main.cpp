@@ -74,7 +74,7 @@ int getOption(int min, int max){
 		// Clear the cin error flags and the stream content, throw the error
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Invalid Input!"));
+		throw (Erro("Input Invalido!"));
 	}
 
 	// Clear the cin stream even if no error occured, to ensure the stream always stays clean
@@ -84,7 +84,7 @@ int getOption(int min, int max){
 	if(opt>=min && opt<=max)
 		return opt;
 	else
-		throw (Erro("Invalid Option!"));
+		throw (Erro("Opcao Invalida!"));
 }
 
 void declararOcorrencia(ProtecaoCivil &protecaoCivil){
@@ -140,6 +140,8 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			continue;	// Ir para o proximo loop , pedir nova opcao
 		}
 
+		std::cout << std::endl;
+
 		if (opt == 1){
 			// Ordenar os postos por local e imprimi-los a todos
 			protecaoCivil.ordernarPostos(compararPostosLocal);
@@ -155,23 +157,23 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 3){
-			/////////////////////////
-			///////// TODO //////////
-			/////////////////////////
+			// Ordenar os postos por tipo e imprimir os postos de Bombeiros
+			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.printPostosTipo("Bombeiros");
 			pause();
 			break;
 		}
 		else if (opt == 4){
-			/////////////////////////
-			///////// TODO //////////
-			/////////////////////////
+			// Ordenar os postos por tipo e imprimir os postos de Policia
+			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.printPostosTipo("Policia");
 			pause();
 			break;
 		}
 		else if (opt == 5){
-			/////////////////////////
-			///////// TODO //////////
-			/////////////////////////
+			// Ordenar os postos por tipo e imprimir os postos de Inem
+			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.printPostosTipo("Inem");
 			pause();
 			break;
 		}
@@ -191,7 +193,7 @@ bool compararPostosTipo(Posto* p1, Posto* p2){
 
 void printMainMenu(){
 	// Draw the header
-	printHeader("Main Menu");
+	printHeader("Protecao Civil");
 
 	// Draw the options
 	std::cout << "1. Declarar Ocorrencia" << std::endl;
@@ -231,6 +233,11 @@ void printHeader(const std::string &header){
 }
 
 void pause(){
-	std::cout << "Prima qualquer tecla para continuar ...";
-	getchar();	// Wait for user to press enter
+	std::cout << "Prima <ENTER> para continuar ...";
+	int c = getchar();	// Wait for user to press enter and check if only enter was pressed!
+
+	if(c == 10)			// The user pressed only the enter key
+		return;
+	else 				// The user pressed keys other than enter, clear the stream from that input
+		std::cin.ignore(1000,'\n');
 }
