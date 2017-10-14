@@ -131,3 +131,13 @@ unsigned int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
 	return -1;	// local nao foi encontrado
 }
 
+void ProtecaoCivil::ordernarPostos(bool compareFunction(Posto* p1, Posto*p2)){
+	std::sort(postos.begin(),postos.end(),compareFunction);
+}
+
+void ProtecaoCivil::printTodosPostos() const{
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+		postos.at(i)->printInfoPosto();
+		std::cout << std::endl;
+	}
+}
