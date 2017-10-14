@@ -141,3 +141,29 @@ void ProtecaoCivil::printTodosPostos() const{
 		std::cout << std::endl;
 	}
 }
+
+void ProtecaoCivil::printPostosTipo(const std::string &tipo) const{
+	// ASSUMINDO VETOR JA ORDENADO POR TIPO DE POSTO
+
+	// Se o vetor de postos estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
+	if(postos.size() == 0)
+		return;
+
+	// Encontrar o primeiro posto com o tipo desejado
+	unsigned int index = 0;
+	while(postos.at(index)->getTipoPosto() != tipo){
+		index++;
+	}
+
+	// Imprimir todos os postos do tipo desejado
+	for (unsigned int i=index ; i<postos.size() ; i++){
+		if(postos.at(i)->getTipoPosto() == tipo){	// Enquanto ainda estiver na secção do vetor de postos do tipo desejado
+			postos.at(i)->printInfoPosto();
+			std::cout << std::endl;
+		} else {
+			break;	// Os postos seguintes já não são postos do tipo desejado
+		}
+	}
+}
+
+
