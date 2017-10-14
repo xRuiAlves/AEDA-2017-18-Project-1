@@ -16,6 +16,7 @@ public:
 	unsigned int getNumAutotanques() const;
 	unsigned int getNumAmbulancias() const;
 	std::string getTipoPosto() const;
+	void printInfoPosto() const;
 };
 
 #endif /* BOMBEIROS_H_ */

@@ -47,3 +47,12 @@ unsigned int Bombeiros::getNumAmbulancias() const{
 std::string Bombeiros::getTipoPosto() const{
 	return "Bombeiros";
 }
+
+void Bombeiros::printInfoPosto() const{
+	std::cout << "***  BOMBEIROS  ***" << std::endl;
+	std::cout << "Localidade: " << local->getNome() << std::endl;
+	std::cout << "Numero de Socorristas: " << numSocorristas << std::endl;
+	std::cout << "Numero de Autotanques: " << numAutotanques << std::endl;
+	std::cout << "Numero de Ambulancias: " << numAmbulancias << std::endl;
+}
+

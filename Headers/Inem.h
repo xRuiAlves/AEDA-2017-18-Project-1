@@ -10,6 +10,7 @@ public:
 	~Inem();
 	const std::string getTipoVeiculo() const;
 	std::string getTipoPosto() const;
+	void printInfoPosto() const;
 };
 
 #endif /* INEM_H_ */

@@ -15,3 +15,11 @@ const std::string Policia::getTipoVeiculo() const{
 std::string Policia::getTipoPosto() const{
 	return "Policia";
 }
+
+void Policia::printInfoPosto() const{
+	std::cout << "***  POLICIA  ***" << std::endl;
+	std::cout << "Localidade: " << local->getNome() << std::endl;
+	std::cout << "Numero de Socorristas: " << numSocorristas << std::endl;
+	std::cout << "Numero de Veiculos: " << numVeiculos << std::endl;
+	std::cout << "Tipo de Veiculo usado: " << tipoVeiculo << std::endl;
+}
