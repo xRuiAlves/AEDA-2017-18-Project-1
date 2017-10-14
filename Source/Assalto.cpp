@@ -10,7 +10,7 @@ Assalto::~Assalto() {
 const std::string Assalto::getTipoCasa() const{
 	return tipoCasa;
 }
-bool Assalto::existeFeridos() const {
+bool Assalto::haFeridos() const {
 	return haFeridos;
 
 }
