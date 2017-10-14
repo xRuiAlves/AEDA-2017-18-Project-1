@@ -8,3 +8,6 @@ IncendioFlorestal::~IncendioFlorestal() {
 	// TODO Auto-generated destructor stub
 }
 
+const unsigned int IncendioFlorestal::getAreaChamas() const{
+	return areaChamas;
+}

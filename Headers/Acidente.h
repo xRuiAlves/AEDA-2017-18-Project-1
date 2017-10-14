@@ -13,7 +13,7 @@ public:
 	virtual ~Acidente();
 	const std::string getData() const;
 	const Local* getLocal() const;
-	const unsigned int getNuMOcorrencia() const;
+	const unsigned int getNumOcorrencia() const;
 };
 
 #endif /* ACIDENTE_H_ */

@@ -8,3 +8,6 @@ IncendioDomestico::~IncendioDomestico() {
 	// TODO Auto-generated destructor stub
 }
 
+const std::string IncendioDomestico::getTipoCasa() const{
+	return tipoCasa;
+}

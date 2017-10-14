@@ -3,8 +3,15 @@
 Assalto::Assalto(const std::string &data, const Local* local, unsigned int numOcorrencia, const std::string &tipoCasa, bool haFeridos)
 	: Acidente(data,local,numOcorrencia) , tipoCasa(tipoCasa) , haFeridos(haFeridos) {}
 
-
 Assalto::~Assalto() {
 	// TODO Auto-generated destructor stub
+}
+
+const std::string Assalto::getTipoCasa() const{
+	return tipoCasa;
+}
+bool Assalto::existeFeridos() const {
+	return haFeridos;
+
 }
 

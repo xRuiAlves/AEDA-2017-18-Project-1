@@ -11,7 +11,7 @@ public:
 	Assalto(const std::string &data, const Local* local, unsigned int numOcorrencia, const std::string &tipoCasa, bool haFeridos);
 	~Assalto();
 	const std::string getTipoCasa() const;
-	bool existeFeridos() const;
+	bool haFeridos() const;
 };
 
 #endif /* ASSALTO_H_ */
