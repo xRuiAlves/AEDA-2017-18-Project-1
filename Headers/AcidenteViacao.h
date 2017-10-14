@@ -12,7 +12,7 @@ public:
 	AcidenteViacao(const std::string &data, const Local* local, unsigned int numOcorrencia, const std::string &tipoEstrada, unsigned int numFeridos, unsigned int numVeiculos);
 	~AcidenteViacao();
 	const std::string getTipoEstrada() const;
-	const unsigned int getNuMFeridos() const;
+	const unsigned int getNumFeridos() const;
 	const unsigned int getNumVeiculos() const;
 };
 
