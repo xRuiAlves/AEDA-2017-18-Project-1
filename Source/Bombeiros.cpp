@@ -43,3 +43,7 @@ unsigned int Bombeiros::getNumAutotanques() const{
 unsigned int Bombeiros::getNumAmbulancias() const{
 	return numAmbulancias;
 }
+
+std::string Bombeiros::getTipoPosto() const{
+	return "Bombeiros";
+}

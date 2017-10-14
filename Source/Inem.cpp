@@ -11,3 +11,7 @@ Inem::~Inem() {
 const std::string Inem::getTipoVeiculo() const{
 	return tipoVeiculo;
 }
+
+std::string Inem::getTipoPosto() const{
+	return "Inem";
+}

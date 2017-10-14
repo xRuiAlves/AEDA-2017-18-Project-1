@@ -11,3 +11,7 @@ Policia::~Policia() {
 const std::string Policia::getTipoVeiculo() const{
 	return tipoVeiculo;
 }
+
+std::string Policia::getTipoPosto() const{
+	return "Policia";
+}

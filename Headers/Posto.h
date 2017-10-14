@@ -19,6 +19,7 @@ public:
 	unsigned int getNumVeiculos() const;
 	unsigned int getNumSocorristas() const;
 	const Local* getLocal() const;
+	virtual std::string getTipoPosto() const = 0;
 };
 
 #endif /* POSTO_H_ */
