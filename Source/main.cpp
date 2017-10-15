@@ -315,7 +315,7 @@ void printPesquisarPostosMenu(){
 	std::cout << "4. Pesquisar por Postos de Bombeiros" << std::endl;
 	std::cout << "5. Pesquisar por Postos da Policia" << std::endl;
 	std::cout << "6. Pesquisar por Postos do Inem" << std::endl;
-	std::cout << "7. Sair" << std::endl << std::endl;
+	std::cout << "7. Voltar" << std::endl << std::endl;
 }
 
 void printInfoOcorrenciasMenu(){
@@ -329,7 +329,7 @@ void printInfoOcorrenciasMenu(){
 	std::cout << "4. Pesquisar por Assaltos" << std::endl;
 	std::cout << "5. Pesquisar por Acidentes de Viacao" << std::endl;
 	std::cout << "6. Pesquisar por Incendios" << std::endl;
-	std::cout << "7. Sair" << std::endl << std::endl;
+	std::cout << "7. Voltar" << std::endl << std::endl;
 }
 
 void printHeader(const std::string &header){
