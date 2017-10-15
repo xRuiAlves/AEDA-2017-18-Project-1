@@ -36,7 +36,8 @@ public:
 	void openFiles();
 	void ordernarPostos(bool compareFunction(Posto* p1, Posto*p2));
 	void printTodosPostos() const;
-	void printPostosTipo(const std::string &tipo) const;	// ASSUMINDO POSTOS JA ORDENADOS POR TIPO!!!
+	void printPostosTipo(const std::string &tipo) const;		// ASSUMINDO POSTOS JA ORDENADOS POR TIPO!!!
+	void printPostosLocal(const std::string &local) const;		// ASSUMINDO POSTOS JA ORDENADOS POR LOCAL!!!
 };
 
 #endif /* PROTECAOCIVIL_H_ */

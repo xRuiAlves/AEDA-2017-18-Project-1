@@ -151,8 +151,11 @@ void ProtecaoCivil::printPostosTipo(const std::string &tipo) const{
 
 	// Encontrar o primeiro posto com o tipo desejado
 	unsigned int index = 0;
-	while(postos.at(index)->getTipoPosto() != tipo){
-		index++;
+	while(index < postos.size()){
+		if(postos.at(index)->getTipoPosto() != tipo)
+			index++;
+		else 		// encontramos o primeiro posto com carateristicas desejadas! sair do loop
+			break;
 	}
 
 	// Imprimir todos os postos do tipo desejado
@@ -166,4 +169,42 @@ void ProtecaoCivil::printPostosTipo(const std::string &tipo) const{
 	}
 }
 
+void ProtecaoCivil::printPostosLocal(const std::string &local) const{
+	// ASSUMINDO VETOR JA ORDENADO POR LOCAL DO POSTO
+
+	// Se o vetor de locais estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
+	if(locais.size() == 0){
+		std::cout << "Nao ha quaiquer postos em nenhuma localidade.";
+		return;
+	}
+
+	// Encontrar o primeiro posto com o local desejado
+	unsigned int index = 0;
+	while(index < postos.size()){
+		if(postos.at(index)->getLocal()->getNome() != local)
+			index++;
+		else 		// encontramos o primeiro posto com carateristicas desejadas! sair do loop
+			break;
+	}
+
+	// Contar o número de postos que existem no local desejado
+	unsigned int postoCounter = 0;
+
+	// Imprimir todos os postos no local desejado
+	for (unsigned int i=index ; i<postos.size() ; i++){
+		if(postos.at(i)->getLocal()->getNome() == local){	// Enquanto ainda estiver na secção do vetor de postos do local desejado
+			postoCounter++;
+			postos.at(i)->printInfoPosto();
+			std::cout << std::endl;
+		} else {
+			break;	// Os postos seguintes já não são postos do local desejado
+		}
+	}
+
+	// Caso não haja postos na localidade desejada, dar throw a um erro com essa especificacao
+	if (postoCounter == 0){
+		std::cout << "Nao ha quaisquer postos na localidade introduzida.";
+		return;
+	}
+}
 
