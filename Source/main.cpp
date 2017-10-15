@@ -11,6 +11,7 @@ bool compararPostosLocal(Posto* p1, Posto* p2);
 bool compararPostosTipo(Posto* p1, Posto* p2);
 void printMainMenu();
 void printPesquisarPostosMenu();
+void printInfoOcorrenciasMenu();
 void printHeader(const std::string &header);
 void pause();
 
@@ -113,12 +114,93 @@ void terminarOcorrencia(ProtecaoCivil &protecaoCivil){
 
 void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 
-	std::cout << "\n\nThis is a STUB!!" << std::endl;
-	std::cout << "We are Inside infoOcorrencia()";
+	int opt;
 
-	///////////////////////////////////
-	// TODO: IMPLEMENT THIS FUNCTION //
-	///////////////////////////////////
+	// Perguntar ao utilizador o que quer fazer até estes querer voltar ao menu anterior
+	while(true){
+		printInfoOcorrenciasMenu();
+
+		// Pedir opcao ao utilizador e verificar se nao houve erro de input
+		try{
+			opt = getOption(1,7);
+		}
+		catch(Erro &e){
+			std::cout << "\n" << e.getInfo();
+			continue;	// Ir para o proximo loop , pedir nova opcao
+		}
+
+		std::cout << std::endl;
+
+		if (opt == 1){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 2){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 3){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 4){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 5){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 6){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else
+			break;	// opt = 6, o utilizador quer voltar
+	}
+
 
 
 }
@@ -233,6 +315,20 @@ void printPesquisarPostosMenu(){
 	std::cout << "4. Pesquisar por Postos de Bombeiros" << std::endl;
 	std::cout << "5. Pesquisar por Postos da Policia" << std::endl;
 	std::cout << "6. Pesquisar por Postos do Inem" << std::endl;
+	std::cout << "7. Sair" << std::endl << std::endl;
+}
+
+void printInfoOcorrenciasMenu(){
+	// Draw the header
+	printHeader("Informacoes sobre Ocorrencias");
+
+	// Draw the options
+	std::cout << "1. Pesquisar por Localidade (totalidade)" << std::endl;
+	std::cout << "2. Pesquisar por Localidade (especifico)" << std::endl;
+	std::cout << "3. Pesquisar por Tipo de Ocorrencia" << std::endl;
+	std::cout << "4. Pesquisar por Assaltos" << std::endl;
+	std::cout << "5. Pesquisar por Acidentes de Viacao" << std::endl;
+	std::cout << "6. Pesquisar por Incendios" << std::endl;
 	std::cout << "7. Sair" << std::endl << std::endl;
 }
 
