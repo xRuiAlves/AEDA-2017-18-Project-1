@@ -133,7 +133,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,6);
+			opt = getOption(1,7);
 		}
 		catch(Erro &e){
 			std::cout << "\n" << e.getInfo();
@@ -150,27 +150,46 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 2){
+			// Pedir ao utilizador que introduzar uma Localidade
+			std::string localidade;
+			std::cout << "Insira a localidade que deseja: ";
+			getline(std::cin,localidade);
+
+			// Ordenar os postos por localidade
+			protecaoCivil.ordernarPostos(compararPostosLocal);
+
+			std::cout << std::endl;
+
+			// Imprimir todos os postos que existem nesse local ; caso não haja nenhum, informar o utilizador
+			protecaoCivil.printPostosLocal(localidade);
+
+			std::cout << std::endl << std::endl;
+
+			pause();
+			break;
+		}
+		else if (opt == 3){
 			// Ordenar os postos por tipo e imprimi-los a todos
 			protecaoCivil.ordernarPostos(compararPostosTipo);
 			protecaoCivil.printTodosPostos();
 			pause();
 			break;
 		}
-		else if (opt == 3){
+		else if (opt == 4){
 			// Ordenar os postos por tipo e imprimir os postos de Bombeiros
 			protecaoCivil.ordernarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Bombeiros");
 			pause();
 			break;
 		}
-		else if (opt == 4){
+		else if (opt == 5){
 			// Ordenar os postos por tipo e imprimir os postos de Policia
 			protecaoCivil.ordernarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Policia");
 			pause();
 			break;
 		}
-		else if (opt == 5){
+		else if (opt == 6){
 			// Ordenar os postos por tipo e imprimir os postos de Inem
 			protecaoCivil.ordernarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Inem");
@@ -208,12 +227,13 @@ void printPesquisarPostosMenu(){
 	printHeader("Pesquisar Postos");
 
 	// Draw the options
-	std::cout << "1. Pesquisar por Localidade" << std::endl;
-	std::cout << "2. Pesquisar por Tipo de Posto" << std::endl;
-	std::cout << "3. Pesquisar por Postos de Bombeiros" << std::endl;
-	std::cout << "4. Pesquisar por Postos da Policia" << std::endl;
-	std::cout << "5. Pesquisar por Postos do Inem" << std::endl;
-	std::cout << "6. Sair" << std::endl << std::endl;
+	std::cout << "1. Pesquisar por Localidade (totalidade)" << std::endl;
+	std::cout << "2. Pesquisar por Localidade (especifico)" << std::endl;
+	std::cout << "3. Pesquisar por Tipo de Posto" << std::endl;
+	std::cout << "4. Pesquisar por Postos de Bombeiros" << std::endl;
+	std::cout << "5. Pesquisar por Postos da Policia" << std::endl;
+	std::cout << "6. Pesquisar por Postos do Inem" << std::endl;
+	std::cout << "7. Sair" << std::endl << std::endl;
 }
 
 void printHeader(const std::string &header){
