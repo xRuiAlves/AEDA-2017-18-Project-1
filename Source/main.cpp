@@ -9,6 +9,8 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil);
 void pesquisarPostos(ProtecaoCivil &protecaoCivil);
 bool compararPostosLocal(Posto* p1, Posto* p2);
 bool compararPostosTipo(Posto* p1, Posto* p2);
+bool compararAcidentesLocal(Acidente* a1, Acidente* a2);
+bool compararAcidentesTipo(Acidente* a1, Acidente* a2);
 void printMainMenu();
 void printPesquisarPostosMenu();
 void printInfoOcorrenciasMenu();
@@ -290,6 +292,18 @@ bool compararPostosLocal(Posto* p1, Posto* p2){
 
 bool compararPostosTipo(Posto* p1, Posto* p2){
 	return (p1->getTipoPosto() < p2->getTipoPosto());
+}
+
+bool compararAcidentesLocal(Acidente* a1, Acidente* a2){
+	return (a1->getLocal()->getNome() < a2->getLocal()->getNome());
+}
+
+bool compararAcidentesTipo(Acidente* a1, Acidente* a2){
+	return true;
+
+	/////////////////////////////////////////////////////////////
+	// return (a1->getTipoAcidente() < a2->getTipoAcidente()); //	TODO: Uncomment after getTipoAcidente() function is ready and rolling
+	/////////////////////////////////////////////////////////////
 }
 
 void printMainMenu(){
