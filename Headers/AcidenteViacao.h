@@ -14,8 +14,8 @@ public:
 	const std::string getTipoEstrada() const;
 	const unsigned int getNumFeridos() const;
 	const unsigned int getNumVeiculos() const;
-	std::string getTipoAcidente() const;	// TODO retornar algo tipo "Acidente de Viacao"
-	void printInfoAcidente() const;			// TODO print todos os dados deste acidente
+	std::string getTipoAcidente() const;
+	//void printInfoAcidente() const;			// TODO print todos os dados deste acidente
 };
 
 #endif /* ACIDENTEVIACAO_H_ */

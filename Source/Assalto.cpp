@@ -15,3 +15,6 @@ bool Assalto::haFeridos() const {
 
 }
 
+std::string Assalto::getTipoAcidente() const{
+	return "Assalto";
+}

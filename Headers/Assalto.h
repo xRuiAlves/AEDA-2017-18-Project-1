@@ -12,8 +12,8 @@ public:
 	~Assalto();
 	const std::string getTipoCasa() const;
 	bool haFeridos() const;
-	std::string getTipoAcidente() const;	// TODO retornar algo tipo "Assalto"
-	void printInfoAcidente() const;			// TODO print todos os dados deste acidente
+	std::string getTipoAcidente() const;
+	//void printInfoAcidente() const;			// TODO print todos os dados deste acidente
 };
 
 #endif /* ASSALTO_H_ */

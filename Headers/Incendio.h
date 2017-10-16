@@ -12,8 +12,8 @@ public:
 	const unsigned int getNumCarrosNecess() const;
 	const unsigned int getNumAutotanquesNecess() const;
 	virtual ~Incendio();
-	virtual std::string getTipoAcidente() const = 0;	// TODO
-	virtual void printInfoAcidente() const = 0;			// TODO
+	virtual std::string getTipoAcidente() const = 0;
+	//virtual void printInfoAcidente() const = 0;			// TODO
 };
 
 #endif /* INCENDIO_H_ */

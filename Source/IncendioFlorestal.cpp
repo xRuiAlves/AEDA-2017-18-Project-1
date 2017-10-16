@@ -11,3 +11,7 @@ IncendioFlorestal::~IncendioFlorestal() {
 const unsigned int IncendioFlorestal::getAreaChamas() const{
 	return areaChamas;
 }
+
+std::string IncendioFlorestal::getTipoAcidente() const{
+	return "Incendio Florestal";
+}

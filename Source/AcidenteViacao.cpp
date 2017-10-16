@@ -17,3 +17,6 @@ AcidenteViacao::~AcidenteViacao() {
 	// TODO Auto-generated destructor stub
 }
 
+std::string AcidenteViacao::getTipoAcidente() const{
+	return "Acidente de Viacao";
+}

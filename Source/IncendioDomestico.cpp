@@ -11,3 +11,7 @@ IncendioDomestico::~IncendioDomestico() {
 const std::string IncendioDomestico::getTipoCasa() const{
 	return tipoCasa;
 }
+
+std::string IncendioDomestico::getTipoAcidente() const{
+	return "Incendio Domestico";
+}
