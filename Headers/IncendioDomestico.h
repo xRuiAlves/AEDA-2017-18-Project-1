@@ -11,7 +11,7 @@ public:
 	~IncendioDomestico();
 	const std::string getTipoCasa() const;
 	std::string getTipoAcidente() const;
-	//void printInfoAcidente() const;			// TODO print todos os dados deste acidente
+	void printInfoAcidente() const;
 };
 
 #endif /* INCENDIODOMESTICO_H_ */

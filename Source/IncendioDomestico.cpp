@@ -15,3 +15,8 @@ const std::string IncendioDomestico::getTipoCasa() const{
 std::string IncendioDomestico::getTipoAcidente() const{
 	return "Incendio Domestico";
 }
+
+void IncendioDomestico::printInfoAcidente() const {
+	std::cout << "***  INCENDIO DOMÉSTICO ***" << std::endl;
+	std::cout << "Tipo de Casa: " << tipoCasa << std::endl;
+}

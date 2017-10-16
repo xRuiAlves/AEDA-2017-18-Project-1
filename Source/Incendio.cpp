@@ -15,7 +15,7 @@ Incendio::~Incendio() {
 	// TODO Auto-generated destructor stub
 }
 
-void AcidenteViacao::printInfoAcidente() const {
+void Incendio::printInfoAcidente() const {
 	std::cout << "***  INCENDIO  ***" << std::endl;
 	std::cout << "Número de carros necessários: " << numCarrosNecess << std::endl;
 	std::cout << "Número de autotanques necessários: " << numAutotanquesNecess << std::endl;
