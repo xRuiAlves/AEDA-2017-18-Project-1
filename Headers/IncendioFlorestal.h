@@ -10,7 +10,7 @@ public:
 	~IncendioFlorestal();
 	const unsigned int getAreaChamas() const;
 	std::string getTipoAcidente() const;
-	//	void printInfoAcidente() const;			// TODO print todos os dados deste acidente
+	void printInfoAcidente() const;
 };
 
 #endif /* INCENDIOFLORESTAL_H_ */

@@ -15,3 +15,8 @@ const unsigned int IncendioFlorestal::getAreaChamas() const{
 std::string IncendioFlorestal::getTipoAcidente() const{
 	return "Incendio Florestal";
 }
+
+void IncendioFlorestal::printInfoAcidente() const {
+	std::cout << "***  INCENDIO FLORESTAL  ***" << std::endl;
+	std::cout << "Área das Chamas: " << areaChamas << std::endl;
+}
