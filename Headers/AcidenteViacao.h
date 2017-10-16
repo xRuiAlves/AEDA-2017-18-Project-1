@@ -15,7 +15,7 @@ public:
 	const unsigned int getNumFeridos() const;
 	const unsigned int getNumVeiculos() const;
 	std::string getTipoAcidente() const;
-	//void printInfoAcidente() const;			// TODO print todos os dados deste acidente
+	void printInfoAcidente() const;		
 };
 
 #endif /* ACIDENTEVIACAO_H_ */
