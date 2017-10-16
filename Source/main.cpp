@@ -299,11 +299,7 @@ bool compararAcidentesLocal(Acidente* a1, Acidente* a2){
 }
 
 bool compararAcidentesTipo(Acidente* a1, Acidente* a2){
-	return true;
-
-	/////////////////////////////////////////////////////////////
-	// return (a1->getTipoAcidente() < a2->getTipoAcidente()); //	TODO: Uncomment after getTipoAcidente() function is ready and rolling
-	/////////////////////////////////////////////////////////////
+	return (a1->getTipoAcidente() < a2->getTipoAcidente());
 }
 
 void printMainMenu(){
