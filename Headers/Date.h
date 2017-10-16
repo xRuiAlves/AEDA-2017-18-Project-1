@@ -12,6 +12,7 @@ public:
 	unsigned int getDia() const;
 	unsigned int getMes() const;
 	unsigned int getAno() const;
+	unsigned int getCompleteData() const;
 	std::string getData() const;	// retorna string DD-MM-AAAA
 	bool operator<(const Date &otherDate) const;
 	Date();
