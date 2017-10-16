@@ -28,6 +28,7 @@ private:
 	const std::string ficheiroLocais;
 	void gravar() const;
 	unsigned int findLocal(const std::string &nomeLocal) const;
+	unsigned int findAcidenteMaiorNum() const;
 public:
 	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais);
 	~ProtecaoCivil();
