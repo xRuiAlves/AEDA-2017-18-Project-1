@@ -30,27 +30,27 @@ std::string Date::getData() const {
 	
 	// Obter dia
 	if (this->dia < 10)			// tem apenas um digito
-		dia = "0" + std::stoi(dia);
+		dia = "0" + std::to_string(this->dia);
 	else 
-		dia = std::stoi(dia);
+		dia = std::to_string(this->dia);
 	
 	// Obter mes
 	if (this->mes < 10)			// tem apenas um digito
-		mes = "0" + std::stoi(mes);
+		mes = "0" + std::to_string(this->mes);
 	else
-		mes = std::stoi(mes);
+		mes = std::to_string(this->mes);
 	
 	// Obter ano
 	if (this->ano < 10)			// tem apenas um digito
-		ano = "000" + std::stoi(ano);
+		ano = "000" + std::to_string(this->ano);
 	else if (this->ano < 100)		// tem apenas dois digitos
-		ano = "00" + std::stoi(ano);
+		ano = "00" + std::to_string(this->ano);
 	else if (this->ano < 1000)		// tem apenas tres digitos
-		ano = "0" + std::stoi(ano);
+		ano = "0" + std::to_string(this->ano);
 	else
-		ano = std::stoi(ano);
+		ano = std::to_string(this->ano);
 	
-	return (dia + mes + ano);
+	return (dia + "-" + mes + "-" + ano);
 }
 
  bool Date::operator<(const Date &otherDate) const {
