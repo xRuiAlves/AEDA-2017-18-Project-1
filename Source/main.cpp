@@ -125,7 +125,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,7);
+			opt = getOption(1,9);
 		}
 		catch(Erro &e){
 			std::cout << "\n" << e.getInfo();
@@ -190,6 +190,28 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 6){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 7){
+
+			////////////////////////////////////
+			/////  TODO: ACOES DAS OPCOES  /////
+			////////////////////////////////////
+
+			std::cout << " ****** THIS IS A STUB ******\n\n";
+
+			pause();
+			break;
+		}
+		else if (opt == 8){
 
 			////////////////////////////////////
 			/////  TODO: ACOES DAS OPCOES  /////
@@ -340,11 +362,13 @@ void printInfoOcorrenciasMenu(){
 	// Draw the options
 	std::cout << "1. Pesquisar por Localidade (totalidade)" << std::endl;
 	std::cout << "2. Pesquisar por Localidade (especifico)" << std::endl;
-	std::cout << "3. Pesquisar por Tipo de Ocorrencia" << std::endl;
-	std::cout << "4. Pesquisar por Assaltos" << std::endl;
-	std::cout << "5. Pesquisar por Acidentes de Viacao" << std::endl;
-	std::cout << "6. Pesquisar por Incendios" << std::endl;
-	std::cout << "7. Voltar" << std::endl << std::endl;
+	std::cout << "3. Pesquisar por Data (totalidade)" << std::endl;
+	std::cout << "4. Pesquisar por Data (especifica)" << std::endl;
+	std::cout << "5. Pesquisar por Tipo de Ocorrencia" << std::endl;
+	std::cout << "6. Pesquisar por Assaltos" << std::endl;
+	std::cout << "7. Pesquisar por Acidentes de Viacao" << std::endl;
+	std::cout << "8. Pesquisar por Incendios" << std::endl;
+	std::cout << "9. Voltar" << std::endl << std::endl;
 }
 
 void printHeader(const std::string &header){
