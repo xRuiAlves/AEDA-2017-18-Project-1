@@ -2,9 +2,9 @@
 
 
 Acidente::Acidente(const std::string &data, const Local* local, unsigned int numOcorrencia)
-	: data(data) , local(local) , numOcorrencia(numOcorrencia) {}
+	: data(Date(data)) , local(local) , numOcorrencia(numOcorrencia) {}
 
-const std::string Acidente::getData() const {
+const Date Acidente::getData() const {
 	return data;
 }
 
