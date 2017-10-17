@@ -201,7 +201,7 @@ void ProtecaoCivil::printPostosLocal(const std::string &local) const{
 		}
 	}
 
-	// Caso não haja postos na localidade desejada, dar throw a um erro com essa especificacao
+	// Caso não haja postos na localidade desejada, informar o utilizador
 	if (postoCounter == 0){
 		std::cout << "Nao ha quaisquer postos na localidade introduzida.";
 		return;
@@ -253,6 +253,45 @@ void ProtecaoCivil::printAcidentesTipo(const std::string &tipo) const{
 		} else {
 			break;	// Os acidentes seguintes já não são acidentes do tipo desejado
 		}
+	}
+}
+
+void ProtecaoCivil::printAcidentesLocal(const std::string &local) const{
+	// ASSUMINDO VETOR JA ORDENADO POR LOCAL DO POSTO
+
+	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
+	if(acidentes.size() == 0){
+		std::cout << "Nao ha quaiquer acidentes em nenhuma localidade.";
+		return;
+	}
+
+	// Encontrar o primeiro acidente com o local desejado
+	unsigned int index = 0;
+	while(index < acidentes.size()){
+		if(acidentes.at(index)->getLocal()->getNome() != local)
+			index++;
+		else 		// encontramos o primeiro posto com carateristicas desejadas! sair do loop
+			break;
+	}
+
+	// Contar o número de acidentes que existem no local desejado
+	unsigned int acidentesCounter = 0;
+
+	// Imprimir todos os acidentes no local desejado
+	for (unsigned int i=index ; i<acidentes.size() ; i++){
+		if(acidentes.at(i)->getLocal()->getNome() == local){	// Enquanto ainda estiver na secção do vetor de acidentes do local desejado
+			acidentesCounter++;
+			acidentes.at(i)->printInfoAcidente();
+			std::cout << std::endl;
+		} else {
+			break;	// Os acidentes seguintes já não são acidentes do local desejado
+		}
+	}
+
+	// Caso não haja acidentes na localidade desejada, informar o utilizador
+	if (acidentesCounter == 0){
+		std::cout << "Nao ha quaisquer acidentes na localidade introduzida.";
+		return;
 	}
 }
 

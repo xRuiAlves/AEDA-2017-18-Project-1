@@ -42,6 +42,7 @@ public:
 	void ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2));
 	void printTodosAcidentes() const;
 	void printAcidentesTipo(const std::string &tipo) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR TIPO!!!
+	void printAcidentesLocal(const std::string &local) const;	// ASSUMINDO ACIDENTES JA ORDENADOS POR LOCAL!!!
 };
 
 #endif /* PROTECAOCIVIL_H_ */
