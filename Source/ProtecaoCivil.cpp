@@ -257,7 +257,7 @@ void ProtecaoCivil::printAcidentesTipo(const std::string &tipo) const{
 }
 
 void ProtecaoCivil::printAcidentesLocal(const std::string &local) const{
-	// ASSUMINDO VETOR JA ORDENADO POR LOCAL DO POSTO
+	// ASSUMINDO VETOR JA ORDENADO POR LOCAL DO ACIDENTE
 
 	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
 	if(acidentes.size() == 0){
@@ -270,7 +270,7 @@ void ProtecaoCivil::printAcidentesLocal(const std::string &local) const{
 	while(index < acidentes.size()){
 		if(acidentes.at(index)->getLocal()->getNome() != local)
 			index++;
-		else 		// encontramos o primeiro posto com carateristicas desejadas! sair do loop
+		else 		// encontramos o primeiro acidente com carateristicas desejadas! sair do loop
 			break;
 	}
 
@@ -291,6 +291,45 @@ void ProtecaoCivil::printAcidentesLocal(const std::string &local) const{
 	// Caso não haja acidentes na localidade desejada, informar o utilizador
 	if (acidentesCounter == 0){
 		std::cout << "Nao ha quaisquer acidentes na localidade introduzida.";
+		return;
+	}
+}
+
+void ProtecaoCivil::printAcidentesData(const std::string &data) const{
+	// ASSUMINDO VETOR JA ORDENADO POR DATA DO ACIDENTE
+
+	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
+	if(acidentes.size() == 0){
+		std::cout << "Nao ha quaiquer acidentes em nenhuma localidade.";
+		return;
+	}
+
+	// Encontrar o primeiro acidente com a data desejada
+	unsigned int index = 0;
+	while(index < acidentes.size()){
+		if(acidentes.at(index)->getData().getData() != data)
+			index++;
+		else 		// encontramos o primeiro acidente com carateristicas desejadas! sair do loop
+			break;
+	}
+
+	// Contar o número de acidentes que existem com a data desejada
+	unsigned int acidentesCounter = 0;
+
+	// Imprimir todos os acidentes com a data desejada
+	for (unsigned int i=index ; i<acidentes.size() ; i++){
+		if(acidentes.at(i)->getData().getData() == data){	// Enquanto ainda estiver na secção do vetor de acidentes com a data desejada
+			acidentesCounter++;
+			acidentes.at(i)->printInfoAcidente();
+			std::cout << std::endl;
+		} else {
+			break;	// Os acidentes seguintes já não são acidentes com a data desejada
+		}
+	}
+
+	// Caso não haja acidentes com a data desejada, informar o utilizador
+	if (acidentesCounter == 0){
+		std::cout << "Nao ha quaisquer acidentes que tenham ocorrido na data introduzida.";
 		return;
 	}
 }

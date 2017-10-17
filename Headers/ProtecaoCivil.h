@@ -43,6 +43,7 @@ public:
 	void printTodosAcidentes() const;
 	void printAcidentesTipo(const std::string &tipo) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR TIPO!!!
 	void printAcidentesLocal(const std::string &local) const;	// ASSUMINDO ACIDENTES JA ORDENADOS POR LOCAL!!!
+	void printAcidentesData(const std::string &data) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR DATA!!!
 };
 
 #endif /* PROTECAOCIVIL_H_ */
