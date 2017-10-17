@@ -221,3 +221,10 @@ unsigned int ProtecaoCivil::findAcidenteMaiorNum() const{
 void ProtecaoCivil::ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2)){
 	std::sort(acidentes.begin(),acidentes.end(),compareFunction);
 }
+
+void ProtecaoCivil::printTodosAcidentes() const{
+	for (unsigned int i=0 ; i<acidentes.size() ; i++){
+		acidentes.at(i)->printInfoAcidente();
+		std::cout << std::endl;
+	}
+}
