@@ -228,3 +228,31 @@ void ProtecaoCivil::printTodosAcidentes() const{
 		std::cout << std::endl;
 	}
 }
+
+void ProtecaoCivil::printAcidentesTipo(const std::string &tipo) const{
+	// ASSUMINDO VETOR JA ORDENADO POR TIPO DE ACIDENTE
+
+	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
+	if(acidentes.size() == 0)
+		return;
+
+	// Encontrar o primeiro acidente com o tipo desejado
+	unsigned int index = 0;
+	while(index < acidentes.size()){
+		if(acidentes.at(index)->getTipoAcidente() != tipo)
+			index++;
+		else 		// encontramos o primeiro acidente com carateristicas desejadas! sair do loop
+			break;
+	}
+
+	// Imprimir todos os acidentes do tipo desejado
+	for (unsigned int i=index ; i<acidentes.size() ; i++){
+		if(acidentes.at(i)->getTipoAcidente() == tipo){	// Enquanto ainda estiver na secção do vetor de acidentes do tipo desejado
+			acidentes.at(i)->printInfoAcidente();
+			std::cout << std::endl;
+		} else {
+			break;	// Os acidentes seguintes já não são acidentes do tipo desejado
+		}
+	}
+}
+
