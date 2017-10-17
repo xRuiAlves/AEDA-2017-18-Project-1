@@ -16,6 +16,7 @@ void printMainMenu();
 void printPesquisarPostosMenu();
 void printInfoOcorrenciasMenu();
 void printHeader(const std::string &header);
+std::string lerData();
 void pause();
 
 
@@ -135,90 +136,89 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		std::cout << std::endl;
 
 		if (opt == 1){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenenar os Acidentes por local e imprimi-los a todos
+			protecaoCivil.ordernarAcidentes(compararAcidentesLocal);
+			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
 		}
 		else if (opt == 2){
+			// Pedir ao utilizador que introduzar uma Localidade
+			std::string localidade;
+			std::cout << "Insira a localidade que deseja: ";
+			getline(std::cin,localidade);
 
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
+			// Ordenar os acidentes por localidade
+			protecaoCivil.ordernarAcidentes(compararAcidentesLocal);
 
-			std::cout << " ****** THIS IS A STUB ******\n\n";
+			std::cout << std::endl;
+
+			// Imprimir todos os acidentes que existem nesse local ; caso não haja nenhum, informar o utilizador
+			protecaoCivil.printAcidentesLocal(localidade);
+
+			std::cout << std::endl << std::endl;
 
 			pause();
 			break;
 		}
 		else if (opt == 3){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenenar os Acidentes por data e imprimi-los a todos
+			protecaoCivil.ordernarAcidentes(compararAcidentesData);
+			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
 		}
 		else if (opt == 4){
+			// Pedir ao utilizador que introduzar uma Data
+			std::string data;
+			std::cout << "Insira a data que deseja (DD-MM-AAAA) : ";
+			try{
+				data = lerData();
+			}
+			catch(Erro &e){
+				std::cout << "\n" << e.getInfo();
+				break;
+			}
 
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
+			// Ordenar os acidentes por data
+			protecaoCivil.ordernarAcidentes(compararAcidentesData);
 
-			std::cout << " ****** THIS IS A STUB ******\n\n";
+			std::cout << std::endl;
+
+			// Imprimir todos os acidentes que existem nessa data ; caso não haja nenhum, informar o utilizador
+			protecaoCivil.printAcidentesData(data);
+
+			std::cout << std::endl << std::endl;
 
 			pause();
 			break;
 		}
 		else if (opt == 5){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenenar os Acidentes por tipo e imprimi-los a todos
+			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
 		}
 		else if (opt == 6){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenar os acidentes por tipo e imprimir os Assaltos
+			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.printAcidentesTipo("Assalto");
 			pause();
 			break;
 		}
 		else if (opt == 7){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenar os acidentes por tipo e imprimir os Acidentes de Viacao
+			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.printAcidentesTipo("Acidente de Viacao");
 			pause();
 			break;
 		}
 		else if (opt == 8){
-
-			////////////////////////////////////
-			/////  TODO: ACOES DAS OPCOES  /////
-			////////////////////////////////////
-
-			std::cout << " ****** THIS IS A STUB ******\n\n";
-
+			// Ordenar os acidentes por tipo e imprimir os Incendios (quer Domesticos, quer Florestais)
+			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.printAcidentesTipo("Incendio Domestico");
+			protecaoCivil.printAcidentesTipo("Incendio Florestal");
 			pause();
 			break;
 		}
@@ -385,6 +385,37 @@ void printHeader(const std::string &header){
 	std::cout << header << std::endl;
 	for(unsigned int i=0 ; i<headerSize ; i++) { std::cout << "-"; }
 	std::cout << std::endl << std::endl;
+}
+
+std::string lerData(){
+	std::string data;
+
+	// Ler a data
+	getline(std::cin,data);
+
+	// Verificar se está no formato válido (DD-MM-AAAA)
+	if(data.size() != 10)											// Verificar se a data tem o tamanho correto
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(2) != '-') || (data.at(5) != '-'))			// Verificar se dia, mes e ano estao separados por um traco
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(0) < '0') || (data.at(0) > '9'))				// Verificar se Dx é um digito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(1) < '0') || (data.at(1) > '9'))				// Verificar se xD é um digito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(3) < '0') || (data.at(3) > '9'))				// Verificar se Mx é um digito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(4) < '0') || (data.at(4) > '9'))				// Verificar se xM é um digito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(6) < '0') || (data.at(6) > '9'))				// Verificar se Axxx é um dígito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(7) < '0') || (data.at(7) > '9'))				// Verificar se xAxx é um dígito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(8) < '0') || (data.at(8) > '9'))				// Verificar se xxAx é um dígito
+		throw (Erro("Data Invalida!"));
+	else if ((data.at(9) < '0') || (data.at(9) > '9'))				// Verificar se xxxA é um dígito
+		throw (Erro("Data Invalida!"));
+	else
+		return data;		// Nao houve erro, retornar data
 }
 
 void pause(){
