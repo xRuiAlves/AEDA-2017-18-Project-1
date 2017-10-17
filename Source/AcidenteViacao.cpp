@@ -22,8 +22,11 @@ std::string AcidenteViacao::getTipoAcidente() const{
 }
 
 void AcidenteViacao::printInfoAcidente() const {
-	std::cout << "***  ACIDENTE DE VIAÇÃO  ***" << std::endl;
+	std::cout << "***  ACIDENTE DE VIACAO  ***" << std::endl;
+	std::cout << "Local: " << local->getNome() << std::endl;
+	std::cout << "Data: " << data.getData() << std::endl;
+	std::cout << "Numero da Ocorrencia: " << numOcorrencia << std::endl;
 	std::cout << "Tipo de Estrada: " << tipoEstrada << std::endl;
-	std::cout << "Número de Feridos: " << numFeridos << std::endl;
-	std::cout << "Número Veículos: " << numVeiculos << std::endl;
+	std::cout << "Numero de Feridos: " << numFeridos << std::endl;
+	std::cout << "Numero Veiculos: " << numVeiculos << std::endl;
 }

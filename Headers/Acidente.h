@@ -1,5 +1,6 @@
 #ifndef ACIDENTE_H_
 #define ACIDENTE_H_
+#include <iostream>
 #include <string>
 #include "Local.h"
 #include "Date.h"

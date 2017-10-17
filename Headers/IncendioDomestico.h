@@ -7,7 +7,7 @@ class IncendioDomestico : public Incendio {
 private:
 	const std::string tipoCasa;
 public:
-	IncendioDomestico(const std::string &data, const Local* local, unsigned int numOcorrencia, unsigned int numCarrosNecess, unsigned int numAutotanquesNecess, const std::string &tipoCasa);
+	IncendioDomestico(const std::string &data, const Local* local, unsigned int numOcorrencia, unsigned int numBombeirosNecess, unsigned int numAutotanquesNecess, const std::string &tipoCasa);
 	~IncendioDomestico();
 	const std::string getTipoCasa() const;
 	std::string getTipoAcidente() const;
