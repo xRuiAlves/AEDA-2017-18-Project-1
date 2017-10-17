@@ -29,23 +29,23 @@ std::string Date::getData() const {
 	std::string dia, mes, ano;
 	
 	// Obter dia
-	if (dia < 10)			// tem apenas um digito
+	if (this->dia < 10)			// tem apenas um digito
 		dia = "0" + std::stoi(dia);
 	else 
 		dia = std::stoi(dia);
 	
 	// Obter mes
-	if (mes < 10)			// tem apenas um digito
+	if (this->mes < 10)			// tem apenas um digito
 		mes = "0" + std::stoi(mes);
 	else
 		mes = std::stoi(mes);
 	
 	// Obter ano
-	if (ano < 10)			// tem apenas um digito
+	if (this->ano < 10)			// tem apenas um digito
 		ano = "000" + std::stoi(ano);
-	else if (ano < 100)		// tem apenas dois digitos
+	else if (this->ano < 100)		// tem apenas dois digitos
 		ano = "00" + std::stoi(ano);
-	else if (ano < 1000)		// tem apenas tres digitos
+	else if (this->ano < 1000)		// tem apenas tres digitos
 		ano = "0" + std::stoi(ano);
 	else
 		ano = std::stoi(ano);
