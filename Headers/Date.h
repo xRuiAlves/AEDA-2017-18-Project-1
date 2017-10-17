@@ -15,7 +15,7 @@ public:
 	unsigned int getCompleteData() const;
 	std::string getData() const;	// retorna string DD-MM-AAAA
 	bool operator<(const Date &otherDate) const;
-	Date();
+	~Date();
 };
 
 #endif /* DATE_H_ */
