@@ -6,26 +6,26 @@ Date::Date(const std::string &date) {		// formato DD-MM-AAAA
 	ano = std::stoi(date.substr(6,4));
 }
 
-unsigned int getDia() const {
+unsigned int Date::getDia() const {
   return dia;
 }
 
-unsigned int getMes() const{
+unsigned int Date::getMes() const{
   return mes;
 }
 
-unsigned int getAno() const {
+unsigned int Date::getAno() const {
   return ano;
 }
 
-unsigned int getCompleteData() const {
+unsigned int Date::getCompleteData() const {
   unsigned int tempAno = ano * 10000, tempMes = mes * 100, tempData = 0;
   tempData = tempAno + tempMes + dia;
   return tempData;
 
 }
 
-std::string getData() const {
+std::string Date::getData() const {
 	std::string dia, mes, ano;
 	
 	// Obter dia
@@ -53,7 +53,7 @@ std::string getData() const {
 	return (dia + mes + ano);
 }
 
- bool operator < (const Date &otherDate) const {
+ bool Date::operator<(const Date &otherDate) const {
    return this->getCompleteData() < otherDate.getCompleteData();
  }
 
