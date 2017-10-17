@@ -11,6 +11,7 @@ bool compararPostosLocal(Posto* p1, Posto* p2);
 bool compararPostosTipo(Posto* p1, Posto* p2);
 bool compararAcidentesLocal(Acidente* a1, Acidente* a2);
 bool compararAcidentesTipo(Acidente* a1, Acidente* a2);
+bool compararAcidentesData(Acidente* a1, Acidente* a2);
 void printMainMenu();
 void printPesquisarPostosMenu();
 void printInfoOcorrenciasMenu();
@@ -300,6 +301,10 @@ bool compararAcidentesLocal(Acidente* a1, Acidente* a2){
 
 bool compararAcidentesTipo(Acidente* a1, Acidente* a2){
 	return (a1->getTipoAcidente() < a2->getTipoAcidente());
+}
+
+bool compararAcidentesData(Acidente* a1, Acidente* a2){
+	return (a1->getData() < a2->getData());
 }
 
 void printMainMenu(){
