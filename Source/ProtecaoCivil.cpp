@@ -174,7 +174,7 @@ void ProtecaoCivil::printPostosLocal(const std::string &local) const{
 
 	// Se o vetor de locais estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
 	if(locais.size() == 0){
-		std::cout << "Nao ha quaiquer postos em nenhuma localidade.";
+		std::cout << "Nao ha quaisquer postos em nenhuma localidade.";
 		return;
 	}
 
@@ -261,7 +261,7 @@ void ProtecaoCivil::printAcidentesLocal(const std::string &local) const{
 
 	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
 	if(acidentes.size() == 0){
-		std::cout << "Nao ha quaiquer acidentes em nenhuma localidade.";
+		std::cout << "Nao ha quaisquer acidentes em nenhuma localidade.";
 		return;
 	}
 
@@ -300,7 +300,7 @@ void ProtecaoCivil::printAcidentesData(const std::string &data) const{
 
 	// Se o vetor de acidentes estiver vazio, nenhuma das seguintes verificacoes sao necessarias, retornar
 	if(acidentes.size() == 0){
-		std::cout << "Nao ha quaiquer acidentes em nenhuma localidade.";
+		std::cout << "Nao ha quaisquer acidentes em nenhuma localidade.";
 		return;
 	}
 
