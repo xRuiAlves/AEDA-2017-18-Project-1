@@ -39,6 +39,7 @@ public:
 	void printTodosPostos() const;
 	void printPostosTipo(const std::string &tipo) const;		// ASSUMINDO POSTOS JA ORDENADOS POR TIPO!!!
 	void printPostosLocal(const std::string &local) const;		// ASSUMINDO POSTOS JA ORDENADOS POR LOCAL!!!
+	void ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2));
 };
 
 #endif /* PROTECAOCIVIL_H_ */

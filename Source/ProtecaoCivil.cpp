@@ -218,3 +218,6 @@ unsigned int ProtecaoCivil::findAcidenteMaiorNum() const{
 	return maiorNum;
 }
 
+void ProtecaoCivil::ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2)){
+	std::sort(acidentes.begin(),acidentes.end(),compareFunction);
+}
