@@ -5,11 +5,11 @@
 
 class Incendio : public Acidente{
 private:
-	const unsigned int numCarrosNecess;
+	const unsigned int numBombeirosNecess;
 	const unsigned int numAutotanquesNecess;
 public:
-	Incendio(const std::string &data, const Local* local, unsigned int numOcorrencia, unsigned int numCarrosNecess, unsigned int numAutotanquesNecess);
-	const unsigned int getNumCarrosNecess() const;
+	Incendio(const std::string &data, const Local* local, unsigned int numOcorrencia, unsigned int numBombeirosNecess, unsigned int numAutotanquesNecess);
+	const unsigned int getNumBombeirosNecess() const;
 	const unsigned int getNumAutotanquesNecess() const;
 	virtual ~Incendio();
 	virtual std::string getTipoAcidente() const = 0;
