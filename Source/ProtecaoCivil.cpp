@@ -44,8 +44,13 @@ void ProtecaoCivil::openFiles(){
 
 	// Preencher o vetor de postos com o conteudo do ficheiro
 	std::string tipoPosto, tipoVeiculo;
-	unsigned int numSocorristas, numVeiculos, numAutotanques, numAmbulancias, indexLocal;
+	unsigned int numSocorristas, numVeiculos, numAutotanques, numAmbulancias, indexLocal, id;
 	while(getline(istr,line)){
+		// obter o id do local
+		dashIndex = line.find_first_of('/');
+		id = std::stoi(line.substr(0,dashIndex));
+		line.erase(0,dashIndex+1);
+
 		// obter nome do local
 		dashIndex = line.find_first_of('/');
 		nomeLocal = line.substr(0,dashIndex);
