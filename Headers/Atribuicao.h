@@ -10,8 +10,8 @@ private:
 	const unsigned int numVeiculos;
 	const std::string tipoVeiculos;
 public:
-	Atribuicao::Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos);
-	const unsigned int getPosto() const;
+	Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos);
+	const Posto* getPosto() const;
 	const unsigned int getNumSocorristas() const;
 	const unsigned int getNumVeiculos() const;
 	const std::string getTipoVeiculos() const;
@@ -21,12 +21,4 @@ public:
 
 
 
-
-
-/*
- * Posto*
- * num  socor
- * numveoi
- * string tipo de veic
- *TODOS PODE SWER COST
- */
+#endif /* ATRIBUICAO_H_ */

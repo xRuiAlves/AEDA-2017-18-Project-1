@@ -3,16 +3,16 @@
 Atribuicao::Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos)
 	: posto(posto) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) , tipoVeiculos(tipoVeiculos) {}
 
-const unsigned int getPosto() const{
+const Posto* Atribuicao::getPosto() const{
 	return posto;
 }
-const unsigned int getNumSocorristas() const{
+const unsigned int Atribuicao::getNumSocorristas() const{
 	return numSocorristas;
 }
-const unsigned int getNumVeiculos() const{
+const unsigned int Atribuicao::getNumVeiculos() const{
 	return numVeiculos;
 }
-const std::string getTipoVeiculos() const{
+const std::string Atribuicao::getTipoVeiculos() const{
 	return tipoVeiculos;
 }
 
