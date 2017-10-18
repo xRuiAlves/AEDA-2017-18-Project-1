@@ -9,6 +9,7 @@ protected:
 	const Local* local;
 	unsigned int numSocorristas;
 	unsigned int numVeiculos;
+	const unsigned int id;
 public:
 	Posto(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos);
 	virtual ~Posto();
@@ -19,6 +20,7 @@ public:
 	unsigned int getNumVeiculos() const;
 	unsigned int getNumSocorristas() const;
 	const Local* getLocal() const;
+	const unsigned int getId() const;
 	virtual std::string getTipoPosto() const = 0;
 	virtual void printInfoPosto() const = 0;
 };

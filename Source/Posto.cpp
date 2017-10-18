@@ -46,3 +46,7 @@ unsigned int Posto::getNumSocorristas() const{
 const Local* Posto::getLocal() const{
 	return local;
 }
+
+const unsigned int Posto::getId() const{
+	return id;
+}
