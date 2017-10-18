@@ -10,6 +10,7 @@ private:
 	const unsigned int numVeiculos;
 	const std::string tipoVeiculos;
 public:
+	Atribuicao::Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos);
 	const unsigned int getPosto() const;
 	const unsigned int getNumSocorristas() const;
 	const unsigned int getNumVeiculos() const;
