@@ -93,13 +93,34 @@ int getOption(int min, int max){
 }
 
 void declararOcorrencia(ProtecaoCivil &protecaoCivil){
+	// Obter a localidade
+	std::string localidade;
+	std::cout << "\nInsira a localidade em que a ocorrencia teve lugar: ";
 
-	std::cout << "\n\nThis is a STUB!!" << std::endl;
-	std::cout << "We are Inside declararOcorrencia()";
+	// Verificar se a localidade introduzida exista no vetor de locais ; caso nao exista, informar o utilizador
+	try{
+		getline(std::cin,localidade);
+		if(protecaoCivil.findLocal(localidade) == -1)		// local não existe no vetor de locais
+			throw (Erro("\n\nA localidade introduzida nao existe na base de dados da Protecao Civil"));
+	}
+	catch(Erro &e){
+		std::cout << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
 
-	///////////////////////////////////
-	// TODO: IMPLEMENT THIS FUNCTION //
-	///////////////////////////////////
+	// Obter a data
+	std::string data;
+	std::cout << "\nInsira a data em que o acidente decorreu: ";
+	try{
+		data = lerData();
+	}
+	catch(Erro &e){
+		std::cout << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
+
 
 
 }
