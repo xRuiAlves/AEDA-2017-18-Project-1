@@ -27,7 +27,6 @@ private:
 	const std::string ficheiroAcidentes;
 	const std::string ficheiroLocais;
 	void gravar() const;
-	int findLocal(const std::string &nomeLocal) const;
 	unsigned int findAcidenteMaiorNum() const;
 public:
 	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais);
@@ -44,6 +43,7 @@ public:
 	void printAcidentesTipo(const std::string &tipo) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR TIPO!!!
 	void printAcidentesLocal(const std::string &local) const;	// ASSUMINDO ACIDENTES JA ORDENADOS POR LOCAL!!!
 	void printAcidentesData(const std::string &data) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR DATA!!!
+	int findLocal(const std::string &nomeLocal) const;
 	double getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2);
 };
 
