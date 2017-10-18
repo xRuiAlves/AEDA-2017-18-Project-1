@@ -82,14 +82,14 @@ void ProtecaoCivil::openFiles(){
 			dashIndex = line.find_first_of('/');
 			tipoVeiculo = line.substr(0,dashIndex);
 
-			postos.push_back(new Policia(&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
+			postos.push_back(new Policia(id,&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
 		}
 		else if(tipoPosto == "Inem"){
 			// obter tipo de veiculo
 			dashIndex = line.find_first_of('/');
 			tipoVeiculo = line.substr(0,dashIndex);
 
-			postos.push_back(new Inem(&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
+			postos.push_back(new Inem(id,&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
 		}
 		else {		// tipoPosto = Bombeiros
 			// obter num. de autotanques
@@ -101,7 +101,7 @@ void ProtecaoCivil::openFiles(){
 			dashIndex = line.find_first_of('/');
 			numAmbulancias = std::stoi(line.substr(0,dashIndex));
 
-			postos.push_back(new Bombeiros(&locais.at(indexLocal),numSocorristas,numAutotanques,numAmbulancias));
+			postos.push_back(new Bombeiros(id,&locais.at(indexLocal),numSocorristas,numAutotanques,numAmbulancias));
 		}
 	}
 	istr.close();
@@ -126,7 +126,7 @@ ProtecaoCivil::~ProtecaoCivil() {
 	// TODO Call gravar()
 }
 
-unsigned int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
+int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
 	for(unsigned int i=0 ; i<locais.size() ; i++){
 		if(locais.at(i).getNome() == nomeLocal){
 			return i;
