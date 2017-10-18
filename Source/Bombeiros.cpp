@@ -1,7 +1,7 @@
 #include "Bombeiros.h"
 
-Bombeiros::Bombeiros(const Local* local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias)
-	: Posto(local,numSocorristas,numAutotanques+numAmbulancias) , numAutotanques(numAutotanques) , numAmbulancias(numAmbulancias) {}
+Bombeiros::Bombeiros(const unsigned int id, const Local* local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias)
+	: Posto(id, local,numSocorristas,numAutotanques+numAmbulancias) , numAutotanques(numAutotanques) , numAmbulancias(numAmbulancias) {}
 
 
 Bombeiros::~Bombeiros() {
@@ -51,6 +51,7 @@ std::string Bombeiros::getTipoPosto() const{
 void Bombeiros::printInfoPosto() const{
 	std::cout << "***  BOMBEIROS  ***" << std::endl;
 	std::cout << "Localidade: " << local->getNome() << std::endl;
+	std::cout << "Numero de Identificacao: " << id << std::endl;
 	std::cout << "Numero de Socorristas: " << numSocorristas << std::endl;
 	std::cout << "Numero de Autotanques: " << numAutotanques << std::endl;
 	std::cout << "Numero de Ambulancias: " << numAmbulancias << std::endl;

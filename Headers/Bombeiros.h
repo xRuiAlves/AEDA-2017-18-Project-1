@@ -7,7 +7,7 @@ private:
 	unsigned int numAutotanques;
 	unsigned int numAmbulancias;
 public:
-	Bombeiros(const Local* local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias);
+	Bombeiros(const unsigned int id, const Local* local, unsigned int numSocorristas, unsigned int numAutotanques, unsigned int numAmbulancias);
 	~Bombeiros();
 	void addAutotanques(unsigned int num);
 	void addAmbulancias(unsigned int num);
