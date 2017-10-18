@@ -1,7 +1,7 @@
 #include "Posto.h"
 
-Posto::Posto(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos)
-	: local(local) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) {}
+Posto::Posto(const unsigned int id, const Local* local, unsigned int numSocorristas, unsigned int numVeiculos)
+	: id(id) , local(local) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) {}
 
 
 Posto::~Posto() {

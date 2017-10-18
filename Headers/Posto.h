@@ -11,7 +11,7 @@ protected:
 	unsigned int numVeiculos;
 	const unsigned int id;
 public:
-	Posto(const Local* local, unsigned int numSocorristas, unsigned int numVeiculos);
+	Posto(const unsigned int id, const Local* local, unsigned int numSocorristas, unsigned int numVeiculos);
 	virtual ~Posto();
 	void addVeiculos(unsigned int num);
 	void addSocorristas(unsigned int num);
