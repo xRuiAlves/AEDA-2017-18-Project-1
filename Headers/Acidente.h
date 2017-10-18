@@ -2,14 +2,17 @@
 #define ACIDENTE_H_
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Local.h"
 #include "Date.h"
+#include "Atribuicao.h"
 
 class Acidente {
 protected:
 	const Date data;
 	const Local* local;
 	const unsigned int numOcorrencia;
+	std::vector<Atribuicao> atribuicoes;
 public:
 	Acidente(const std::string &data, const Local* local, unsigned int numOcorrencia);
 	virtual ~Acidente();
