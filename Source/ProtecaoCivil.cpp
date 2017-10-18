@@ -339,3 +339,17 @@ void ProtecaoCivil::printAcidentesData(const std::string &data) const{
 	}
 }
 
+double ProtecaoCivil::getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2){
+	int indiceLocal1 = findLocal(nomeLocal1);
+	int indiceLocal2 = findLocal(nomeLocal2);
+
+	if(indiceLocal1==-1 || indiceLocal2==-1)	// Um dos locais nao existe no vetor de locais
+		return -1;
+
+	// Obter as coordenadas do vetor
+	double vecX = locais.at(indiceLocal2).getXcoord() - locais.at(indiceLocal1).getXcoord();
+	double vecY = locais.at(indiceLocal2).getYcoord() - locais.at(indiceLocal1).getYcoord();
+
+	// calcular norma do vetor e retornar esse valor
+	return sqrt(vecX*vecX + vecY*vecY);
+}
