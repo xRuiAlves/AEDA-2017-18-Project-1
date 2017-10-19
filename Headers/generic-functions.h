@@ -101,7 +101,7 @@ void printHeader(const std::string &header);
 std::string lerData();
 
 /**
- * @brief Makes a pause, asking for the user to press the Enter key to continue.
+ * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
  */
 void pause();
 
