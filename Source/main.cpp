@@ -101,7 +101,7 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 	try{
 		getline(std::cin,localidade);
 		if(protecaoCivil.findLocal(localidade) == -1)		// local não existe no vetor de locais
-			throw (Erro("\n\nA localidade introduzida nao existe na base de dados da Protecao Civil"));
+			throw (Erro("\nA localidade introduzida nao existe na base de dados da Protecao Civil"));
 	}
 	catch(Erro &e){
 		std::cout << e.getInfo() << std::endl << std::endl;
@@ -116,11 +116,38 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 		data = lerData();
 	}
 	catch(Erro &e){
-		std::cout << e.getInfo() << std::endl << std::endl;
+		std::cout << std::endl << e.getInfo() << std::endl << std::endl;
 		pause();
 		return;
 	}
 
+	// Obter o tipo de acidente
+	int opt;
+	std::cout << "\nInsira o tipo de Acidente:" << std::endl;
+	std::cout << "1. Assalto" << std::endl;
+	std::cout << "2. Acidente de Viacao" << std::endl;
+	std::cout << "3. Incendio Florestal" << std::endl;
+	std::cout << "4. Incendio Domestico" << std::endl << std::endl;
+	try{
+		opt = getOption(1,4);
+	}
+	catch(Erro &e){
+		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
+
+	// Obter a informacao necessaria para o tipo de acidentes especificado
+	switch(opt){
+	case 1:		// Assalto
+		break;
+	case 2:		// Acidente de Viacao
+		break;
+	case 3:		// Incendio Florestal
+		break;
+	case 4:		// Incendio Domestico
+		break;
+	}
 
 
 }
