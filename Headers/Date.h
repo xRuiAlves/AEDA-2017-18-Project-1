@@ -49,7 +49,7 @@ public:
 
 	/**
 	 * @brief Operador < para comparar datas.
-	 * @param Recebe uma outra data para comparar à data em questão.
+	 * @param otherDate - uma outra data para comparar à data em questão.
 	 * @return Retorna true caso a data em questão seja anterior à data a comparar, false caso contrário.
 	 */
 	bool operator<(const Date &otherDate) const;
