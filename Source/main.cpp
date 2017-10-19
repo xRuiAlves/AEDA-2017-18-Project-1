@@ -1,24 +1,8 @@
+/** @file */
+
 #include <iostream>
 #include "ProtecaoCivil.h"
-
-
-int getOption(int min, int max);	// Aceita uma opção entre [min , max] e lança erro em caso de mau input / input fora de range
-void declararOcorrencia(ProtecaoCivil &protecaoCivil);
-void terminarOcorrencia(ProtecaoCivil &protecaoCivil);
-void infoOcorrencia(ProtecaoCivil &protecaoCivil);
-void pesquisarPostos(ProtecaoCivil &protecaoCivil);
-bool compararPostosLocal(Posto* p1, Posto* p2);
-bool compararPostosTipo(Posto* p1, Posto* p2);
-bool compararAcidentesLocal(Acidente* a1, Acidente* a2);
-bool compararAcidentesTipo(Acidente* a1, Acidente* a2);
-bool compararAcidentesData(Acidente* a1, Acidente* a2);
-void printMainMenu();
-void printPesquisarPostosMenu();
-void printInfoOcorrenciasMenu();
-void printHeader(const std::string &header);
-std::string lerData();
-void pause();
-
+#include "generic-functions.h"
 
 int main(){
 
