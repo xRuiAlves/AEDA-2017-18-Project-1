@@ -49,15 +49,60 @@ bool compararPostosLocal(Posto* p1, Posto* p2);
  */
 bool compararPostosTipo(Posto* p1, Posto* p2);
 
-
+/**
+ * @param a1 - Apontador para um acidente genérico.
+ * @param a2 - Apontador para um acidente genérico.
+ * @brief Permite comparar dois acidentes pelo local (ordem alfabética) em que estão. Esta função é utilizada com "função auxiliar" em algorítmos de ordenação.
+ * @return Retorna true se o local do acidente a1 for menor que o local do acidente a2 (ordem alfabética) e false caso contrário.
+ */
 bool compararAcidentesLocal(Acidente* a1, Acidente* a2);
+
+/**
+ * @param a1 - Apontador para um acidente genérico.
+ * @param a2 - Apontador para um acidente genérico.
+ * @brief Permite comparar dois acidentes pelo tipo de acidente (ordem alfabética). Esta função é utilizada com "função auxiliar" em algorítmos de ordenação.
+ * @return Retorna true se o tipo de acidente do acidente a1 for menor que o tipo de acidente do acidente a2 (ordem alfabética) e false caso contrário.
+ */
 bool compararAcidentesTipo(Acidente* a1, Acidente* a2);
+
+/**
+ * @param a1 - Apontador para um acidente genérico.
+ * @param a2 - Apontador para um acidente genérico.
+ * @brief Permite comparar dois acidentes pela data em que decorreram (ordem cronológica). Esta função é utilizada com "função auxiliar" em algorítmos de ordenação.
+ * @return Retorna true se a data do acidente a1 for menor a data do acidente a2 (ordem cronológica) e false caso contrário.
+ */
 bool compararAcidentesData(Acidente* a1, Acidente* a2);
+
+/**
+ * @brief Imprime no ecrã o menu principal
+ */
 void printMainMenu();
+
+/*
+ * @brief Imprime no ecrã o submenu de pesquisa de postos
+ */
 void printPesquisarPostosMenu();
+
+/*
+ * @brief Imprime no ecrã o submenu de informações sobre ocorrências
+ */
 void printInfoOcorrenciasMenu();
+
+/*
+ * @param header - nome do menu para qual este cabeçalho é usado
+ * @brief Imprime no ecrã o cabeçalho de um menu
+ */
 void printHeader(const std::string &header);
+
+/*
+ * @brief Lê do utilizador uma data no formato DD-MM-AAAA, lançando um exceção (Erro) caso a data não esteja no formato especificado / erro de input.
+ * @return retorna a data lida do utilizador, caso tenha havido sucesso na leitura
+ */
 std::string lerData();
+
+/**
+ * @brief Makes a pause, asking for the user to press the Enter key to continue.
+ */
 void pause();
 
 
