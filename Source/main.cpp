@@ -435,8 +435,32 @@ std::string lerData(){
 		throw (Erro("Data Invalida!"));
 	else if ((data.at(9) < '0') || (data.at(9) > '9'))				// Verificar se xxxA é um dígito
 		throw (Erro("Data Invalida!"));
-	else
-		return data;		// Nao houve erro, retornar data
+
+
+	// Verificar se a data segue os padrões normais de datas
+	int dia = stoi(data.substr(0,2));
+	int mes = stoi(data.substr(3,2));
+	int ano = stoi(data.substr(6,4));
+
+	switch(mes){
+	case 1: case 3: case 5: case 7: case 8: case 10: case 12:		// Meses com 31 dias
+		if ((dia<0) || (dia>31))
+			throw (Erro("Data Incorreta!"));
+		break;
+	case 4: case 6: case 9: case 11:								// Meses com 30 dias
+		if ((dia<0) || (dia>30))
+			throw (Erro("Data Incorreta!"));
+		break;
+	case 2:															// Fevereiro
+		if ((dia<0) || (dia>29))
+			throw (Erro("Data Incorreta!"));
+		else if ((dia == 29) && (ano%4 != 0))	// Se o dia for 29 de Fevereiro e o ano não for bissexto -> erro
+			throw (Erro("Data Incorreta!"));
+		break;
+	}
+
+	// Data válidade
+	return data;
 }
 
 std::string obterLocalidade(ProtecaoCivil &protecaoCivil){
