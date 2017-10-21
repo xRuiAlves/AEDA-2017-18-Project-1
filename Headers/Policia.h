@@ -2,7 +2,7 @@
 #define POLICIA_H_
 #include "Posto.h"
 
-/*
+/**
  * Posto da Polícia da Proteção Civil, classe derivada da classe Posto.
  */
 class Policia : public Posto {

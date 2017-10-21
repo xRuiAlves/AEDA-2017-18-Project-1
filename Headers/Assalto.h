@@ -16,7 +16,7 @@ public:
 	 * @param data - Data da ocorrência no formato DD-MM-AAAA
 	 * @param local - Apontador para o local onde teve lugar o acidente
 	 * @param numOcorrencia - Numero atribuído à ocorrência
-	 * @param tipoCada - Tipo de casa em que decorreu o Assalto
+	 * @param tipoCasa - Tipo de casa em que decorreu o Assalto
 	 * @param haferidos - Indica se houve ou não feridos no decurso do Assalto
 	 */
 	Assalto(const std::string &data, const Local* local, unsigned int numOcorrencia, const std::string &tipoCasa, bool haferidos);

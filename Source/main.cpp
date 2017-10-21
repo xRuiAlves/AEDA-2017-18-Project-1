@@ -4,6 +4,11 @@
 #include "ProtecaoCivil.h"
 #include "generic-functions.h"
 
+
+/**
+ * @brief Main Function
+ * @return 0 on successfull run
+ */
 int main(){
 
 

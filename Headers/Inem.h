@@ -2,7 +2,7 @@
 #define INEM_H_
 #include "Posto.h"
 
-/*
+/**
  * Posto do Inem da Proteção Civil, classe derivada da classe Posto.
  */
 class Inem : public Posto {

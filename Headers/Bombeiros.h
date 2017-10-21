@@ -2,7 +2,7 @@
 #define BOMBEIROS_H_
 #include "Posto.h"
 
-/*
+/**
  * Posto ddos Bombeiros da Proteção Civil, classe derivada da classe Posto.
  */
 class Bombeiros : public Posto {

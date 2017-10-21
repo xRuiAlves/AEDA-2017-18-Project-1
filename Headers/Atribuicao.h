@@ -18,7 +18,7 @@ public:
 	 * @param posto - Apontador para o posto de onde originam os meios de apoio
 	 * @param numSocorristas - Número de socorristas entrevenientes na atribuição
 	 * @param numVeiculos - Número de veículos entrevenientes na atribuição
-	 * @param tipo Veiculos - Tipo de veículos entrevenientes na atribuição
+	 * @param tipoVeiculos - Tipo de veículos entrevenientes na atribuição
 	 */
 	Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos);
 
