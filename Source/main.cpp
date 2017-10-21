@@ -77,43 +77,37 @@ int getOption(int min, int max){
 }
 
 void declararOcorrencia(ProtecaoCivil &protecaoCivil){
-	// Obter a localidade
-	std::string localidade;
-	std::cout << "\nInsira a localidade em que a ocorrencia teve lugar: ";
+	std::string localidade, data, tipoCasa, tipoEstrada;
+	int tipoAcidente;
+	bool existenciaFeridos;
+	unsigned int numFeridos, numVeiculos, numBombeirosNecess, numAutotanquesNecess, areaChamas;
 
-	// Verificar se a localidade introduzida exista no vetor de locais ; caso nao exista, informar o utilizador
 	try{
-		getline(std::cin,localidade);
-		if(protecaoCivil.findLocal(localidade) == -1)		// local não existe no vetor de locais
-			throw (Erro("\nA localidade introduzida nao existe na base de dados da Protecao Civil"));
-	}
-	catch(Erro &e){
-		std::cout << e.getInfo() << std::endl << std::endl;
-		pause();
-		return;
-	}
-
-	// Obter a data
-	std::string data;
-	std::cout << "\nInsira a data em que o acidente decorreu: ";
-	try{
+		localidade = obterLocalidade(protecaoCivil);
 		data = lerData();
-	}
-	catch(Erro &e){
-		std::cout << std::endl << e.getInfo() << std::endl << std::endl;
-		pause();
-		return;
-	}
+		tipoAcidente = obterTipoAcidente();
 
-	// Obter o tipo de acidente
-	int opt;
-	std::cout << "\nInsira o tipo de Acidente:" << std::endl;
-	std::cout << "1. Assalto" << std::endl;
-	std::cout << "2. Acidente de Viacao" << std::endl;
-	std::cout << "3. Incendio Florestal" << std::endl;
-	std::cout << "4. Incendio Domestico" << std::endl << std::endl;
-	try{
-		opt = getOption(1,4);
+		switch(tipoAcidente){
+		case 1:		// Assaltos
+			tipoCasa = assaltoObterTipoCasa();
+			existenciaFeridos = assaltoObterExistenciaFeridos();
+			break;
+		case 2:		// Acidentes de Viacao
+			tipoEstrada = viacaoObterTipoEstrada();
+			numFeridos = viacaoObterNumFeridos();
+			numVeiculos = viacaoObterNumVeiculos();
+			break;
+		case 3:		// Incendios Florestais
+			numBombeirosNecess = incendioObterNumBombeiros();
+			numAutotanquesNecess = incendioObterNumAutotanques();
+			areaChamas = incendioObterAreaChamas();
+			break;	// Incendios Domesticos
+		case 4:
+			numBombeirosNecess = incendioObterNumBombeiros();
+			numAutotanquesNecess = incendioObterNumAutotanques();
+			tipoCasa = incendioObterTipoCasa();
+			break;
+		}
 	}
 	catch(Erro &e){
 		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
@@ -121,19 +115,10 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 		return;
 	}
 
-	// Obter a informacao necessaria para o tipo de acidentes especificado
-	switch(opt){
-	case 1:		// Assalto
-		break;
-	case 2:		// Acidente de Viacao
-		break;
-	case 3:		// Incendio Florestal
-		break;
-	case 4:		// Incendio Domestico
-		break;
-	}
-
-
+	std::cout << "\n*******************************";
+	std::cout << "\n**********  SUCESSO  **********";
+	std::cout << "\n*******************************\n\n";
+	pause();
 }
 
 void terminarOcorrencia(ProtecaoCivil &protecaoCivil){
@@ -421,8 +406,7 @@ void printHeader(const std::string &header){
 
 std::string lerData(){
 	std::string data;
-
-	// Ler a data
+	std::cout << "\nInsira a data em que ocorreu o acidente (Formato DD-MM-AAAA): ";
 	getline(std::cin,data);
 
 	// Verificar se está no formato válido (DD-MM-AAAA)
@@ -448,6 +432,231 @@ std::string lerData(){
 		throw (Erro("Data Invalida!"));
 	else
 		return data;		// Nao houve erro, retornar data
+}
+
+std::string obterLocalidade(ProtecaoCivil &protecaoCivil){
+	std::string localidade;
+	std::cout << "\nInsira a localidade em que a ocorrencia teve lugar: ";
+	getline(std::cin,localidade);
+
+	// Verificar se o local existe na base de dados da Protecao Civil
+	if(protecaoCivil.findLocal(localidade) == -1)		// local não existe no vetor de locais
+		throw (Erro("A localidade introduzida nao existe na base de dados da Protecao Civil"));
+	else
+		return localidade;
+}
+
+int obterTipoAcidente(){
+	int opt;
+	std::cout << "\nInsira o tipo de Acidente:" << std::endl;
+	std::cout << "1. Assalto" << std::endl;
+	std::cout << "2. Acidente de Viacao" << std::endl;
+	std::cout << "3. Incendio Florestal" << std::endl;
+	std::cout << "4. Incendio Domestico" << std::endl << std::endl;
+	try{
+		opt = getOption(1,4);
+	}
+	catch(Erro &e){
+		throw e;
+	}
+
+	return opt;		// Sucesso na leitura
+}
+std::string assaltoObterTipoCasa(){
+	std::string tipoCasa;
+	std::cout << "\nIndique o tipo de casa em que o assalto teve lugar (Partiular ou Comercial): ";
+	getline(std::cin, tipoCasa);
+
+	// Aceitar "Particular" de várias formas diferentes
+	if ((tipoCasa=="p") || (tipoCasa=="P") || (tipoCasa=="particular") || (tipoCasa=="Particular") || (tipoCasa=="1"))
+		return "Particular";
+
+	// Aceitar "Comercial" de várias formas diferentes
+	else if ((tipoCasa=="c") || (tipoCasa=="C") || (tipoCasa=="comercial") || (tipoCasa=="Comercial") || (tipoCasa=="2"))
+		return "Comercial";
+
+	// Input Invalido
+	else
+		throw (Erro("Tipo de casa invalido!"));
+}
+
+bool assaltoObterExistenciaFeridos(){
+	std::string feridos;
+	std::cout << "\nIndique se houve feridos no decorrer do assalto (Sim ou Nao): ";
+	getline(std::cin, feridos);
+
+	// Aceitar "Sim" de várias formas diferentes
+	if ((feridos=="s") || (feridos=="S") || (feridos=="sim") || (feridos=="Sim") || (feridos=="SIM") || (feridos=="1"))
+		return true;
+
+	// Aceitar "Nao" de várias formas diferentes
+	else if ((feridos=="n") || (feridos=="N") || (feridos=="nao") || (feridos=="Nao") || (feridos=="NAO") || (feridos=="2"))
+		return false;
+
+	// Input Invalido
+	else
+		throw (Erro("Resposta invalida!"));
+}
+
+std::string viacaoObterTipoEstrada(){
+	std::string tipoEstrada;
+	std::cout << "\nIndique o tipo de estrada em que ocorreu o acidente (Estrada Nacional ou Auto-Estrada): ";
+	getline(std::cin, tipoEstrada);
+
+	// Aceitar "Estrada Nacional" de várias formas diferentes
+	if ((tipoEstrada=="Estrada Nacional") || (tipoEstrada=="estrada nacional") || (tipoEstrada=="en") || (tipoEstrada=="EN") || (tipoEstrada=="1"))
+		return "Estrada Nacional";
+
+	// Aceitar "Auto-Estrada" de várias formas diferentes
+	else if ((tipoEstrada=="Auto-Estrada") || (tipoEstrada=="auto-estrada") || (tipoEstrada=="ae") || (tipoEstrada=="AE") || (tipoEstrada=="2"))
+		return "Auto-Estrada";
+
+	// Input Invalido
+	else
+		throw (Erro("Tipo de estrada invalido!"));
+}
+
+unsigned int viacaoObterNumFeridos(){
+	int numFeridos;
+	std::cout << "\nInsira o numero de feridos envolvidos no acidente: ";
+	std::cin >> numFeridos;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de feridos introduzido nao foi absurdo
+	if (numFeridos < 0)
+		throw (Erro("Numero de feridos nao pode ser negativo!"));
+	else if (numFeridos == 0)
+		throw (Erro("umero de feridos nao pode ser nulo!"));
+	else
+		return ((unsigned int) numFeridos);
+}
+
+unsigned int viacaoObterNumVeiculos(){
+	int numVeiculos;
+	std::cout << "\nInsira o numero de veiculos envolvidos no acidente: ";
+	std::cin >> numVeiculos;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de veiculos introduzido nao foi absurdo
+	if (numVeiculos < 0)
+		throw (Erro("Numero de veiculos nao pode ser negativo!"));
+	else if (numVeiculos == 0)
+		throw (Erro("Numero de veiculos nao pode ser nulo!"));
+	else
+		return ((unsigned int) numVeiculos);
+}
+
+unsigned int incendioObterNumAutotanques(){
+	int numAutotanques;
+	std::cout << "\nInsira o numero de autotanques necessarios para este incendio: ";
+	std::cin >> numAutotanques;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de autotanques introduzido nao foi absurdo
+	if (numAutotanques < 0)
+		throw (Erro("Numero de autotanques nao pode ser negativo!"));
+	else if (numAutotanques == 0)
+		throw (Erro("Numero de autotanques nao pode ser nulo!"));
+	else
+		return ((unsigned int) numAutotanques);
+}
+
+unsigned int incendioObterNumBombeiros(){
+	int numBombeiros;
+	std::cout << "\nInsira o numero de bombeiros necessarios para este incendio: ";
+	std::cin >> numBombeiros;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de bombeiros introduzido nao foi absurdo
+	if (numBombeiros < 0)
+		throw (Erro("Numero de bombeiros nao pode ser negativo!"));
+	else if (numBombeiros == 0)
+		throw (Erro("Numero de bombeiros nao pode ser nulo!"));
+	else
+		return ((unsigned int) numBombeiros);
+}
+
+unsigned int incendioObterAreaChamas(){
+	int areaChamas;
+	std::cout << "\nInsira a area de chamas deste incendio (em Kilometros Quadrados): ";
+	std::cin >> areaChamas;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se a area de chamas introduzida nao foi absurda
+	if (areaChamas < 0)
+		throw (Erro("Area de chamas nao pode ser negativa!"));
+	else if (areaChamas == 0)
+		throw (Erro("Area de chamas nao pode ser nula!"));
+	else
+		return ((unsigned int) areaChamas);
+}
+
+std::string incendioObterTipoCasa(){
+	std::string tipoCasa;
+	std::cout << "\nIndique o tipo de casa em que o incendio teve lugar (Apartamento ou Moradia): ";
+	getline(std::cin, tipoCasa);
+
+	// Aceitar "Apartamento" de várias formas diferentes
+	if ((tipoCasa=="a") || (tipoCasa=="A") || (tipoCasa=="apartamento") || (tipoCasa=="Apartamento") || (tipoCasa=="1"))
+		return "Apartamento";
+
+	// Aceitar "Moradia" de várias formas diferentes
+	else if ((tipoCasa=="m") || (tipoCasa=="M") || (tipoCasa=="moradia") || (tipoCasa=="Moradia") || (tipoCasa=="2"))
+		return "Moradia";
+
+	// Input Invalido
+	else
+		throw (Erro("Tipo de casa invalido!"));
 }
 
 void pause(){
