@@ -100,6 +100,20 @@ void printHeader(const std::string &header);
  */
 std::string lerData();
 
+std::string obterLocalidade(ProtecaoCivil &protecaoCivil);
+int obterTipoAcidente();
+std::string assaltoObterTipoCasa();
+bool assaltoObterExistenciaFeridos();
+std::string viacaoObterTipoEstrada();
+unsigned int viacaoObterNumFeridos();
+unsigned int viacaoObterNumVeiculos();
+unsigned int incendioObterNumAutotanques();
+unsigned int incendioObterNumBombeiros();
+unsigned int incendioObterAreaChamas();
+std::string incendioObterTipoCasa();
+
+
+
 /**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
  */
