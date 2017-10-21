@@ -78,41 +78,94 @@ bool compararAcidentesData(Acidente* a1, Acidente* a2);
  */
 void printMainMenu();
 
-/*
+/**
  * @brief Imprime no ecrã o submenu de pesquisa de postos
  */
 void printPesquisarPostosMenu();
 
-/*
+/**
  * @brief Imprime no ecrã o submenu de informações sobre ocorrências
  */
 void printInfoOcorrenciasMenu();
 
-/*
- * @param header - nome do menu para qual este cabeçalho é usado
+/**
+ * @param header - Nome do menu para qual este cabeçalho é usado
  * @brief Imprime no ecrã o cabeçalho de um menu
  */
 void printHeader(const std::string &header);
 
-/*
+/**
  * @brief Lê do utilizador uma data no formato DD-MM-AAAA, lançando um exceção (Erro) caso a data não esteja no formato especificado / erro de input.
- * @return retorna a data lida do utilizador, caso tenha havido sucesso na leitura
+ * @return Retorna a data lida do utilizador, caso tenha havido sucesso na leitura
  */
 std::string lerData();
 
+/**
+ * @brief Lê do utilizador uma localidade, lançando um exceção (Erro) caso o local não seja encontrado na 'base de dados' da protecao civil
+ * @param protecaoCivil - O objeto protecaoCivil com o qual se está a trabalhar
+ * @return Retorna o local lido do utilizador, caso tenha havido sucesso na leitura
+ */
 std::string obterLocalidade(ProtecaoCivil &protecaoCivil);
+
+/**
+ * @brief Obtem o tipo de acidente que o utilizador quer declarar. Pode ser 1 (Assalto), 2 (Acidente de Viação), 3 (Incêndio Florestal) ou 4 (Incêndio Doméstico), lançando uma exceção (Erro) caso o input seja invalido
+ * @return Retorna o tipo de Acidente que o utilizador escolheu declarar ( [1,4] )
+ */
 int obterTipoAcidente();
+
+/**
+ * @brief Lê do utilizador o tipo de casa onde decorreu um assalto, lançando uma exceção (Erro) se for diferente de "Particular" ou "Comercial"
+ * @return Retorna "Particular" ou "Comercial", caso a leitura seja bem sucedida
+ */
 std::string assaltoObterTipoCasa();
+
+/**
+ * @brief Lê do utilizador se houve feridos num assalto, lançando uma exceção (Erro) se a resposta for diferente de "Sim" ou "Nao"
+ * @return Retorna true ou false, caso a leitura seja bem sucedida
+ */
 bool assaltoObterExistenciaFeridos();
+
+/**
+ * @brief Lê do utilizador o tipo de estrada onde decorreu um acidente de viação, lançando uma exceção (Erro) se for diferente de "Estrada Nacional" ou "Auto-Estrada"
+ * @return Retorna "Estrada Nacional" ou "Auto-Estrada", caso a leitura seja bem sucedida
+ */
 std::string viacaoObterTipoEstrada();
+
+/**
+ * @brief Lê do utilizador o número de feridos envolvidos num acidente de viação, lançando um exceção (Erro) se o input for invalido/absurdo (nulo ou inferior a 0)
+ * @return Retorna o número de feridos envolvidos num acidente de viação, se a leitura for bem sucedida
+ */
 unsigned int viacaoObterNumFeridos();
+
+/**
+ * @brief Lê do utilizador o número de veículos envolvidos num acidente de viação, lançando um exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna o número de veículos envolvidos num acidente de viação, se a leitura for bem sucedida
+ */
 unsigned int viacaoObterNumVeiculos();
+
+/**
+ * @brief Lê do utilizador o número de autotanques necessários para tratar de um incêndio, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna o número de autotanques necessários para tratar de um incêndio, se a leitura for bem sucedida
+ */
 unsigned int incendioObterNumAutotanques();
+
+/**
+ * @brief Lê do utilizador o número de bombeiros necessários para tratar de um incêndio, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna o número de bombeiros necessários para tratar de um incêndio, se a leitura for bem sucedida
+ */
 unsigned int incendioObterNumBombeiros();
+
+/**
+ * @brief Lê do utilizador a área ocupada pelas chamas num incêndio florestal, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna a área ocupada pelas chamas num incêndio florestal, se a leitura for bem sucedida
+ */
 unsigned int incendioObterAreaChamas();
+
+/**
+ * @brief Lê do utilizador o tipo de casa onde decorreu um incêndio, lançando uma exceção (Erro) se for diferente de "Apartamento" ou "Moradia"
+ * @return Retorna "Apartamento" ou "Moradia", caso a leitura seja bem sucedida
+ */
 std::string incendioObterTipoCasa();
-
-
 
 /**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
