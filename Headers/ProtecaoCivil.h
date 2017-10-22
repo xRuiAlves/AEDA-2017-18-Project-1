@@ -17,33 +17,126 @@
 #include "Local.h"
 #include "Erro.h"
 
-
+/**
+ * Proteção Civil que gere todos os acidentes e aciona os devidos meios de socorro
+ */
 class ProtecaoCivil {
 private:
-	std::vector<Posto*> postos;
-	std::vector<Acidente*> acidentes;
-	std::vector<Local> locais;
-	const std::string ficheiroPostos;
-	const std::string ficheiroAcidentes;
-	const std::string ficheiroLocais;
+	std::vector<Posto*> postos;						/**< Vetor de apontadores para todos os posto da Proteção Civil 							*/
+	std::vector<Acidente*> acidentes;				/**< Vetor de apontadores para todos os acidentes em decurso declarados à Proteção Civil 	*/
+	std::vector<Local> locais;						/**< Vetor de todos os locais ao abrigo da proteção da Proteção Civil						*/
+	const std::string ficheiroPostos;				/**< Ficheiro de onde é lida informação sobre todos os posto da Proteção Civil				*/
+	const std::string ficheiroAcidentes;			/**< Ficheiro de onde é lida/escrita informações sobre todos os acidentes 					*/
+	const std::string ficheiroLocais;				/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
+
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TODO: DOCUMENT THIS METHOD <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< //
+
+	/**
+	 * @brief Permite gravar todos os acidentes atuais no ficheiro de acidentes
+	 */
 	void gravar() const;
+
+	/**
+	 * @brief Permite obter o maior numero de identificação dos acidentes no vetor de acidentes
+	 * @return Retorna o número de identificação do acidente com o maior número de identificação
+	 */
 	unsigned int findAcidenteMaiorNum() const;
 public:
+	/**
+	 * @brief Construtor da ckasse ProtecaoCivil
+	 * @param ficheiroPostos - ficheiro de onde são lidos os posto
+	 * @param ficheiroAcidentes - ficheiro de onde são lidos os acidentes
+	 * @param ficheiroLocais - ficheiro de onde são lidos os locais
+	 */
 	ProtecaoCivil(const std::string &ficheiroPostos, const std::string &ficheiroAcidentes, const std::string &ficheiroLocais);
+
+	/**
+	 * @brief Destrutor da classe ProtecaoCivil
+	 */
 	~ProtecaoCivil();
+
+	/**
+	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
+	 * @return Retorna true se a inserção tiver sucesso e false caso contrário
+	 */
 	bool addAcidente(/*TODO parametros*/);
+
+	/**
+	 * @brief Remove um acidente do vetor de acidentes da Proteção Civil
+	 * @return Retorna true se a remoção tiver sucesso e false caso contrário
+	 */
 	bool rmAcidente(/*TODO parametros*/);
+
+	/**
+	 * @brief Lê o conteúdo dos ficheiros de postos, acidentes e locais, colocando o seu conteúdo nos respetivos vetores de postos, acidentes e locais, lançando um exceção (Erro) caso a leitura de algum dos ficheiros falhe
+	 */
 	void openFiles();
+
+	/**
+	 * @brief Ordena os postos da proteção civil com um critério a definir na função passada como parâmetro
+	 * @param compareFunction - Função de comparação entre dois postos, funciona como critério de ordenação
+	 */
 	void ordernarPostos(bool compareFunction(Posto* p1, Posto*p2));
+
+	/**
+	 * @brief Imprime no ecrã todos os postos da Proteção Civil
+	 */
 	void printTodosPostos() const;
-	void printPostosTipo(const std::string &tipo) const;		// ASSUMINDO POSTOS JA ORDENADOS POR TIPO!!!
-	void printPostosLocal(const std::string &local) const;		// ASSUMINDO POSTOS JA ORDENADOS POR LOCAL!!!
+
+	/**
+	 * @brief Imprime no ecrã todos os postos da Proteção Civil do tipo especificado pelo parâmetro, assumindo o vetor de postos já ordenado por tipo
+	 * @param tipo - Tipo de postos a imprimir pela função ("Policia", "Inem" ou "Bombeiros")
+	 */
+	void printPostosTipo(const std::string &tipo) const;
+
+	/**
+	 * @brief Imprime no ecrã todos os postos da Proteção Civil que estejam no local especificado pelo parâmetro, assumindo o vetor de postos já ordenado por local
+	 * @param local - Local dos postos a imprimir pela função
+	 */
+	void printPostosLocal(const std::string &local) const;
+
+	/**
+	 * @brief Ordena os acidentes ao encargo da proteção civil com um critério a definir na função passada como parâmetro
+	 * @param compareFunction - Função de comparação entre dois acidentes, funciona como critério de ordenação
+	 */
 	void ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2));
+
+	/**
+	 * @brief Imprime no ecrã todos os acidentes ao encargo da Proteção Civil
+	 */
 	void printTodosAcidentes() const;
-	void printAcidentesTipo(const std::string &tipo) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR TIPO!!!
-	void printAcidentesLocal(const std::string &local) const;	// ASSUMINDO ACIDENTES JA ORDENADOS POR LOCAL!!!
-	void printAcidentesData(const std::string &data) const;		// ASSUMINDO ACIDENTES JA ORDENADOS POR DATA!!!
+
+	/**
+	 * @brief Imprime no ecrã todos os acidentes ao encargo da Proteção Civil do tipo especificado pelo parâmetro, assumindo o vetor de acidentes já ordenado por tipo
+	 * @param tipo - Tipo de acidentes a imprimir pela função ("Assalto", "Acidente de Viacao", "Incendio Domestico" ou "Incendio Florestal")
+	 */
+	void printAcidentesTipo(const std::string &tipo) const;
+
+	/**
+	 * @brief Imprime no ecrã todos os acidentes ao encargo da Proteção Civil que estejam no local especificado pelo parâmetro, assumindo o vetor de acidentes já ordenado por local
+	 * @param local - Local dos acidentes a imprimir pela função
+	 */
+	void printAcidentesLocal(const std::string &local) const;
+
+	/**
+	 * @brief Imprime no ecrã todos os acidentes ao encargo da Proteção Civil que tenham ocorrida na data especificada pelo parâmetro, assumindo o vetor de acidentes já ordenado por data
+	 * @param data - Data dos acidentes a imprimir pela função
+	 */
+	void printAcidentesData(const std::string &data) const;
+
+	/**
+	 * @brief Encontra o índice de um certo local no vetor de locais da proteção civil
+	 * @param nomeLocal - Nome do Local a procurar no vetor de locais
+	 * @return Retorna o índice do local com nome 'nomeLocal' no vetor de locais caso este lá esteja, ou -1 caso contrário
+	 */
 	int findLocal(const std::string &nomeLocal) const;
+
+	/**
+	 * @brief Permite obter o valor absoluto da distância entre dois locais que se encontrem na base de dados da proteção civil
+	 * @param nomeLocal1 - Nome do primeiro local
+	 * @param nomeLocal2 - Nome do segundo local
+	 * @return Retorna o valor da distância entre os locais com nome 'nomeLocal1' e 'nomeLocal2', ou -1 em caso de insucesso (se não encontrar algum dos locais
+	 */
 	double getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2);
 };
 
