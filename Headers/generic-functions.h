@@ -168,6 +168,12 @@ unsigned int incendioObterAreaChamas();
 std::string incendioObterTipoCasa();
 
 /**
+ * @brief Lê do utilizador um numero de ocorrencia referente a um acidente, lançando uma exceção (Erro) se o input for inválido/absurdo ( menor ou igual a 0 )
+ * @return Retorna o numero de ocorrencia que o utilizador introduziu, caso a leitura seja bem sucedida
+ */
+unsigned int obterNumOcorrencia();
+
+/**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
  */
 void pause();
