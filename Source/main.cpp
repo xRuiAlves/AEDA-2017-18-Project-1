@@ -127,15 +127,28 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 }
 
 void terminarOcorrencia(ProtecaoCivil &protecaoCivil){
+	unsigned int numOcorrencia;
 
-	std::cout << "\n\nThis is a STUB!!" << std::endl;
-	std::cout << "We are Inside terminarOcorrencia()";
+	// Obter o número de ocorrência por parte do utilizador e lidar com eventual erro
+	try{
+		numOcorrencia = obterNumOcorrencia();
+	}
+	catch(Erro &e){
+		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
 
-	///////////////////////////////////
-	// TODO: IMPLEMENT THIS FUNCTION //
-	///////////////////////////////////
+	// Apagar a ocorrência, caso ela exista na base de dados da proteção civil
+	if(protecaoCivil.rmAcidente(numOcorrencia)){
+		std::cout << "\nA ocorrencia foi terminada com sucesso!\n\n";
+	}
+	else{
+		std::cout << "\nO numero de identificacao inserido nao corresponde a nenhuma ocorrencia em aberto!\n\n";
+	}
 
-
+	// Esperar que o utilizador prima enter para retorna ao menu principal
+	pause();
 }
 
 void infoOcorrencia(ProtecaoCivil &protecaoCivil){
@@ -167,8 +180,15 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		else if (opt == 2){
 			// Pedir ao utilizador que introduzar uma Localidade
 			std::string localidade;
-			std::cout << "Insira a localidade que deseja: ";
-			getline(std::cin,localidade);
+
+			try{
+				localidade = obterLocalidade(protecaoCivil);
+			}
+			catch(Erro &e){
+				std::cout << '\n' << e.getInfo() << std::endl << std::endl;
+				pause();
+				return;
+			}
 
 			// Ordenar os acidentes por localidade
 			protecaoCivil.ordernarAcidentes(compararAcidentesLocal);
@@ -193,12 +213,13 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		else if (opt == 4){
 			// Pedir ao utilizador que introduzar uma Data
 			std::string data;
-			std::cout << "Insira a data que deseja (DD-MM-AAAA) : ";
+
 			try{
 				data = lerData();
 			}
 			catch(Erro &e){
-				std::cout << "\n" << e.getInfo();
+				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
+				pause();
 				break;
 			}
 
@@ -686,6 +707,29 @@ std::string incendioObterTipoCasa(){
 	// Input Invalido
 	else
 		throw (Erro("Tipo de casa invalido!"));
+}
+
+unsigned int obterNumOcorrencia(){
+	int numOcorrencia;
+	std::cout << "\nInsira o numero da ocorrencia que deseja dar por terminada: ";
+	std::cin >> numOcorrencia;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se a area de chamas introduzida nao foi absurda
+	if (numOcorrencia <= 0)
+		throw (Erro("O numero de ocorrencia nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numOcorrencia);
 }
 
 void pause(){
