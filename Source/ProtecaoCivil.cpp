@@ -6,7 +6,10 @@ ProtecaoCivil::ProtecaoCivil(const std::string &ficheiroPostos, const std::strin
 void ProtecaoCivil::openFiles(){
 	std::ifstream istr;
 
-	// Ler ficheiro de locais
+	////////////////////////////
+	// Ler ficheiro de locais //
+	////////////////////////////
+
 	istr.open(ficheiroLocais);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
@@ -36,7 +39,10 @@ void ProtecaoCivil::openFiles(){
 	}
 	istr.close();	// Fechar a stream
 
-	// Ler ficheiro de postos
+	////////////////////////////
+	// Ler ficheiro de postos //
+	////////////////////////////
+
 	istr.open(ficheiroPostos);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
@@ -44,7 +50,8 @@ void ProtecaoCivil::openFiles(){
 
 	// Preencher o vetor de postos com o conteudo do ficheiro
 	std::string tipoPosto, tipoVeiculo;
-	unsigned int numSocorristas, numVeiculos, numAutotanques, numAmbulancias, indexLocal, id;
+	unsigned int numSocorristas, numVeiculos, numAutotanques, numAmbulancias, id;
+	int indexLocal;
 	while(getline(istr,line)){
 		// obter o id do local
 		dashIndex = line.find_first_of('/');
