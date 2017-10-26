@@ -1,12 +1,12 @@
 #include "Atribuicao.h"
 
-Atribuicao::Atribuicao(const Posto* posto, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos)
-	: posto(posto) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) , tipoVeiculos(tipoVeiculos) {}
+Atribuicao::Atribuicao(unsigned int postoId, const unsigned int numSocorristas, const unsigned int numVeiculos, const std::string &tipoVeiculos)
+	: postoId(postoId) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) , tipoVeiculos(tipoVeiculos) {}
 
 Atribuicao::~Atribuicao(){}
 
-const Posto* Atribuicao::getPosto() const{
-	return posto;
+const unsigned int Atribuicao::getPostoId() const{
+	return postoId;
 }
 const unsigned int Atribuicao::getNumSocorristas() const{
 	return numSocorristas;
