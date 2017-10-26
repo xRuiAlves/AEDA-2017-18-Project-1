@@ -1,5 +1,6 @@
 #ifndef ATRIBUICAO_H_
 #define ATRIBUICAO_H_
+#include <iostream>
 #include <string>
 #include "Posto.h"
 
@@ -52,6 +53,12 @@ public:
 	const std::string getTipoVeiculos() const;
 };
 
-
+/**
+ * @brief Overload do operador de inserção para a classe Atribuicao
+ * @param os - Stream passada por referência para a qual será efetuada a escrita
+ * @param atribuicao - Atribuição a ser enviada para a stream
+ * @return Retorna referência de stream de output
+ */
+std::ostream & operator<<(std::ostream & os, const Atribuicao& atribuicao);
 
 #endif /* ATRIBUICAO_H_ */
