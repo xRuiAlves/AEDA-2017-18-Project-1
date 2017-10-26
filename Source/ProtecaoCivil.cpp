@@ -133,6 +133,21 @@ ProtecaoCivil::~ProtecaoCivil() {
 	// TODO Call gravar()
 }
 
+bool ProtecaoCivil::rmAcidente(unsigned int numOcorrencia){
+	std::vector<Acidente*>::iterator it;
+
+	// Tentar encontrar o acidente no vetor de acidentes
+	for (it = acidentes.begin() ; it != acidentes.end() ; it++){
+		if( (*it)->getNumOcorrencia() == numOcorrencia ){	// Encontrado!
+			acidentes.erase(it);		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TODO CONFIRMAR EXISTENCIA <<<<<<<<<<<<<<<<<<<<<<<<<< //
+			return true;
+		}
+	}
+
+	// Nao existe nenhum acidente com este numero de ocorrencia
+	return false;
+}
+
 int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
 	for(unsigned int i=0 ; i<locais.size() ; i++){
 		if(locais.at(i).getNome() == nomeLocal){
@@ -359,4 +374,27 @@ double ProtecaoCivil::getDistLocais(const std::string &nomeLocal1, const std::st
 
 	// calcular norma do vetor e retornar esse valor
 	return sqrt(vecX*vecX + vecY*vecY);
+}
+
+void ProtecaoCivil::gravar() const{
+	// Escrever no ficheiro info. sobre os postos
+	std::ofstream ostr;
+
+	ostr.open(ficheiroPostos);	// Abrir o ficheiro em modo de escrita
+
+	// Veficar se não houve erro ao abrir o ficheiro
+	if(!ostr.is_open())
+			throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos postos da Protecao Civil.");
+
+	// Escrever no ficheiro a info. de todos os postos
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+		postos.at(i)->printSimplifiedInfo(ostr);
+		if(i != postos.size() - 1)	// So muda de linha se nao for o ultimo elemento do vec.
+			ostr << '\n';
+	}
+
+	// Fechar a stream
+	ostr.close();
+
+	// TODO Write Acidentes
 }
