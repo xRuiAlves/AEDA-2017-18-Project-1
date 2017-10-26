@@ -40,6 +40,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação sobre este posto da Polícia
 	 */
 	void printInfoPosto() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um posto da Policia
+	 * @param os - Stream para a qual o conteúdo do posto da Policia é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* POLICIA_H_ */
