@@ -29,10 +29,8 @@ private:
 	const std::string ficheiroAcidentes;			/**< Ficheiro de onde é lida/escrita informações sobre todos os acidentes 					*/
 	const std::string ficheiroLocais;				/**< Ficheiro de onde é lida informação sobre todos os locais ao abrigo da Proteção Civil	*/
 
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TODO: DOCUMENT THIS METHOD <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< //
-
 	/**
-	 * @brief Permite gravar todos os acidentes atuais no ficheiro de acidentes
+	 * @brief Permite gravar toda a informação sobre postos e acidetes atuais no ficheiro de acidentes
 	 */
 	void gravar() const;
 
@@ -63,9 +61,10 @@ public:
 
 	/**
 	 * @brief Remove um acidente do vetor de acidentes da Proteção Civil
+	 * @param numOcorrencia - Número de identificação da ocorrência (acidente) a remover.
 	 * @return Retorna true se a remoção tiver sucesso e false caso contrário
 	 */
-	bool rmAcidente(/*TODO parametros*/);
+	bool rmAcidente(unsigned int numOcorrencia);
 
 	/**
 	 * @brief Lê o conteúdo dos ficheiros de postos, acidentes e locais, colocando o seu conteúdo nos respetivos vetores de postos, acidentes e locais, lançando um exceção (Erro) caso a leitura de algum dos ficheiros falhe
