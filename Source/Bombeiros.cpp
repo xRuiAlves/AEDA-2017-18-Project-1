@@ -57,3 +57,7 @@ void Bombeiros::printInfoPosto() const{
 	std::cout << "Numero de Ambulancias: " << numAmbulancias << std::endl;
 }
 
+void Bombeiros::printSimplifiedInfo(std::ostream & os) const{
+	os << id << '/' << local->getNome() << '/' << numSocorristas << '/' << numVeiculos << "/Bombeiros/" << numAutotanques << '/' << numAmbulancias;
+}
+

@@ -73,6 +73,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação sobre este posto dos Bombeiros
 	 */
 	void printInfoPosto() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um posto dos Bombeiros
+	 * @param os - Stream para a qual o conteúdo do posto de Bombeiros é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* BOMBEIROS_H_ */
