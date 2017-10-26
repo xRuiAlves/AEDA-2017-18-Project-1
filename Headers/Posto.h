@@ -9,10 +9,10 @@
  */
 class Posto {
 protected:
-	const Local* local;				/**< Apontador para o local em que o posto se encontra. 	*/
+	const unsigned int id;			/**< Numero de Identificação do Posto.						*/
 	unsigned int numSocorristas;	/**< Numero de Socorristas presentes no posto em questão.	*/
 	unsigned int numVeiculos;		/**< Numero de Veículos presentes no posto em questão.		*/
-	const unsigned int id;			/**< Numero de Identificação do Posto.						*/
+	const Local* local;				/**< Apontador para o local em que o posto se encontra. 	*/
 public:
 	/**
 	 * @brief Construtor da classe Posto.
@@ -88,6 +88,12 @@ public:
 	 * @brief Método puramente virtual que imprime no ecrã toda a informação do respetivo posto. A implementação encontra-se nas classes derivadas: Inem, Policia e Bombeiros.
 	 */
 	virtual void printInfoPosto() const = 0;
+
+	/**
+	 * @brief Método puramente virtual que imprime numa stream o conteudo simplificado de um posto. A implementação encontra-se nas classes derivadas: Inem, Policia e Bombeiros.
+	 * @param os - Stream para a qual o conteúdo do posto é impresso
+	 */
+	virtual void printSimplifiedInfo(std::ostream & os) const = 0;
 };
 
 #endif /* POSTO_H_ */

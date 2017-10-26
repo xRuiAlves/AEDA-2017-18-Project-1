@@ -3,7 +3,6 @@
 Posto::Posto(const unsigned int id, const Local* local, unsigned int numSocorristas, unsigned int numVeiculos)
 	: id(id) , local(local) , numSocorristas(numSocorristas) , numVeiculos(numVeiculos) {}
 
-
 Posto::~Posto() {
 	// TODO Auto-generated destructor stub
 }
