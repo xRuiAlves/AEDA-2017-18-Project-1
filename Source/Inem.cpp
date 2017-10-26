@@ -24,3 +24,7 @@ void Inem::printInfoPosto() const{
 	std::cout << "Numero de Veiculos: " << numVeiculos << std::endl;
 	std::cout << "Tipo de Veiculo usado: " << tipoVeiculo << std::endl;
 }
+
+void Inem::printSimplifiedInfo(std::ostream & os) const{
+	os << id << '/' << local->getNome() << '/' << numSocorristas << '/' << numVeiculos << "/Inem/" << tipoVeiculo;
+}

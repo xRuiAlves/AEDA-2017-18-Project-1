@@ -40,6 +40,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação sobre este posto do Inem
 	 */
 	void printInfoPosto() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um posto do Inem
+	 * @param os - Stream para a qual o conteúdo do posto do Inem é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* INEM_H_ */
