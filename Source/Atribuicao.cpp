@@ -23,7 +23,7 @@ const std::string Atribuicao::getTipoVeiculos() const{
 
 std::ostream & operator<<(std::ostream & os, const Atribuicao& atribuicao){
 	// Escrever para a stream no formato postoId/numSocorristas/numVeiculos/tipoVeiculos
-	os << atribuicao.getPostoId() << '/' << atribuicao.getNumSocorristas() << '/' << atribuicao.getNumVeiculos() << '\n' << atribuicao.getTipoVeiculos();
+	os << atribuicao.getPostoId() << '/' << atribuicao.getNumSocorristas() << '/' << atribuicao.getNumVeiculos() << '/' << atribuicao.getTipoVeiculos();
 
 
 	return os;
