@@ -42,6 +42,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação relativa a este Incêndio Doméstico.
 	 */
 	void printInfoAcidente() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um Incêndio Doméstico
+	 * @param os - Stream para a qual o conteúdo do Incêndio Doméstico é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* INCENDIODOMESTICO_H_ */
