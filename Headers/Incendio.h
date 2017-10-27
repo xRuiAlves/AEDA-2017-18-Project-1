@@ -7,7 +7,7 @@
  * Acidente do tipo incêncdio. Classe derivada da classe Acidente.
  */
 class Incendio : public Acidente{
-private:
+protected:
 	const unsigned int numBombeirosNecess;			/**< Número de bombeiros necessários para tratar deste incêndio 	*/
 	const unsigned int numAutotanquesNecess;		/**< Número de autotanques necessários para tratar deste incêndio 	*/
 public:
@@ -48,6 +48,12 @@ public:
 	 * @brief Método puramente virtual que imprime no ecrã toda a informação relativa ao incêndio em questão. A implementação encontra-se nas classes derivadas: IncendioFlorestal e IncendioDomestico
 	 */
 	virtual void printInfoAcidente() const = 0;
+
+	/**
+	 * @brief Método puramente virtual que imprime numa stream o conteudo simplificado de um incendio. A implementação encontra-se nas classes derivadas: IncendioDomestico e IncendioFlorestal
+	 * @param os - Stream para a qual o conteúdo do incendio é impresso
+	 */
+	virtual void printSimplifiedInfo(std::ostream & os) const = 0;
 };
 
 #endif /* INCENDIO_H_ */
