@@ -30,3 +30,14 @@ void AcidenteViacao::printInfoAcidente() const {
 	std::cout << "Numero de Feridos: " << numFeridos << std::endl;
 	std::cout << "Numero Veiculos: " << numVeiculos << std::endl;
 }
+
+void AcidenteViacao::printSimplifiedInfo(std::ostream & os) const{
+	// Imprimir os dados do assalto propriamente dito
+	os << local->getNome() << '/' << data.getData() << "/Viacao/" << numFeridos << '/' << numVeiculos << '/' << tipoEstrada;
+
+	// Imprimir info sob atribuições relativas a esta ocorrência
+	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
+		// Mudar de linha, fazer um tab para indexar e imprimir informação da atribuição
+		os << "\n\t" << atribuicoes.at(i);
+	}
+}

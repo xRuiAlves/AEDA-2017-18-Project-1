@@ -56,6 +56,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação relativa a este Acidente de Viação.
 	 */
 	void printInfoAcidente() const;		
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um Acidente de Viação
+	 * @param os - Stream para a qual o conteúdo do Acidente de Viação é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* ACIDENTEVIACAO_H_ */
