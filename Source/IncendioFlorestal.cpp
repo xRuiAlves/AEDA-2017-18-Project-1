@@ -25,3 +25,14 @@ void IncendioFlorestal::printInfoAcidente() const {
 	std::cout << "Numero de Autotanques necessarios: " << getNumAutotanquesNecess() << std::endl;
 	std::cout << "Área das Chamas: " << areaChamas << std::endl;
 }
+
+void IncendioFlorestal::printSimplifiedInfo(std::ostream & os) const{
+	// Imprimir os dados do incendio propriamente dito
+	os << local->getNome() << '/' << data.getData() << "/Incendio/" << numAutotanquesNecess << '/' << numBombeirosNecess << "/Florestal/" << areaChamas;
+
+	// Imprimir info sob atribuições relativas a esta ocorrência
+	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
+		// Mudar de linha, fazer um tab para indexar e imprimir informação da atribuição
+		os << "\n\t" << atribuicoes.at(i);
+	}
+}

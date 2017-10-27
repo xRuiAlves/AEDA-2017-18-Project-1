@@ -42,6 +42,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação relativa a este Incêndio Florestal.
 	 */
 	void printInfoAcidente() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um Incêndio Florestal
+	 * @param os - Stream para a qual o conteúdo do Incêndio Florestal é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* INCENDIOFLORESTAL_H_ */
