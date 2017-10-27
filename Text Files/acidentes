@@ -1,7 +1,17 @@
 Porto/02-05-2017/Incendio/2/10/Florestal/250
+	7/1/1/Autotanques
+	6/2/1/Autotanques
 Porto/03-10-2016/Incendio/1/4/Domestico/Apartamento
+	6/1/1/Autotanques
 Viana do Castelo/09-07-2014/Viacao/3/2/Nacional
-Braga/10-10-2015/Incendio/5/11/Domestico/Moradia
+	3/1/1/Ambulancia
+	6/1/1/Ambulancia
 Viseu/02-03-2015/Viacao/4/4/Auto-Estrada
-Lisboa/07-07-2007/Assalto/Particular/1/Braga/Inem
-Guarda/08-10-2010/Assalto/Comercial/1/Porto/Bombeiros
+	8/2/2/Moto
+Lisboa/07-07-2007/Assalto/Particular/1
+	10/3/3/Moto
+	2/3/1/Carro
+	9/2/1/Carro
+Guarda/08-10-2010/Assalto/Comercial/1
+	9/4/2/Carro
+	10/1/1/Moto
