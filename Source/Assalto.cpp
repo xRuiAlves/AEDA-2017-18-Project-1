@@ -27,3 +27,14 @@ void Assalto::printInfoAcidente() const{
 	std::cout << "Tipo de Casa: " << tipoCasa << std::endl;
 	std::cout << "Feridos: " << ((haferidos == true) ? "Existem" : "Nao Existem") << std::endl;;
 }
+
+void Assalto::printSimplifiedInfo(std::ostream & os) const{
+	// Imprimir os dados do assalto propriamente dito
+	os << local->getNome() << '/' << data.getData() << "/Assalto/" << tipoCasa << '/' << ((haferidos == true) ? '1' : '0');
+
+	// Imprimir info sob atribuições relativas a esta ocorrência
+	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
+		// Mudar de linha, fazer um tab para indexar e imprimir informação da atribuição
+		os << "\n\t" << atribuicoes.at(i);
+	}
+}

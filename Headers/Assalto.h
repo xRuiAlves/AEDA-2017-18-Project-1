@@ -48,6 +48,12 @@ public:
 	 * @brief Imprime no ecrã toda a informação relativa a este Assalto.
 	 */
 	void printInfoAcidente() const;
+
+	/**
+	 * @brief Imprime numa stream o conteudo simplificado de um Assalto
+	 * @param os - Stream para a qual o conteúdo do Assalto é impresso
+	 */
+	void printSimplifiedInfo(std::ostream & os) const;
 };
 
 #endif /* ASSALTO_H_ */
