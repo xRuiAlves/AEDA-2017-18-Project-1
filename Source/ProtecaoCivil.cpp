@@ -384,7 +384,7 @@ void ProtecaoCivil::gravar() const{
 
 	// Veficar se não houve erro ao abrir o ficheiro
 	if(!ostr.is_open())
-			throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos postos da Protecao Civil.");
+		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos postos da Protecao Civil.");
 
 	// Escrever no ficheiro a info. de todos os postos
 	for (unsigned int i=0 ; i<postos.size() ; i++){
@@ -396,5 +396,23 @@ void ProtecaoCivil::gravar() const{
 	// Fechar a stream
 	ostr.close();
 
-	// TODO Write Acidentes
+
+
+	// Escrever no ficheiro info. sobre os acidentes
+
+	ostr.open(ficheiroAcidentes);	// Abrir o ficheiro em modo de escrita
+
+	// Verificar se não houve erro abrir o ficheiro
+	if(!ostr.is_open())
+		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos acidentes ao abrigo da Protecao Civil.");
+
+	// Escrever no ficheiro a info. de todos os acidentes
+	for (unsigned int i=0 ; i<acidentes.size() ; i++){
+		acidentes.at(i)->printSimplifiedInfo(ostr);
+		if(i != acidentes.size() - 1)	// So muda de linha se nao for o ultimo elemento do vec.
+			ostr << '\n';
+	}
+
+	// Fechar a stream
+	ostr.close();
 }
