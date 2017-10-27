@@ -10,9 +10,9 @@
 class Posto {
 protected:
 	const unsigned int id;			/**< Numero de Identificação do Posto.						*/
+	const Local* local;				/**< Apontador para o local em que o posto se encontra. 	*/
 	unsigned int numSocorristas;	/**< Numero de Socorristas presentes no posto em questão.	*/
 	unsigned int numVeiculos;		/**< Numero de Veículos presentes no posto em questão.		*/
-	const Local* local;				/**< Apontador para o local em que o posto se encontra. 	*/
 public:
 	/**
 	 * @brief Construtor da classe Posto.
