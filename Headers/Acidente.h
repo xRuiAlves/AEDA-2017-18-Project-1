@@ -58,6 +58,12 @@ public:
 	 * @brief Método puramente virtual que imprime no ecrã toda a informação relativa ao acidete em questão. A implementação encontra-se nas classes derivadas: AcidenteViacao, Assalto, IncendioFlorestal e IncendioDomestico
 	 */
 	virtual void printInfoAcidente() const = 0;
+
+	/**
+	 * @brief Método puramente virtual que imprime numa stream o conteudo simplificado de um acidente. A implementação encontra-se nas classes derivadas: Assalto, AcidenteViacao, IncendioDomestico e IncendioFlorestal
+	 * @param os - Stream para a qual o conteúdo do acidente é impresso
+	 */
+	virtual void printSimplifiedInfo(std::ostream & os) const = 0;
 };
 
 #endif /* ACIDENTE_H_ */
