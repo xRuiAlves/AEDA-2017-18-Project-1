@@ -19,6 +19,9 @@ const unsigned int Acidente::getNumOcorrencia() const {
 
 
 Acidente::~Acidente() {
-	// TODO Auto-generated destructor stub
+
 }
 
+void Acidente::addAtribuicao(const Atribuicao & atribuicao){
+	atribuicoes.push_back(atribuicao);
+}

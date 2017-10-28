@@ -64,6 +64,12 @@ public:
 	 * @param os - Stream para a qual o conteúdo do acidente é impresso
 	 */
 	virtual void printSimplifiedInfo(std::ostream & os) const = 0;
+
+	/**
+	 * @brief Adiciona uma atribuicao ao vetor de atribuicoes
+	 * @param atribuicao - Atribuição a adicionar ao vetor de atribuicoes deste acidente
+	 */
+	void addAtribuicao(const Atribuicao & atribuicao);
 };
 
 #endif /* ACIDENTE_H_ */
