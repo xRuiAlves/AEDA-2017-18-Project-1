@@ -86,15 +86,13 @@ void ProtecaoCivil::openFiles(){
 
 		if(tipoPosto == "Policia"){
 			// obter tipo de veiculo
-			dashIndex = line.find_first_of('/');
-			tipoVeiculo = line.substr(0,dashIndex);
+			tipoVeiculo = line;
 
 			postos.push_back(new Policia(id,&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
 		}
 		else if(tipoPosto == "Inem"){
 			// obter tipo de veiculo
-			dashIndex = line.find_first_of('/');
-			tipoVeiculo = line.substr(0,dashIndex);
+			tipoVeiculo = line;
 
 			postos.push_back(new Inem(id,&locais.at(indexLocal),numSocorristas,numVeiculos,tipoVeiculo));
 		}
@@ -105,32 +103,176 @@ void ProtecaoCivil::openFiles(){
 			line.erase(0,dashIndex+1);
 
 			// obter num. de ambulancias
-			dashIndex = line.find_first_of('/');
-			numAmbulancias = std::stoi(line.substr(0,dashIndex));
+			numAmbulancias = std::stoi(line);
 
 			postos.push_back(new Bombeiros(id,&locais.at(indexLocal),numSocorristas,numAutotanques,numAmbulancias));
 		}
 	}
 	istr.close();
 
-	//////////////////////////////////
-	// TODO: Ler Ficheiro Acidentes //
-	//////////////////////////////////
+	///////////////////////////////
+	// Ler Ficheiro de Acidentes //
+	///////////////////////////////
+
+	istr.open(ficheiroAcidentes);
+
+	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
+		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroAcidentes + "\" no construtor de ProtecaoCivil.");
+
+	// Preencher o vetor de Acidentes com o conteúdo do ficheiro
+	std::string data, tipoAcidente, tipoIncendio, tipoCasa, tipoEstrada, atribuicao, tipoVeiculos;
+	unsigned int numAutotanquesNecess, numBombeirosNecess, areaChamas, postoId, numFeridos, numVeiculosEnvolvidos, numAtribuicoes;
+	bool haFeridos;
+	Acidente* acidente;
+	unsigned int numOcorrencia = 1;	// Sera incrementado sempre que um novo acidente for criado
+
+	while(getline(istr,line)){
+		// obter nome do local
+		dashIndex = line.find_first_of('/');
+		nomeLocal = line.substr(0,dashIndex);
+		line.erase(0,dashIndex+1);
+
+		// obter indice do local no vetor
+		indexLocal = findLocal(nomeLocal);
+		if(indexLocal == -1){		// Este local nao foi encontrado no vetor de locais da protecao civil
+			throw Erro("O local \"" + nomeLocal + "\" nao foi encontrado no vetor de locais da Protecao Civil, no construtor de ProtecaoCivil.");
+		}
+
+		// obter a data
+		dashIndex = line.find_first_of('/');
+		data = line.substr(0,dashIndex);
+		line.erase(0,dashIndex+1);
+
+		// obter o tipo de acidente
+		dashIndex = line.find_first_of('/');
+		tipoAcidente = line.substr(0,dashIndex);
+		line.erase(0,dashIndex+1);
+
+		// Incendios
+		if (tipoAcidente == "Incendio"){
+			// obter o numero de autotanques necessarios
+			dashIndex = line.find_first_of('/');
+			numAutotanquesNecess = std::stoi(line.substr(0,dashIndex));
+			line.erase(0,dashIndex+1);
+
+			// obter o numero de autotanques necessarios
+			dashIndex = line.find_first_of('/');
+			numBombeirosNecess = std::stoi(line.substr(0,dashIndex));
+			line.erase(0,dashIndex+1);
+
+			// obter o tipo de incendio
+			dashIndex = line.find_first_of('/');
+			tipoIncendio = line.substr(0,dashIndex);
+			line.erase(0,dashIndex+1);
+
+			// Incendio Florestal
+			if (tipoIncendio == "Florestal"){
+				// obter a area de chamas
+				dashIndex = line.find_first_of('/');
+				areaChamas = std::stoi(line.substr(0,dashIndex));
+				line.erase(0,dashIndex+1);
+
+				acidente = new IncendioFlorestal(data,&locais.at(indexLocal),numOcorrencia,numBombeirosNecess,numAutotanquesNecess,areaChamas);
+			}
+			// Incendio Domestico
+			else {
+				// obter o tipo de casa
+				dashIndex = line.find_first_of('/');
+				tipoCasa = line.substr(0,dashIndex);
+				line.erase(0,dashIndex+1);
+
+				acidente = new IncendioDomestico(data,&locais.at(indexLocal),numOcorrencia,numBombeirosNecess,numAutotanquesNecess,tipoCasa);
+			}
+		}
+
+		// Acidentes de Viacao
+		else if (tipoAcidente == "Viacao"){
+			// obter o numero de feridos
+			dashIndex = line.find_first_of('/');
+			numFeridos = std::stoi(line.substr(0,dashIndex));
+			line.erase(0,dashIndex+1);
+
+			// obter o numero de veiculos envolvidos
+			dashIndex = line.find_first_of('/');
+			numVeiculosEnvolvidos = std::stoi(line.substr(0,dashIndex));
+			line.erase(0,dashIndex+1);
+
+			// obter o tipo de estrada
+			dashIndex = line.find_first_of('/');
+			tipoEstrada = line.substr(0,dashIndex);
+			line.erase(0,dashIndex+1);
+
+			acidente = new AcidenteViacao(data,&locais.at(indexLocal),numOcorrencia,tipoEstrada,numFeridos,numVeiculosEnvolvidos);
+		}
+
+		// Assaltos
+		else if (tipoAcidente == "Assalto"){
+			// obter o tipo de casa
+			dashIndex = line.find_first_of('/');
+			tipoCasa = line.substr(0,dashIndex);
+			line.erase(0,dashIndex+1);
+
+			// obter a existencia de feridos
+			dashIndex = line.find_first_of('/');
+			haFeridos = ((line.substr(0,dashIndex) == "1") ? true : false);
+			line.erase(0,dashIndex+1);
+
+			acidente = new Assalto(data,&locais.at(indexLocal),numOcorrencia,tipoCasa,haFeridos);
+		}
+
+		// obter o numero de atribuicoes
+		numAtribuicoes = std::stoi(line);
+
+		// colocar as atribuicoes no acidente em questao
+		for (unsigned int i=0 ; i<numAtribuicoes ; i++){
+			getline(istr, atribuicao);	// obter a atribuicao
+
+			// ler o id do posto a que ao qual atribuicao se refere
+			dashIndex = atribuicao.find_first_of('/');
+			id = std::stoi(atribuicao.substr(0,dashIndex));
+			atribuicao.erase(0,dashIndex+1);
+
+			// ler o numero de socorristas na atribuicao
+			dashIndex = atribuicao.find_first_of('/');
+			numSocorristas = std::stoi(atribuicao.substr(0,dashIndex));
+			atribuicao.erase(0,dashIndex+1);
+
+			// ler o numero de veiculos na atribuicao
+			dashIndex = atribuicao.find_first_of('/');
+			numVeiculos = std::stoi(atribuicao.substr(0,dashIndex));
+			atribuicao.erase(0,dashIndex+1);
+
+			// obter o tipo de veiculos da atribuicao
+			tipoVeiculos = atribuicao;
+
+			// adicionar a atribuicao ao acidente
+			acidente->addAtribuicao(Atribuicao(id, numSocorristas, numVeiculos, tipoVeiculos));
+		}
+
+		// Adicionar o novo acidente à base de dados da Protecao Civil
+		acidentes.push_back(acidente);
+
+		numOcorrencia++;
+	}
+
 }
 
 ProtecaoCivil::~ProtecaoCivil() {
-	// delete allocated memory for postos
+	// gravar ocorrencias
+
+	//////////////////////  TODO UNCOMENT   ////////////////////////
+	//gravar(); ////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////
+
+	// apagar memória alocada para postos
 	for (unsigned int i=0 ; i<postos.size() ; i++){
 		delete postos.at(i);
 	}
 
-	// delete allocated memory for acidentes
+	// apagar memória alocada para postos
 	for (unsigned int i=0 ; i<acidentes.size() ; i++){
 		delete acidentes.at(i);
 	}
-
-	// gravar ocorrencias
-	// TODO Call gravar()
 }
 
 bool ProtecaoCivil::rmAcidente(unsigned int numOcorrencia){
@@ -399,7 +541,6 @@ void ProtecaoCivil::gravar() const{
 
 
 	// Escrever no ficheiro info. sobre os acidentes
-
 	ostr.open(ficheiroAcidentes);	// Abrir o ficheiro em modo de escrita
 
 	// Verificar se não houve erro abrir o ficheiro
