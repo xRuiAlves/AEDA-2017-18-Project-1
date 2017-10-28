@@ -259,10 +259,7 @@ void ProtecaoCivil::openFiles(){
 
 ProtecaoCivil::~ProtecaoCivil() {
 	// gravar ocorrencias
-
-	//////////////////////  TODO UNCOMENT   ////////////////////////
-	//gravar(); ////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////
+	gravar();
 
 	// apagar memória alocada para postos
 	for (unsigned int i=0 ; i<postos.size() ; i++){
