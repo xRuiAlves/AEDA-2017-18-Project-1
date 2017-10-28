@@ -28,7 +28,7 @@ void IncendioFlorestal::printInfoAcidente() const {
 
 void IncendioFlorestal::printSimplifiedInfo(std::ostream & os) const{
 	// Imprimir os dados do incendio propriamente dito
-	os << local->getNome() << '/' << data.getData() << "/Incendio/" << numAutotanquesNecess << '/' << numBombeirosNecess << "/Florestal/" << areaChamas;
+	os << local->getNome() << '/' << data.getData() << "/Incendio/" << numAutotanquesNecess << '/' << numBombeirosNecess << "/Florestal/" << areaChamas << '/' << atribuicoes.size();
 
 	// Imprimir info sob atribuições relativas a esta ocorrência
 	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
