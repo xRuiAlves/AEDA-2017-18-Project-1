@@ -15,7 +15,7 @@ int main(){
 	///////////////////////////////////////////////////////////////////////
 	// Criar Proteção Civil e verificar se não houve erros na sua abertura
 
-	ProtecaoCivil protecaoCivil("postos","TODO","locais");
+	ProtecaoCivil protecaoCivil("postos","acidentes","locais");
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}

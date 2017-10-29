@@ -255,6 +255,8 @@ void ProtecaoCivil::openFiles(){
 		numOcorrencia++;
 	}
 
+	// Fechar a stream
+	istr.close();
 }
 
 ProtecaoCivil::~ProtecaoCivil() {
@@ -508,11 +510,33 @@ double ProtecaoCivil::getDistLocais(const std::string &nomeLocal1, const std::st
 		return -1;
 
 	// Obter as coordenadas do vetor
-	double vecX = locais.at(indiceLocal2).getXcoord() - locais.at(indiceLocal1).getXcoord();
-	double vecY = locais.at(indiceLocal2).getYcoord() - locais.at(indiceLocal1).getYcoord();
+	double vecX = (double)locais.at(indiceLocal2).getXcoord() - locais.at(indiceLocal1).getXcoord();
+	double vecY = (double)locais.at(indiceLocal2).getYcoord() - locais.at(indiceLocal1).getYcoord();
 
 	// calcular norma do vetor e retornar esse valor
 	return sqrt(vecX*vecX + vecY*vecY);
+}
+
+void ProtecaoCivil::ordernarPostosDistLocal(const std::string &nomeLocal){
+	bool swapOccured = false;
+	Posto* temp;
+
+	// Ordenar o vetor de postos com base na distancia a este local (Bubble sort)
+	for (unsigned int i=0 ; i < postos.size() ; i++){
+		bool swapOccured = false;
+		for(unsigned int j=0 ; j<postos.size()-1-i ; j++){
+			if (getDistLocais(nomeLocal,postos.at(j+1)->getLocal()->getNome()) < getDistLocais(nomeLocal,postos.at(j)->getLocal()->getNome())){
+				// Trocar elementos
+				temp = postos.at(j);
+				postos.at(j) = postos.at(j+1);
+				postos.at(j+1) = temp;
+				swapOccured = true;	// Ocorreu uma troca
+			}
+			std::cout << std::endl;
+		}
+		if (!swapOccured)	// Nao houve nenhuma troca, vetor ja esta ordenado!
+			break;
+	}
 }
 
 void ProtecaoCivil::gravar() const{

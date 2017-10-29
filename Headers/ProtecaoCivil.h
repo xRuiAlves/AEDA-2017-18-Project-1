@@ -39,6 +39,14 @@ private:
 	 * @return Retorna o número de identificação do acidente com o maior número de identificação
 	 */
 	unsigned int findAcidenteMaiorNum() const;
+
+	/**
+	 * @brief Permite obter o valor absoluto da distância entre dois locais que se encontrem na base de dados da proteção civil
+	 * @param nomeLocal1 - Nome do primeiro local
+	 * @param nomeLocal2 - Nome do segundo local
+	 * @return Retorna o valor da distância entre os locais com nome 'nomeLocal1' e 'nomeLocal2', ou -1 em caso de insucesso (se não encontrar algum dos locais
+	 */
+	double getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2);
 public:
 	/**
 	 * @brief Construtor da ckasse ProtecaoCivil
@@ -131,12 +139,10 @@ public:
 	int findLocal(const std::string &nomeLocal) const;
 
 	/**
-	 * @brief Permite obter o valor absoluto da distância entre dois locais que se encontrem na base de dados da proteção civil
-	 * @param nomeLocal1 - Nome do primeiro local
-	 * @param nomeLocal2 - Nome do segundo local
-	 * @return Retorna o valor da distância entre os locais com nome 'nomeLocal1' e 'nomeLocal2', ou -1 em caso de insucesso (se não encontrar algum dos locais
+	 * @brief Ordena os Postos por distância (ordem crescente) a um outro local
+	 * @param nomeLocal - Nome do local que serve de referência para a ordenação do vetor
 	 */
-	double getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2);
+	void ordernarPostosDistLocal(const std::string &nomeLocal);
 };
 
 #endif /* PROTECAOCIVIL_H_ */
