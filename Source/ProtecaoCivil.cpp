@@ -376,6 +376,19 @@ void ProtecaoCivil::printPostosLocal(const std::string &local) const{
 	}
 }
 
+void ProtecaoCivil::printPostosId(unsigned int id) const{
+	// Procurar o Postos
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+		if (postos.at(i)->getId() == id){		// Encontrado
+			postos.at(i)->printInfoPosto();
+			return;
+		}
+	}
+
+	// Nao ha postos com este id
+	std::cout << "Nao ha nenhum posto com o numero de identificacao especificado.";
+}
+
 unsigned int ProtecaoCivil::findAcidenteMaiorNum() const{
 	unsigned int maiorNum = 0;
 	for (unsigned int i=0 ; i<acidentes.size() ; i++){

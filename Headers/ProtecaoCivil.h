@@ -103,6 +103,12 @@ public:
 	void printPostosLocal(const std::string &local) const;
 
 	/**
+	 * @brief Imprime no ecrã o posto da proteção civil com o id passado por parâmetro
+	 * @param id - Número de identificação do posto a imprimir
+	 */
+	void printPostosId(unsigned int id) const;
+
+	/**
 	 * @brief Ordena os acidentes ao encargo da proteção civil com um critério a definir na função passada como parâmetro
 	 * @param compareFunction - Função de comparação entre dois acidentes, funciona como critério de ordenação
 	 */
