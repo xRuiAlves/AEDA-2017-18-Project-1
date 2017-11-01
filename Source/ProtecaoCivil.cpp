@@ -155,7 +155,7 @@ void ProtecaoCivil::openFiles(){
 			numAutotanquesNecess = std::stoi(line.substr(0,dashIndex));
 			line.erase(0,dashIndex+1);
 
-			// obter o numero de autotanques necessarios
+			// obter o numero de bombeiros necessarios
 			dashIndex = line.find_first_of('/');
 			numBombeirosNecess = std::stoi(line.substr(0,dashIndex));
 			line.erase(0,dashIndex+1);
@@ -580,11 +580,11 @@ void ProtecaoCivil::gravar() const{
 }
 
 
-Local * ProtecaoCivil::getLocal(const std::string &nomeLocal) const{
+const Local * ProtecaoCivil::getLocal(const std::string &nomeLocal) const{
 	// Procurar o local
 	for(unsigned int i=0 ; i<locais.size() ; i++){
 		if(locais.at(i).getNome() == nomeLocal){		// Encontrado!
-			return &locais.at(i);
+			return &(locais.at(i));
 		}
 	}
 

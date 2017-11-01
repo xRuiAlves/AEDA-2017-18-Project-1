@@ -149,7 +149,7 @@ public:
 	 * @param nomeLocal - Nome do local a procurar
 	 * @return Retorna o apontador para o local a procurar ou NULL caso não encontre
 	 */
-	Local * getLocal(const std::string &nomeLocal) const;
+	const Local * getLocal(const std::string &nomeLocal) const;
 
 	/**
 	 * @brief Permite obter o numero de ocorrência da ocorrência com maior número
