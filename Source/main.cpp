@@ -300,7 +300,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,7);
+			opt = getOption(1,8);
 		}
 		catch(Erro &e){
 			std::cout << "\n" << e.getInfo();
@@ -363,6 +363,27 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			pause();
 			break;
 		}
+		else if (opt == 7){
+			// Pedir ao utilizador que insira o numero de identificacao do posto e comunicar eventual erro
+			unsigned int postoId;
+			try{
+				postoId = obterId();
+			}
+			catch(Erro &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Imprimir o posto com o id pretendido
+			std::cout << std::endl;
+			protecaoCivil.printPostosId(postoId);
+			std::cout << std::endl;
+
+			pause();
+			break;
+		}
 		else
 			break;	// opt = 6, o utilizador quer voltar
 	}
@@ -412,7 +433,8 @@ void printPesquisarPostosMenu(){
 	std::cout << "4. Pesquisar por Postos de Bombeiros" << std::endl;
 	std::cout << "5. Pesquisar por Postos da Policia" << std::endl;
 	std::cout << "6. Pesquisar por Postos do Inem" << std::endl;
-	std::cout << "7. Voltar" << std::endl << std::endl;
+	std::cout << "7. Pesquisar por Numero de Identificacao" << std::endl;
+	std::cout << "8. Voltar" << std::endl << std::endl;
 }
 
 void printInfoOcorrenciasMenu(){
