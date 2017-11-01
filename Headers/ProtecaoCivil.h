@@ -143,6 +143,13 @@ public:
 	 * @param nomeLocal - Nome do local que serve de referência para a ordenação do vetor
 	 */
 	void ordernarPostosDistLocal(const std::string &nomeLocal);
+
+	/**
+	 * @brief Procura um local no vetor de locais
+	 * @param nomeLocal - Nome do local a procurar
+	 * @return Retorna o apontador para o local a procurar ou NULL caso não encontre
+	 */
+	Local * getLocal(const std::string &nomeLocal) const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */

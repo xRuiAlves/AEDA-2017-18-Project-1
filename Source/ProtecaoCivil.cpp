@@ -578,3 +578,23 @@ void ProtecaoCivil::gravar() const{
 	// Fechar a stream
 	ostr.close();
 }
+
+
+Local * ProtecaoCivil::getLocal(const std::string &nomeLocal) const{
+	// Procurar o local
+	for(unsigned int i=0 ; i<locais.size() ; i++){
+		if(locais.at(i).getNome() == nomeLocal){		// Encontrado!
+			return &locais.at(i);
+		}
+	}
+
+	// Local nao foi encontrado
+	return NULL;
+}
+
+
+
+
+
+
+
