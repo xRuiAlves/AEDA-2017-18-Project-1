@@ -749,6 +749,30 @@ unsigned int obterNumOcorrencia(){
 		return ((unsigned int) numOcorrencia);
 }
 
+unsigned int obterId(){
+	int numId;
+	std::cout << "\nInsira o numero de identificacao do posto: ";
+	std::cin >> numId;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se a area de chamas introduzida nao foi absurda
+	if (numId <= 0)
+		throw (Erro("O numero de identificacao nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numId);
+
+}
+
 void pause(){
 	std::cout << "Prima <ENTER> para continuar ...";
 	int c = getchar();	// Wait for user to press enter and check if only enter was pressed!

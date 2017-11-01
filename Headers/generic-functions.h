@@ -174,6 +174,12 @@ std::string incendioObterTipoCasa();
 unsigned int obterNumOcorrencia();
 
 /**
+ * @brief Lê do utilizador o Número de Identificação de um Posto, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
+ * @return Retorna um número de identificação de um posto, se a leitura for bem sucedida
+ */
+unsigned int obterId();
+
+/**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
  */
 void pause();
