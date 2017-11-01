@@ -86,31 +86,39 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 	int tipoAcidente;
 	bool existenciaFeridos;
 	unsigned int numFeridos, numVeiculos, numBombeirosNecess, numAutotanquesNecess, areaChamas;
+	Acidente* acidente;
 
 	try{
 		localidade = obterLocalidade(protecaoCivil);
 		data = lerData();
 		tipoAcidente = obterTipoAcidente();
 
+		// Obter o apontador para o local do acidente
+		const Local* local = protecaoCivil.getLocal(localidade);
+
 		switch(tipoAcidente){
 		case 1:		// Assaltos
 			tipoCasa = assaltoObterTipoCasa();
 			existenciaFeridos = assaltoObterExistenciaFeridos();
+			acidente = new Assalto(data,local,protecaoCivil.getMaxNumOcorrencia()+1,tipoCasa,existenciaFeridos);
 			break;
 		case 2:		// Acidentes de Viacao
 			tipoEstrada = viacaoObterTipoEstrada();
 			numFeridos = viacaoObterNumFeridos();
 			numVeiculos = viacaoObterNumVeiculos();
+			acidente = new AcidenteViacao(data,local,protecaoCivil.getMaxNumOcorrencia()+1,tipoEstrada,numFeridos,numVeiculos);
 			break;
 		case 3:		// Incendios Florestais
 			numBombeirosNecess = incendioObterNumBombeiros();
 			numAutotanquesNecess = incendioObterNumAutotanques();
 			areaChamas = incendioObterAreaChamas();
+			acidente = new IncendioFlorestal(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,areaChamas);
 			break;	// Incendios Domesticos
 		case 4:
 			numBombeirosNecess = incendioObterNumBombeiros();
 			numAutotanquesNecess = incendioObterNumAutotanques();
 			tipoCasa = incendioObterTipoCasa();
+			acidente = new IncendioDomestico(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,tipoCasa);
 			break;
 		}
 	}
@@ -119,6 +127,15 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 		pause();
 		return;
 	}
+
+	std::cout << "\n";
+	acidente->printInfoAcidente();
+	std::cout << "\n";
+	acidente->printSimplifiedInfo(std::cout);
+	std::cout << "\n\n";
+
+	delete acidente;
+
 
 	std::cout << "\n*******************************";
 	std::cout << "\n**********  SUCESSO  **********";
