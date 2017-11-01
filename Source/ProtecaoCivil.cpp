@@ -121,7 +121,7 @@ void ProtecaoCivil::openFiles(){
 
 	// Preencher o vetor de Acidentes com o conteúdo do ficheiro
 	std::string data, tipoAcidente, tipoIncendio, tipoCasa, tipoEstrada, atribuicao, tipoVeiculos;
-	unsigned int numAutotanquesNecess, numBombeirosNecess, areaChamas, postoId, numFeridos, numVeiculosEnvolvidos, numAtribuicoes;
+	unsigned int numAutotanquesNecess, numBombeirosNecess, areaChamas, numFeridos, numVeiculosEnvolvidos, numAtribuicoes;
 	bool haFeridos;
 	Acidente* acidente;
 	unsigned int numOcorrencia = 1;	// Sera incrementado sempre que um novo acidente for criado
@@ -536,7 +536,7 @@ void ProtecaoCivil::ordernarPostosDistLocal(const std::string &nomeLocal){
 
 	// Ordenar o vetor de postos com base na distancia a este local (Bubble sort)
 	for (unsigned int i=0 ; i < postos.size() ; i++){
-		bool swapOccured = false;
+		swapOccured = false;
 		for(unsigned int j=0 ; j<postos.size()-1-i ; j++){
 			if (getDistLocais(nomeLocal,postos.at(j+1)->getLocal()->getNome()) < getDistLocais(nomeLocal,postos.at(j)->getLocal()->getNome())){
 				// Trocar elementos
