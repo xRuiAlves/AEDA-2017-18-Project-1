@@ -150,6 +150,12 @@ public:
 	 * @return Retorna o apontador para o local a procurar ou NULL caso não encontre
 	 */
 	Local * getLocal(const std::string &nomeLocal) const;
+
+	/**
+	 * @brief Permite obter o numero de ocorrência da ocorrência com maior número
+	 * @return Retorna o número da ocorrência com maior número de ocorrência
+	 */
+	unsigned int getMaxNumOcorrencia() const;
 };
 
 #endif /* PROTECAOCIVIL_H_ */

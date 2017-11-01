@@ -592,6 +592,18 @@ Local * ProtecaoCivil::getLocal(const std::string &nomeLocal) const{
 	return NULL;
 }
 
+unsigned int ProtecaoCivil::getMaxNumOcorrencia() const{
+	unsigned int max = 0;
+
+	// Procura o maior
+	for(unsigned int i=0 ; i<acidentes.size() ; i++){
+		if (acidentes.at(i)->getNumOcorrencia() > max)
+			max = acidentes.at(i)->getNumOcorrencia();
+	}
+
+	// Retorna o maior
+	return max;
+}
 
 
 
