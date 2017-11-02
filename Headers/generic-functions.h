@@ -183,7 +183,7 @@ unsigned int obterIdPosto();
  * @brief Lê do utilizador o Número de Identificação de um Acidente, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
  * @return Retorna um número de identificação de um acidente, se a leitura for bem sucedida
  */
-unsigned int oberIdAcidente();
+unsigned int obterIdAcidente();
 
 /**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.
