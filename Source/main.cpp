@@ -178,7 +178,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 
 		// Pedir opcao ao utilizador e verificar se nao houve erro de input
 		try{
-			opt = getOption(1,10);
+			opt = getOption(1,11);
 		}
 		catch(Erro &e){
 			std::cout << "\n" << e.getInfo();
@@ -283,28 +283,49 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			break;
 		}
 		else if (opt == 9){
-					// Pedir ao utilizador que insira o numero de identificacao do acidente e comunicar eventual erro
-					unsigned int acidenteId;
-					try{
-						acidenteId = obterIdAcidente();
-					}
-					catch(Erro &e){
-						std::cout << "\n\n" << e.getInfo();
-						std::cout << std::endl << std::endl;
-						pause();
-						break;
-					}
+			// Pedir ao utilizador que insira o numero de identificacao do acidente e comunicar eventual erro
+			unsigned int acidenteId;
+			try{
+				acidenteId = obterIdAcidente();
+			}
+			catch(Erro &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
 
-					// Imprimir o acidente com o id pretendido
-					std::cout << std::endl;
-					protecaoCivil.printAcidentesId(acidenteId);
-					std::cout << std::endl;
+			// Imprimir o acidente com o id pretendido
+			std::cout << std::endl;
+			protecaoCivil.printAcidentesId(acidenteId);
+			std::cout << std::endl;
 
-					pause();
-					break;
-				}
+			pause();
+			break;
+		}
+		else if (opt == 10){
+			// Pedir ao utilizador que insira o numero de identificacao do acidente e comunicar eventual erro
+			unsigned int acidenteId;
+			try{
+				acidenteId = obterIdAcidente();
+			}
+			catch(Erro &e){
+				std::cout << "\n\n" << e.getInfo();
+				std::cout << std::endl << std::endl;
+				pause();
+				break;
+			}
+
+			// Imprimir o acidente com o id pretendido
+			std::cout << std::endl;
+			protecaoCivil.printAtribuicoesAcidente(acidenteId);
+			std::cout << std::endl;
+
+			pause();
+			break;
+		}
 		else
-			break;	// opt = 10, o utilizador quer voltar
+			break;	// opt = 11, o utilizador quer voltar
 	}
 
 
@@ -472,7 +493,8 @@ void printInfoOcorrenciasMenu(){
 	std::cout << "7. Pesquisar por Acidentes de Viacao" << std::endl;
 	std::cout << "8. Pesquisar por Incendios" << std::endl;
 	std::cout << "9. Pesquisar por Numero de Identificacao" << std::endl;
-	std::cout << "10. Voltar" << std::endl << std::endl;
+	std::cout << "10. Pesquisar por Meios Atribuidos a um Acidente" << std::endl;
+	std::cout << "11. Voltar" << std::endl << std::endl;
 }
 
 void printHeader(const std::string &header){
