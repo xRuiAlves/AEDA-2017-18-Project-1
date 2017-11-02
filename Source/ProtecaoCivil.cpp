@@ -522,6 +522,19 @@ void ProtecaoCivil::printAcidentesData(const std::string &data) const{
 	}
 }
 
+void ProtecaoCivil::printAcidentesId(unsigned int id) const{
+	// Procurar o Acidente
+	for (unsigned int i=0 ; i<acidentes.size() ; i++){
+		if (acidentes.at(i)->getNumOcorrencia() == id){		// Encontrado
+			acidentes.at(i)->printInfoAcidente();
+			return;
+		}
+	}
+
+	// Nao ha acidentes com este id
+	std::cout << "Nao ha nenhum acidente com o numero de identificacao especificado.";
+}
+
 double ProtecaoCivil::getDistLocais(const std::string &nomeLocal1, const std::string &nomeLocal2){
 	int indiceLocal1 = findLocal(nomeLocal1);
 	int indiceLocal2 = findLocal(nomeLocal2);

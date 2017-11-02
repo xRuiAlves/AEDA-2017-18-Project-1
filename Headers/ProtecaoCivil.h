@@ -139,6 +139,12 @@ public:
 	void printAcidentesData(const std::string &data) const;
 
 	/**
+	 * @brief Imprime no ecrã o acidente declarado à proteção civil com o id passado por parâmetro
+	 * @param id - Número de identificação do acidente a imprimir
+	 */
+	void printAcidentesId(unsigned int id) const;
+
+	/**
 	 * @brief Encontra o índice de um certo local no vetor de locais da proteção civil
 	 * @param nomeLocal - Nome do Local a procurar no vetor de locais
 	 * @return Retorna o índice do local com nome 'nomeLocal' no vetor de locais caso este lá esteja, ou -1 caso contrário
