@@ -31,7 +31,7 @@ std::ostream & operator<<(std::ostream & os, const Atribuicao& atribuicao){
 
 void Atribuicao::printInfo() const{
 	std::cout << "ID do Posto: " << postoId << std::endl;
-	std::cout << "Numero de Socorristas: " << postoId << std::endl;
-	std::cout << "Numero de Veiculos: " << postoId << std::endl;
-	std::cout << "Tipo de Veiculo: " << postoId << std::endl;
+	std::cout << "Numero de Socorristas: " << numSocorristas << std::endl;
+	std::cout << "Numero de Veiculos: " << numVeiculos << std::endl;
+	std::cout << "Tipo de Veiculos: " << tipoVeiculos << std::endl;
 }
