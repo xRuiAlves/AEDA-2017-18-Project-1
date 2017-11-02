@@ -70,6 +70,11 @@ public:
 	 * @param atribuicao - Atribuição a adicionar ao vetor de atribuicoes deste acidente
 	 */
 	void addAtribuicao(const Atribuicao & atribuicao);
+
+	/**
+	 * @brief Imprime todas as atribuicoes relativas a este acidente de uma forma legível para o utilizador
+	 */
+	void printAtribuicoes() const;
 };
 
 #endif /* ACIDENTE_H_ */

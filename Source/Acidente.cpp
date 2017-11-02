@@ -25,3 +25,11 @@ Acidente::~Acidente() {
 void Acidente::addAtribuicao(const Atribuicao & atribuicao){
 	atribuicoes.push_back(atribuicao);
 }
+
+void Acidente::printAtribuicoes() const{
+	// Imprime info de todos as atribuicoes
+	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
+		atribuicoes.at(i).printInfo();
+		std::cout << std::endl;
+	}
+}
