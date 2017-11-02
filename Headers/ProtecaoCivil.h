@@ -63,9 +63,10 @@ public:
 
 	/**
 	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
-	 * @return Retorna true se a inserção tiver sucesso e false caso contrário
+	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
 	 */
-	bool addAcidente(/*TODO parametros*/);
+	unsigned short addAcidente(Acidente* acidente);
 
 	/**
 	 * @brief Remove um acidente do vetor de acidentes da Proteção Civil
