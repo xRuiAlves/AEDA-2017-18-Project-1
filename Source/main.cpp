@@ -367,7 +367,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			// Pedir ao utilizador que insira o numero de identificacao do posto e comunicar eventual erro
 			unsigned int postoId;
 			try{
-				postoId = obterId();
+				postoId = obterIdPosto();
 			}
 			catch(Erro &e){
 				std::cout << "\n\n" << e.getInfo();
@@ -771,7 +771,7 @@ unsigned int obterNumOcorrencia(){
 		return ((unsigned int) numOcorrencia);
 }
 
-unsigned int obterId(){
+unsigned int obterIdPosto(){
 	int numId;
 	std::cout << "\nInsira o numero de identificacao do posto: ";
 	std::cin >> numId;
@@ -787,9 +787,33 @@ unsigned int obterId(){
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
 	std::cin.ignore(1000,'\n');
 
-	// Verificar se a area de chamas introduzida nao foi absurda
+	// Verificar se o numero de identificacao introduzido nao foi absurdo
 	if (numId <= 0)
-		throw (Erro("O numero de identificacao nao pode ser nulo nem negativo!"));
+		throw (Erro("O numero de identificacao do posto nao pode ser nulo nem negativo!"));
+	else
+		return ((unsigned int) numId);
+
+}
+
+unsigned int obterIdAcidente(){
+	int numId;
+	std::cout << "\nInsira o numero de identificacao do acidente: ";
+	std::cin >> numId;
+
+	// Verificar se foi introduzido um numero
+	if(std::cin.fail()){
+		// Limpar as flags de erro e limpar a stream, lançar a exceção
+		std::cin.clear();
+		std::cin.ignore(1000,'\n');
+		throw (Erro("Input Invalido!"));
+	}
+
+	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
+	std::cin.ignore(1000,'\n');
+
+	// Verificar se o numero de identificacao introduzido nao foi absurdo
+	if (numId <= 0)
+		throw (Erro("O numero de identificacao do acidente nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numId);
 
