@@ -189,7 +189,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 
 		if (opt == 1){
 			// Ordenenar os Acidentes por local e imprimi-los a todos
-			protecaoCivil.ordernarAcidentes(compararAcidentesLocal);
+			protecaoCivil.ordenarAcidentes(compararAcidentesLocal);
 			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
@@ -208,7 +208,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			}
 
 			// Ordenar os acidentes por localidade
-			protecaoCivil.ordernarAcidentes(compararAcidentesLocal);
+			protecaoCivil.ordenarAcidentes(compararAcidentesLocal);
 
 			std::cout << std::endl;
 
@@ -222,7 +222,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		}
 		else if (opt == 3){
 			// Ordenenar os Acidentes por data e imprimi-los a todos
-			protecaoCivil.ordernarAcidentes(compararAcidentesData);
+			protecaoCivil.ordenarAcidentes(compararAcidentesData);
 			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
@@ -241,7 +241,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			}
 
 			// Ordenar os acidentes por data
-			protecaoCivil.ordernarAcidentes(compararAcidentesData);
+			protecaoCivil.ordenarAcidentes(compararAcidentesData);
 
 			std::cout << std::endl;
 
@@ -255,28 +255,28 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		}
 		else if (opt == 5){
 			// Ordenenar os Acidentes por tipo e imprimi-los a todos
-			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.ordenarAcidentes(compararAcidentesTipo);
 			protecaoCivil.printTodosAcidentes();
 			pause();
 			break;
 		}
 		else if (opt == 6){
 			// Ordenar os acidentes por tipo e imprimir os Assaltos
-			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.ordenarAcidentes(compararAcidentesTipo);
 			protecaoCivil.printAcidentesTipo("Assalto");
 			pause();
 			break;
 		}
 		else if (opt == 7){
 			// Ordenar os acidentes por tipo e imprimir os Acidentes de Viacao
-			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.ordenarAcidentes(compararAcidentesTipo);
 			protecaoCivil.printAcidentesTipo("Acidente de Viacao");
 			pause();
 			break;
 		}
 		else if (opt == 8){
 			// Ordenar os acidentes por tipo e imprimir os Incendios (quer Domesticos, quer Florestais)
-			protecaoCivil.ordernarAcidentes(compararAcidentesTipo);
+			protecaoCivil.ordenarAcidentes(compararAcidentesTipo);
 			protecaoCivil.printAcidentesTipo("Incendio Domestico");
 			protecaoCivil.printAcidentesTipo("Incendio Florestal");
 			pause();
@@ -311,7 +311,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 
 		if (opt == 1){
 			// Ordenar os postos por local e imprimi-los a todos
-			protecaoCivil.ordernarPostos(compararPostosLocal);
+			protecaoCivil.ordenarPostos(compararPostosLocal);
 			protecaoCivil.printTodosPostos();
 			pause();
 			break;
@@ -323,7 +323,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			getline(std::cin,localidade);
 
 			// Ordenar os postos por localidade
-			protecaoCivil.ordernarPostos(compararPostosLocal);
+			protecaoCivil.ordenarPostos(compararPostosLocal);
 
 			std::cout << std::endl;
 
@@ -337,28 +337,28 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 		}
 		else if (opt == 3){
 			// Ordenar os postos por tipo e imprimi-los a todos
-			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.ordenarPostos(compararPostosTipo);
 			protecaoCivil.printTodosPostos();
 			pause();
 			break;
 		}
 		else if (opt == 4){
 			// Ordenar os postos por tipo e imprimir os postos de Bombeiros
-			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.ordenarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Bombeiros");
 			pause();
 			break;
 		}
 		else if (opt == 5){
 			// Ordenar os postos por tipo e imprimir os postos de Policia
-			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.ordenarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Policia");
 			pause();
 			break;
 		}
 		else if (opt == 6){
 			// Ordenar os postos por tipo e imprimir os postos de Inem
-			protecaoCivil.ordernarPostos(compararPostosTipo);
+			protecaoCivil.ordenarPostos(compararPostosTipo);
 			protecaoCivil.printPostosTipo("Inem");
 			pause();
 			break;

@@ -84,7 +84,7 @@ public:
 	 * @brief Ordena os postos da proteção civil com um critério a definir na função passada como parâmetro
 	 * @param compareFunction - Função de comparação entre dois postos, funciona como critério de ordenação
 	 */
-	void ordernarPostos(bool compareFunction(Posto* p1, Posto*p2));
+	void ordenarPostos(bool compareFunction(Posto* p1, Posto*p2));
 
 	/**
 	 * @brief Imprime no ecrã todos os postos da Proteção Civil
@@ -113,7 +113,7 @@ public:
 	 * @brief Ordena os acidentes ao encargo da proteção civil com um critério a definir na função passada como parâmetro
 	 * @param compareFunction - Função de comparação entre dois acidentes, funciona como critério de ordenação
 	 */
-	void ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2));
+	void ordenarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2));
 
 	/**
 	 * @brief Imprime no ecrã todos os acidentes ao encargo da Proteção Civil
@@ -149,7 +149,7 @@ public:
 	 * @brief Ordena os Postos por distância (ordem crescente) a um outro local
 	 * @param nomeLocal - Nome do local que serve de referência para a ordenação do vetor
 	 */
-	void ordernarPostosDistLocal(const std::string &nomeLocal);
+	void ordenarPostosDistLocal(const std::string &nomeLocal);
 
 	/**
 	 * @brief Procura um local no vetor de locais

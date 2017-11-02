@@ -274,6 +274,13 @@ ProtecaoCivil::~ProtecaoCivil() {
 	}
 }
 
+unsigned short ProtecaoCivil::addAcidente(Acidente* acidente){
+	// Ordenar os postos por distancia ao local onde ocorreu este acidente
+	ordenarPostosDistLocal(acidente->getLocal()->getNome());
+
+	return 0;
+}
+
 bool ProtecaoCivil::rmAcidente(unsigned int numOcorrencia){
 	std::vector<Acidente*>::iterator it;
 
@@ -299,7 +306,7 @@ int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
 	return -1;	// local nao foi encontrado
 }
 
-void ProtecaoCivil::ordernarPostos(bool compareFunction(Posto* p1, Posto*p2)){
+void ProtecaoCivil::ordenarPostos(bool compareFunction(Posto* p1, Posto*p2)){
 	std::sort(postos.begin(),postos.end(),compareFunction);
 }
 
@@ -399,7 +406,7 @@ unsigned int ProtecaoCivil::findAcidenteMaiorNum() const{
 	return maiorNum;
 }
 
-void ProtecaoCivil::ordernarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2)){
+void ProtecaoCivil::ordenarAcidentes(bool compareFunction(Acidente* p1, Acidente*p2)){
 	std::sort(acidentes.begin(),acidentes.end(),compareFunction);
 }
 
@@ -530,7 +537,7 @@ double ProtecaoCivil::getDistLocais(const std::string &nomeLocal1, const std::st
 	return sqrt(vecX*vecX + vecY*vecY);
 }
 
-void ProtecaoCivil::ordernarPostosDistLocal(const std::string &nomeLocal){
+void ProtecaoCivil::ordenarPostosDistLocal(const std::string &nomeLocal){
 	bool swapOccured = false;
 	Posto* temp;
 
