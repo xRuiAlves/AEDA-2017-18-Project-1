@@ -175,6 +175,12 @@ public:
 	 * @return Retorna o número da ocorrência com maior número de ocorrência
 	 */
 	unsigned int getMaxNumOcorrencia() const;
+
+	/**
+	 * @brief Retorna os meios de uma atribuicao de volta ao seu posto
+	 * @param atribuicao - Atribuicao em questão
+	 */
+	void retornarAtribuicao(const Atribuicao & atribuicao);
 };
 
 #endif /* PROTECAOCIVIL_H_ */

@@ -275,25 +275,61 @@ ProtecaoCivil::~ProtecaoCivil() {
 }
 
 unsigned short ProtecaoCivil::addAcidente(Acidente* acidente){
+	bool meiosTotalmenteGarantidos = false;		// True se todas as necessidades de meios para o acidente forem supridas
+	bool meiosParcialmenteGarantidos = false;	// True se apenas algumas necessidades de meios para o acidente forem supridas
+
 	// Ordenar os postos por distancia ao local onde ocorreu este acidente
 	ordenarPostosDistLocal(acidente->getLocal()->getNome());
+
+	// Acidentes de Viacao
+	if (acidente->getTipoAcidente() == "Acidente de Viacao"){
+
+	}
+
+	// Incendios Florestais
+	else if (acidente->getTipoAcidente() == "Incendio Florestal"){
+
+	}
+
+	// Incendios Domesticos
+	else if (acidente->getTipoAcidente() == "Incendio Domestico"){
+
+	}
+
+	// Assaltos
+	else if (acidente->getTipoAcidente() == "Assalto"){
+
+	}
 
 	return 0;
 }
 
 bool ProtecaoCivil::rmAcidente(unsigned int numOcorrencia){
-	std::vector<Acidente*>::iterator it;
-
-	// Tentar encontrar o acidente no vetor de acidentes
-	for (it = acidentes.begin() ; it != acidentes.end() ; it++){
-		if( (*it)->getNumOcorrencia() == numOcorrencia ){	// Encontrado!
-			acidentes.erase(it);		// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TODO CONFIRMAR EXISTENCIA <<<<<<<<<<<<<<<<<<<<<<<<<< //
-			return true;
+	// Encontrar o acidente no vetor de acidentes
+	int indiceAcidente = -1;
+	for (unsigned int i=0 ; i<acidentes.size() ; i++){
+		if(acidentes.at(i)->getNumOcorrencia()==numOcorrencia){
+			indiceAcidente=i;	// Encontrado!
+			break;
 		}
 	}
 
-	// Nao existe nenhum acidente com este numero de ocorrencia
-	return false;
+	// O acidente nao foi encontrado , retornar false
+	if (indiceAcidente==-1)
+		return false;
+
+	// Obter todas as atribuicoes a esse acidente
+	std::vector<Atribuicao> atribuicoes = acidentes.at(indiceAcidente)->getAtribuicoes();
+
+	// Retornar os meios das atribuicoes de volta para os seus respetivos postos
+	for (unsigned int i=0 ; i<atribuicoes.size() ; i++){
+		retornarAtribuicao(atribuicoes.at(i));
+	}
+
+	// Apagar o acidente da base de dados da protecao civil
+	acidentes.erase(acidentes.begin()+indiceAcidente);
+
+	return true;
 }
 
 int ProtecaoCivil::findLocal(const std::string &nomeLocal) const{
@@ -651,6 +687,44 @@ unsigned int ProtecaoCivil::getMaxNumOcorrencia() const{
 	return max;
 }
 
+void ProtecaoCivil::retornarAtribuicao(const Atribuicao & atribuicao){
+	// Procurar pelo posto de onde originam os meios desta atribuicao
+	Posto* posto;
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+		if (postos.at(i)->getId()==atribuicao.getPostoId()){
+			posto = postos.at(i);
+			break;
+		}
+	}
+
+	// Posto da Policia
+	if (posto->getTipoPosto() == "Policia"){
+		posto->addSocorristas(atribuicao.getNumSocorristas());
+		posto->addVeiculos(atribuicao.getNumVeiculos());
+	}
+
+	// Posto do Inem
+	else if (posto->getTipoPosto() == "Inem"){
+		posto->addSocorristas(atribuicao.getNumSocorristas());
+		posto->addVeiculos(atribuicao.getNumVeiculos());
+	}
+
+	// Posto dos Bombeiros
+	else{
+		posto->addSocorristas(atribuicao.getNumSocorristas());
+		Bombeiros* postoBombeiros = dynamic_cast<Bombeiros*>(posto);
+
+		// Atribuicao de autotanques
+		if (atribuicao.getTipoVeiculos()=="Autotanque"){
+			postoBombeiros->addAutotanques(atribuicao.getNumVeiculos());
+		}
+
+		// Atribuicao de Ambulancias
+		else {
+			postoBombeiros->addAmbulancias(atribuicao.getNumVeiculos());
+		}
+	}
+}
 
 
 
