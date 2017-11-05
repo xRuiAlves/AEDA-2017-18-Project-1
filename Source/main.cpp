@@ -109,17 +109,15 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 			acidente = new AcidenteViacao(data,local,protecaoCivil.getMaxNumOcorrencia()+1,tipoEstrada,numFeridos,numVeiculos);
 			break;
 		case 3:		// Incendios Florestais
-			numBombeirosNecess = incendioObterNumBombeiros();
-			numAutotanquesNecess = incendioObterNumAutotanques();
-			if (numAutotanquesNecess > numBombeirosNecess) throw (Erro("Numero de Autotanques nao pode ser superior ao numero de Bombeiros!"));
 			areaChamas = incendioObterAreaChamas();
+			numAutotanquesNecess = areaChamas;	// 1 Autotanque por cada km quadrado
+			numBombeirosNecess = numAutotanquesNecess * 3;		// Cada autotanque leva 3 bombeiros
 			acidente = new IncendioFlorestal(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,areaChamas);
 			break;	// Incendios Domesticos
 		case 4:
-			numBombeirosNecess = incendioObterNumBombeiros();
-			numAutotanquesNecess = incendioObterNumAutotanques();
-			if (numAutotanquesNecess > numBombeirosNecess) throw (Erro("Numero de Autotanques nao pode ser superior ao numero de Bombeiros!"));
 			tipoCasa = incendioObterTipoCasa();
+			numAutotanquesNecess = 1;	// Um incendio Domestico necessita de 1 autotanque
+			numBombeirosNecess = 3;		// Cada autotanque leva 3 bombeiros
 			acidente = new IncendioDomestico(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,tipoCasa);
 			break;
 		}
@@ -699,56 +697,6 @@ unsigned int viacaoObterNumVeiculos(){
 		throw (Erro("Numero de veiculos nao pode ser nulo!"));
 	else
 		return ((unsigned int) numVeiculos);
-}
-
-unsigned int incendioObterNumAutotanques(){
-	int numAutotanques;
-	std::cout << "\nInsira o numero de autotanques necessarios para este incendio: ";
-	std::cin >> numAutotanques;
-
-	// Verificar se foi introduzido um numero
-	if(std::cin.fail()){
-		// Limpar as flags de erro e limpar a stream, lançar a exceção
-		std::cin.clear();
-		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
-	}
-
-	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
-	std::cin.ignore(1000,'\n');
-
-	// Verificar se o numero de autotanques introduzido nao foi absurdo
-	if (numAutotanques < 0)
-		throw (Erro("Numero de autotanques nao pode ser negativo!"));
-	else if (numAutotanques == 0)
-		throw (Erro("Numero de autotanques nao pode ser nulo!"));
-	else
-		return ((unsigned int) numAutotanques);
-}
-
-unsigned int incendioObterNumBombeiros(){
-	int numBombeiros;
-	std::cout << "\nInsira o numero de bombeiros necessarios para este incendio: ";
-	std::cin >> numBombeiros;
-
-	// Verificar se foi introduzido um numero
-	if(std::cin.fail()){
-		// Limpar as flags de erro e limpar a stream, lançar a exceção
-		std::cin.clear();
-		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
-	}
-
-	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
-	std::cin.ignore(1000,'\n');
-
-	// Verificar se o numero de bombeiros introduzido nao foi absurdo
-	if (numBombeiros < 0)
-		throw (Erro("Numero de bombeiros nao pode ser negativo!"));
-	else if (numBombeiros == 0)
-		throw (Erro("Numero de bombeiros nao pode ser nulo!"));
-	else
-		return ((unsigned int) numBombeiros);
 }
 
 unsigned int incendioObterAreaChamas(){

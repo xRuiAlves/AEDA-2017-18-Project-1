@@ -144,18 +144,6 @@ unsigned int viacaoObterNumFeridos();
 unsigned int viacaoObterNumVeiculos();
 
 /**
- * @brief Lê do utilizador o número de autotanques necessários para tratar de um incêndio, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
- * @return Retorna o número de autotanques necessários para tratar de um incêndio, se a leitura for bem sucedida
- */
-unsigned int incendioObterNumAutotanques();
-
-/**
- * @brief Lê do utilizador o número de bombeiros necessários para tratar de um incêndio, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
- * @return Retorna o número de bombeiros necessários para tratar de um incêndio, se a leitura for bem sucedida
- */
-unsigned int incendioObterNumBombeiros();
-
-/**
  * @brief Lê do utilizador a área ocupada pelas chamas num incêndio florestal, lançando uma exceção (Erro) se o input for inválido/absurdo (nulo ou inferior a 0)
  * @return Retorna a área ocupada pelas chamas num incêndio florestal, se a leitura for bem sucedida
  */
