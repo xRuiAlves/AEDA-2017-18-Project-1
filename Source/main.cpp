@@ -128,18 +128,17 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 		return;
 	}
 
-	std::cout << "\n";
-	acidente->printInfoAcidente();
-	std::cout << "\n";
-	acidente->printSimplifiedInfo(std::cout);
-	std::cout << "\n\n";
+	// Adicionar o acidente à protecao civil
+	unsigned short sucessoAcidente = protecaoCivil.addAcidente(acidente);
 
-	delete acidente;
+	// Informar o utilizador do grau de sucesso desta adicao
+	if (sucessoAcidente==0)
+		std::cout << "\nO acidente foi adicionado com sucesso e todos os meios necessarios foram devidamente acionados.\n\n";
+	else if (sucessoAcidente==1)
+		std::cout << "\nO acidente foi adicionado, mas as necessidades do acidente nao foram totalmente supridas.\n\n";
+	else
+		std::cout << "\nNao ha quaisquer meios para socorrer este acidente de momento, pelo que este nao foi adicionado.\n\n";
 
-
-	std::cout << "\n*******************************";
-	std::cout << "\n**********  SUCESSO  **********";
-	std::cout << "\n*******************************\n\n";
 	pause();
 }
 
