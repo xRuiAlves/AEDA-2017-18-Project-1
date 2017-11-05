@@ -275,34 +275,314 @@ ProtecaoCivil::~ProtecaoCivil() {
 }
 
 unsigned short ProtecaoCivil::addAcidente(Acidente* acidente){
-	bool meiosTotalmenteGarantidos = false;		// True se todas as necessidades de meios para o acidente forem supridas
-	bool meiosParcialmenteGarantidos = false;	// True se apenas algumas necessidades de meios para o acidente forem supridas
-
 	// Ordenar os postos por distancia ao local onde ocorreu este acidente
 	ordenarPostosDistLocal(acidente->getLocal()->getNome());
 
 	// Acidentes de Viacao
 	if (acidente->getTipoAcidente() == "Acidente de Viacao"){
+		unsigned short addSuccess = addAcidenteViacao(dynamic_cast<AcidenteViacao*>(acidente));
 
+		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
+			acidentes.push_back(acidente);
+		}
+
+		return addSuccess;
 	}
 
-	// Incendios Florestais
-	else if (acidente->getTipoAcidente() == "Incendio Florestal"){
+	// Incendios
+	else if ((acidente->getTipoAcidente() == "Incendio Florestal") || (acidente->getTipoAcidente() == "Incendio Domestico")){
+		unsigned short addSuccess =  addIncendio(dynamic_cast<Incendio*>(acidente));
 
-	}
+		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
+			acidentes.push_back(acidente);
+		}
 
-	// Incendios Domesticos
-	else if (acidente->getTipoAcidente() == "Incendio Domestico"){
-
+		return addSuccess;
 	}
 
 	// Assaltos
-	else if (acidente->getTipoAcidente() == "Assalto"){
+	else {
+		unsigned short addSuccess = addAssalto(dynamic_cast<Assalto*>(acidente));
 
+		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
+			acidentes.push_back(acidente);
+		}
+
+		return addSuccess;
+	}
+}
+
+unsigned short ProtecaoCivil::addAcidenteViacao(AcidenteViacao* acidenteViacao){
+	unsigned int numVeiculosAtribuidos = 0;
+	unsigned int numeroFeridos = acidenteViacao->getNumFeridos();
+
+	// Procurar postos (por ordem de proximidade, vetor de postos ja ordernado) do Inem ou dos Bombeiros para suprir as necessidades do acidente
+	// Cada ferido necessita de uma equipa de assistencia (ou seja, um veículo, seja ele uma Moto com 1 socorrista, um carro com 2 socorristas ou uma ambulancia com 2 socorristas)
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+
+		// Verificar se o posto é um posto do Inem
+		if(postos.at(i)->getTipoPosto() == "Inem"){
+			// É um posto do Inem
+			Inem* postoInem = dynamic_cast<Inem*>(postos.at(i));
+
+			while (postoInem->getNumVeiculos() > 0){
+				// Posto de Inem com Motos
+				if (postoInem->getTipoVeiculo()=="Moto"){	// Cada moto leva 1 medico
+					if (postoInem->rmSocorristas(1)){
+						postoInem->rmVeiculos(1);
+						numVeiculosAtribuidos += 1;
+
+						// Adicionar a atribuicao
+						acidenteViacao->addAtribuicao(Atribuicao(postoInem->getId(),1,1,"Moto"));
+
+						// Verificar se ja foram supridas as necessidades do acidente
+						if(numVeiculosAtribuidos == numeroFeridos)
+							return 0;	// Todos as necessidades foram supridas!!!
+					}
+					else{	// Apesar de haver motos, não há medicos suficientes para o seu uso!
+						break;
+					}
+				}
+
+				// Posto do Inem com Carros / Ambulancias
+				else{
+					if (postoInem->rmSocorristas(2)){	// Cada carro / ambulancia leva 2 medicos
+						postoInem->rmVeiculos(1);
+						numVeiculosAtribuidos += 1;
+
+						// Adicionar a atribuicao
+						acidenteViacao->addAtribuicao(Atribuicao(postoInem->getId(),2,1,postoInem->getTipoVeiculo()));
+
+						// Verificar se ja foram supridas as necessidades do acidente
+						if(numVeiculosAtribuidos == numeroFeridos)
+						return 0;	// Todos as necessidades foram supridas!!!
+					}
+					else{	// Apesar de haver carros/ambulancias, não há medicos suficientes para o seu uso!
+						break;
+					}
+				}
+			}
+		}
+
+
+		// Verificar se é um posto dos bombeiros
+		else if (postos.at(i)->getTipoPosto() == "Bombeiros"){
+			// É um posto de bombeiros
+			Bombeiros* postoBombeiros = dynamic_cast<Bombeiros*>(postos.at(i));
+
+			while (postoBombeiros->getNumAmbulancias() > 0){
+				if(postoBombeiros->rmSocorristas(2)){	// Cada ambulancia leva 2 medicos
+					postoBombeiros->rmAmbulancias(1);
+					numVeiculosAtribuidos+=1;
+
+					// Adicionar a atribuicao
+					acidenteViacao->addAtribuicao(Atribuicao(postoBombeiros->getId(),2,1,"Ambulancia"));
+
+					// Verificar se ja foram supridas as necessidades do acidente
+					if(numVeiculosAtribuidos == numeroFeridos)
+						return 0;	// Todos as necessidades foram supridas!!!
+				}
+				else{	// Apesar de haver ambulancias, não há bombeiros suficientes para o seu uso!
+					break;
+				}
+			}
+		}
+
+		// É um posto da Policia , na0 é pertinente para o tipo de acidente em questao
+		else {
+			continue;
+		}
 	}
 
-	return 0;
+	// Todos os postos foram percorridos, mas as necessidades do acidente nao foram totalmente supridas!
+
+	// Verificar se foram parcialmente supridas
+	if (numVeiculosAtribuidos != 0)
+		return 1;
+
+	// Nao houve uma unica atribuicao com sucesso, nenhumas necessidades foram supridas
+	else
+		return 2;
 }
+
+unsigned short ProtecaoCivil::addIncendio(Incendio* incendio){
+	unsigned int numBombeirosAtribuidos = 0;
+	unsigned int numAutotanquesAtribuidos = 0;
+	unsigned int numBombeirosNecess = incendio->getNumBombeirosNecess();
+	unsigned int numAutotanquesNecess= incendio->getNumAutotanquesNecess();
+
+	// Procurar postos (por ordem de proximidade, vetor de postos ja ordernado) de bombeiros para suprir as necessidades do incendio
+	// Cada autotanque leva até 4 bombeiros
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+
+		// Verificar se o posto é um posto de bombeiros
+		if(postos.at(i)->getTipoPosto() != "Bombeiros")
+			continue;	// Nao é. Continuar para o proximo posto
+
+		// É um posto de bombeiros
+		Bombeiros* postoBombeiros = dynamic_cast<Bombeiros*>(postos.at(i));
+
+		while (postoBombeiros->getNumAutotanques() > 0){
+			if(postoBombeiros->rmSocorristas(3)){	// Cada autotanque leva 3 bombeiros
+				postoBombeiros->rmAutotanques(1);
+				numBombeirosAtribuidos+=3;
+				numAutotanquesAtribuidos+=1;
+
+				// Adicionar a atribuicao
+				incendio->addAtribuicao(Atribuicao(postoBombeiros->getId(),3,1,"Autotanque"));
+
+				// Verificar se ja foram supridas as necessidades do acidente
+				if((numBombeirosAtribuidos == numBombeirosNecess) && (numAutotanquesAtribuidos==numAutotanquesNecess))
+					return 0;	// Todos as necessidades foram supridas!!!
+			}
+			else{	// Apesar de haver autotanques, não há bombeiros suficientes para o seu uso!
+				break;
+			}
+		}
+	}
+
+	// Todos os postos foram percorridos, mas as necessidades do acidente nao foram totalmente supridas!
+
+	// Verificar se foram parcialmente supridas
+	if ((numBombeirosAtribuidos != 0) && (numAutotanquesAtribuidos != 0))
+		return 1;
+
+	// Nao houve uma unica atribuicao com sucesso, nenhumas necessidades foram supridas
+	else
+		return 2;
+}
+
+unsigned short ProtecaoCivil::addAssalto(Assalto* assalto){
+	bool haFeridos = assalto->haFeridos();
+	bool haApoioMedico = false;	// Se houver feridos, esta variavel indica se foi encontrado apoio médico
+	bool haApoioPolicial = false;	// Se for encontrado um posto da policia que forneca apoio policial, esta variavel fica a true
+
+	// Procurar postos (por ordem de proximidade, vetor de postos ja ordernado) da policia para suprir as necessidades do assalto
+	// Cada assalto necissita de uma equipa policial ( Seja um carro com 2 Policias ou uma mota com 1 Policia )
+	for (unsigned int i=0 ; i<postos.size() ; i++){
+
+		// Verificar se o posto é um posto da policia
+		if(postos.at(i)->getTipoPosto() != "Policia")
+			continue;	// Nao é. Continuar para o proximo posto
+
+		// É um posto da policia
+		Policia* postoPolicia = dynamic_cast<Policia*>(postos.at(i));
+
+		if(postoPolicia->getNumVeiculos()>0){
+			// Posto de Motos
+			if(postoPolicia->getTipoVeiculo()=="Moto"){
+				if(postoPolicia->rmSocorristas(1)){		// Cada moto leva 1 policia
+					postoPolicia->rmVeiculos(1);
+
+					// Adicionar a atribuicao
+					assalto->addAtribuicao(Atribuicao(postoPolicia->getId(),1,1,"Moto"));
+
+					// Foi encontrado apoio policial!
+					haApoioPolicial = true;
+					break;
+				}
+			}
+			// Posto de Carros
+			else{
+				if(postoPolicia->rmSocorristas(2)){		// Cada carro leva 2 policias
+					postoPolicia->rmVeiculos(1);
+
+					// Adicionar a atribuicao
+					assalto->addAtribuicao(Atribuicao(postoPolicia->getId(),2,1,"Carro"));
+
+					// Foi encontrado apoio policial!
+					haApoioPolicial = true;
+					break;
+				}
+			}
+		}
+	}
+
+	// Se houver feridos, procurar por uma equipa de apoio medico (1 moto com 1 médico, ou um carro/ambulancia com 2 medicos)
+	if(haFeridos){
+		for(unsigned int i=0 ; i<postos.size() ; i++){
+			if(postos.at(i)->getTipoPosto()=="Inem"){
+				// É um posto do Inem
+				Inem* postoInem = dynamic_cast<Inem*>(postos.at(i));
+
+				if (postoInem->getNumVeiculos() > 0){
+					// Posto de Motos
+					if(postoInem->getTipoVeiculo() == "Moto"){
+						if(postoInem->rmSocorristas(1)){  // uma moto leva 1 medico
+							postoInem->rmVeiculos(1);
+
+							// Adicionar a atribuicao
+							assalto->addAtribuicao(Atribuicao(postoInem->getId(),1,1,"Moto"));
+
+							// Foi encontrado apoio medico!
+							haApoioMedico = true;
+							break;
+						}
+					}
+
+					// Posto de Carros / Ambulancias
+					else {
+						if(postoInem->rmSocorristas(2)){  // um carro/ambulancia leva 2 medicos
+							postoInem->rmVeiculos(1);
+
+							// Adicionar a atribuicao
+							assalto->addAtribuicao(Atribuicao(postoInem->getId(),2,1,postoInem->getTipoVeiculo()));
+
+							// Foi encontrado apoio medico!
+							haApoioMedico = true;
+							break;
+						}
+					}
+				}
+			}
+
+			else if(postos.at(i)->getTipoPosto()=="Bombeiros"){
+				// É um posto dos Bombeiros
+				Bombeiros* postoBombeiros = dynamic_cast<Bombeiros*>(postos.at(i));
+
+				if(postoBombeiros->getNumAmbulancias() > 0){
+					if(postoBombeiros->rmSocorristas(2)){	// Cada ambulancia leva 2 bombeiros
+						postoBombeiros->rmAmbulancias(1);
+
+						// Adicionar a atribuicao
+						assalto->addAtribuicao(Atribuicao(postoBombeiros->getId(),2,1,"Ambulancia"));
+
+						// Foi encontrado apoio medico!
+						haApoioMedico = true;
+						break;
+					}
+				}
+			}
+
+			else{	// Posto da Policia, nao contem medicos
+				continue;
+			}
+		}
+	}
+
+	// No caso de haver feridos
+	if (haFeridos){
+		if(haApoioMedico && haApoioPolicial){
+			return 0;	// Todas as necessidades supridas!
+		}
+		else if(haApoioMedico || haApoioPolicial){
+			return 1;	// Parte das necessidades supridas!
+		}
+		else{
+			return 2;	// Nenhumas necessidades supridas...
+		}
+	}
+
+	// No caso de nao haver feridos
+	else{
+		if (haApoioPolicial)	// Necessidades supridas!
+			return 0;
+		else					// Necessidades nao supridas...
+			return 2;
+	}
+}
+
+
 
 bool ProtecaoCivil::rmAcidente(unsigned int numOcorrencia){
 	// Encontrar o acidente no vetor de acidentes
@@ -614,7 +894,6 @@ void ProtecaoCivil::ordenarPostosDistLocal(const std::string &nomeLocal){
 				postos.at(j+1) = temp;
 				swapOccured = true;	// Ocorreu uma troca
 			}
-			std::cout << std::endl;
 		}
 		if (!swapOccured)	// Nao houve nenhuma troca, vetor ja esta ordenado!
 			break;

@@ -69,22 +69,22 @@ public:
 	unsigned short addAcidente(Acidente* acidente);
 
 	/**
-	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
-	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @brief Adiciona um acidente de viação ao vetor de acidentes da Proteção Civil
+	 * @param acidenteViacao - Apontador para o acidente de viação a dar entrada na Proteção Civil
 	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
 	 */
 	unsigned short addAcidenteViacao(AcidenteViacao* acidenteViacao);
 
 	/**
-	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
-	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @brief Adiciona um assalto ao vetor de acidentes da Proteção Civil
+	 * @param assalto - Apontador para o assalto a dar entrada na Proteção Civil
 	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
 	 */
 	unsigned short addAssalto(Assalto* assalto);
 
 	/**
-	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
-	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @brief Adiciona um incêndio ao vetor de acidentes da Proteção Civil
+	 * @param incendio - Apontador para o incêndio a dar entrada na Proteção Civil
 	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
 	 */
 	unsigned short addIncendio(Incendio* incendio);
