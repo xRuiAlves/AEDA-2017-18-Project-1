@@ -75,6 +75,12 @@ public:
 	 * @brief Imprime todas as atribuicoes relativas a este acidente de uma forma legível para o utilizador
 	 */
 	void printAtribuicoes() const;
+
+	/**
+	 * @brief Permite obter todas as atribuicoes efetuadas a este acidente
+	 * @return Retorna um vetor que contém todas as atribuicoes efetuadas a este acidente
+	 */
+	std::vector<Atribuicao> getAtribuicoes() const;
 };
 
 #endif /* ACIDENTE_H_ */

@@ -33,3 +33,7 @@ void Acidente::printAtribuicoes() const{
 		std::cout << std::endl;
 	}
 }
+
+std::vector<Atribuicao> Acidente::getAtribuicoes() const{
+	return atribuicoes;
+}
