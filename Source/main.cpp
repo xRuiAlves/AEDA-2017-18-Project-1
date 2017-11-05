@@ -111,12 +111,14 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 		case 3:		// Incendios Florestais
 			numBombeirosNecess = incendioObterNumBombeiros();
 			numAutotanquesNecess = incendioObterNumAutotanques();
+			if (numAutotanquesNecess > numBombeirosNecess) throw (Erro("Numero de Autotanques nao pode ser superior ao numero de Bombeiros!"));
 			areaChamas = incendioObterAreaChamas();
 			acidente = new IncendioFlorestal(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,areaChamas);
 			break;	// Incendios Domesticos
 		case 4:
 			numBombeirosNecess = incendioObterNumBombeiros();
 			numAutotanquesNecess = incendioObterNumAutotanques();
+			if (numAutotanquesNecess > numBombeirosNecess) throw (Erro("Numero de Autotanques nao pode ser superior ao numero de Bombeiros!"));
 			tipoCasa = incendioObterTipoCasa();
 			acidente = new IncendioDomestico(data,local,protecaoCivil.getMaxNumOcorrencia()+1,numBombeirosNecess,numAutotanquesNecess,tipoCasa);
 			break;
