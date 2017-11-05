@@ -69,6 +69,27 @@ public:
 	unsigned short addAcidente(Acidente* acidente);
 
 	/**
+	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
+	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
+	 */
+	unsigned short addAcidenteViacao(AcidenteViacao* acidenteViacao);
+
+	/**
+	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
+	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
+	 */
+	unsigned short addAssalto(Assalto* assalto);
+
+	/**
+	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
+	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
+	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
+	 */
+	unsigned short addIncendio(Incendio* incendio);
+
+	/**
 	 * @brief Remove um acidente do vetor de acidentes da Proteção Civil
 	 * @param numOcorrencia - Número de identificação da ocorrência (acidente) a remover.
 	 * @return Retorna true se a remoção tiver sucesso e false caso contrário
