@@ -19,7 +19,7 @@ int main(){
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
 	}
-	catch(Erro &e){
+	catch(FicheiroNaoEncontrado &e){
 		std::cerr << e.getInfo();
 		return 1;
 	}
@@ -35,7 +35,7 @@ int main(){
 		try{
 			opt = getOption(1,5);
 		}
-		catch(Erro &e){
+		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
 			continue;	// Ir para o proximo loop , pedir nova opcao
 		}
@@ -68,7 +68,7 @@ int getOption(int min, int max){
 		// Clear the cin error flags and the stream content, throw the error
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Clear the cin stream even if no error occured, to ensure the stream always stays clean
@@ -78,7 +78,7 @@ int getOption(int min, int max){
 	if(opt>=min && opt<=max)
 		return opt;
 	else
-		throw (Erro("Opcao Invalida!"));
+		throw (InputInvalido("Opcao Invalida!"));
 }
 
 void declararOcorrencia(ProtecaoCivil &protecaoCivil){
@@ -149,7 +149,7 @@ void terminarOcorrencia(ProtecaoCivil &protecaoCivil){
 	try{
 		numOcorrencia = obterNumOcorrencia();
 	}
-	catch(Erro &e){
+	catch(InputInvalido &e){
 		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
 		pause();
 		return;
@@ -179,7 +179,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 		try{
 			opt = getOption(1,11);
 		}
-		catch(Erro &e){
+		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
 			continue;	// Ir para o proximo loop , pedir nova opcao
 		}
@@ -200,7 +200,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			try{
 				localidade = obterLocalidade(protecaoCivil);
 			}
-			catch(Erro &e){
+			catch(LocalidadeInexistente &e){
 				std::cout << '\n' << e.getInfo() << std::endl << std::endl;
 				pause();
 				return;
@@ -233,7 +233,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			try{
 				data = lerData();
 			}
-			catch(Erro &e){
+			catch(DataInvalida &e){
 				std::cout << "\n" << e.getInfo() << std::endl << std::endl;
 				pause();
 				break;
@@ -287,7 +287,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			try{
 				acidenteId = obterIdAcidente();
 			}
-			catch(Erro &e){
+			catch(InputInvalido &e){
 				std::cout << "\n\n" << e.getInfo();
 				std::cout << std::endl << std::endl;
 				pause();
@@ -308,7 +308,7 @@ void infoOcorrencia(ProtecaoCivil &protecaoCivil){
 			try{
 				acidenteId = obterIdAcidente();
 			}
-			catch(Erro &e){
+			catch(InputInvalido &e){
 				std::cout << "\n\n" << e.getInfo();
 				std::cout << std::endl << std::endl;
 				pause();
@@ -343,7 +343,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 		try{
 			opt = getOption(1,8);
 		}
-		catch(Erro &e){
+		catch(InputInvalido &e){
 			std::cout << "\n" << e.getInfo();
 			continue;	// Ir para o proximo loop , pedir nova opcao
 		}
@@ -410,7 +410,7 @@ void pesquisarPostos(ProtecaoCivil &protecaoCivil){
 			try{
 				postoId = obterIdPosto();
 			}
-			catch(Erro &e){
+			catch(InputInvalido &e){
 				std::cout << "\n\n" << e.getInfo();
 				std::cout << std::endl << std::endl;
 				pause();
@@ -519,25 +519,25 @@ std::string lerData(){
 
 	// Verificar se está no formato válido (DD-MM-AAAA)
 	if(data.size() != 10)											// Verificar se a data tem o tamanho correto
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(2) != '-') || (data.at(5) != '-'))			// Verificar se dia, mes e ano estao separados por um traco
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(0) < '0') || (data.at(0) > '9'))				// Verificar se Dx é um digito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(1) < '0') || (data.at(1) > '9'))				// Verificar se xD é um digito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(3) < '0') || (data.at(3) > '9'))				// Verificar se Mx é um digito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(4) < '0') || (data.at(4) > '9'))				// Verificar se xM é um digito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(6) < '0') || (data.at(6) > '9'))				// Verificar se Axxx é um dígito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(7) < '0') || (data.at(7) > '9'))				// Verificar se xAxx é um dígito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(8) < '0') || (data.at(8) > '9'))				// Verificar se xxAx é um dígito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 	else if ((data.at(9) < '0') || (data.at(9) > '9'))				// Verificar se xxxA é um dígito
-		throw (Erro("Data Invalida!"));
+		throw (DataInvalida("Data Invalida!"));
 
 
 	// Verificar se a data segue os padrões normais de datas
@@ -548,17 +548,17 @@ std::string lerData(){
 	switch(mes){
 	case 1: case 3: case 5: case 7: case 8: case 10: case 12:		// Meses com 31 dias
 		if ((dia<0) || (dia>31))
-			throw (Erro("Data Incorreta!"));
+			throw (DataInvalida("Data Incorreta!"));
 		break;
 	case 4: case 6: case 9: case 11:								// Meses com 30 dias
 		if ((dia<0) || (dia>30))
-			throw (Erro("Data Incorreta!"));
+			throw (DataInvalida("Data Incorreta!"));
 		break;
 	case 2:															// Fevereiro
 		if ((dia<0) || (dia>29))
-			throw (Erro("Data Incorreta!"));
+			throw (DataInvalida("Data Incorreta!"));
 		else if ((dia == 29) && (ano%4 != 0))	// Se o dia for 29 de Fevereiro e o ano não for bissexto -> erro
-			throw (Erro("Data Incorreta!"));
+			throw (DataInvalida("Data Incorreta!"));
 		break;
 	}
 
@@ -573,7 +573,7 @@ std::string obterLocalidade(ProtecaoCivil &protecaoCivil){
 
 	// Verificar se o local existe na base de dados da Protecao Civil
 	if(protecaoCivil.findLocal(localidade) == -1)		// local não existe no vetor de locais
-		throw (Erro("A localidade introduzida nao existe na base de dados da Protecao Civil"));
+		throw (LocalidadeInexistente("A localidade introduzida nao existe na base de dados da Protecao Civil"));
 	else
 		return localidade;
 }
@@ -588,8 +588,8 @@ int obterTipoAcidente(){
 	try{
 		opt = getOption(1,4);
 	}
-	catch(Erro &e){
-		throw e;
+	catch(InputInvalido &e){
+		throw TipoAcidenteInvalido(e.getInfo());
 	}
 
 	return opt;		// Sucesso na leitura
@@ -609,7 +609,7 @@ std::string assaltoObterTipoCasa(){
 
 	// Input Invalido
 	else
-		throw (Erro("Tipo de casa invalido!"));
+		throw (TipoCasaInvalido("Tipo de casa invalido!"));
 }
 
 bool assaltoObterExistenciaFeridos(){
@@ -627,7 +627,7 @@ bool assaltoObterExistenciaFeridos(){
 
 	// Input Invalido
 	else
-		throw (Erro("Resposta invalida!"));
+		throw (InputInvalido("Resposta invalida!"));
 }
 
 std::string viacaoObterTipoEstrada(){
@@ -645,7 +645,7 @@ std::string viacaoObterTipoEstrada(){
 
 	// Input Invalido
 	else
-		throw (Erro("Tipo de estrada invalido!"));
+		throw (InputInvalido("Tipo de estrada invalido!"));
 }
 
 unsigned int viacaoObterNumFeridos(){
@@ -658,7 +658,7 @@ unsigned int viacaoObterNumFeridos(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -666,9 +666,9 @@ unsigned int viacaoObterNumFeridos(){
 
 	// Verificar se o numero de feridos introduzido nao foi absurdo
 	if (numFeridos < 0)
-		throw (Erro("Numero de feridos nao pode ser negativo!"));
+		throw (InputInvalido("Numero de feridos nao pode ser negativo!"));
 	else if (numFeridos == 0)
-		throw (Erro("umero de feridos nao pode ser nulo!"));
+		throw (InputInvalido("Numero de feridos nao pode ser nulo!"));
 	else
 		return ((unsigned int) numFeridos);
 }
@@ -683,7 +683,7 @@ unsigned int viacaoObterNumVeiculos(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -691,9 +691,9 @@ unsigned int viacaoObterNumVeiculos(){
 
 	// Verificar se o numero de veiculos introduzido nao foi absurdo
 	if (numVeiculos < 0)
-		throw (Erro("Numero de veiculos nao pode ser negativo!"));
+		throw (InputInvalido("Numero de veiculos nao pode ser negativo!"));
 	else if (numVeiculos == 0)
-		throw (Erro("Numero de veiculos nao pode ser nulo!"));
+		throw (InputInvalido("Numero de veiculos nao pode ser nulo!"));
 	else
 		return ((unsigned int) numVeiculos);
 }
@@ -708,7 +708,7 @@ unsigned int incendioObterAreaChamas(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -716,9 +716,9 @@ unsigned int incendioObterAreaChamas(){
 
 	// Verificar se a area de chamas introduzida nao foi absurda
 	if (areaChamas < 0)
-		throw (Erro("Area de chamas nao pode ser negativa!"));
+		throw (InputInvalido("Area de chamas nao pode ser negativa!"));
 	else if (areaChamas == 0)
-		throw (Erro("Area de chamas nao pode ser nula!"));
+		throw (InputInvalido("Area de chamas nao pode ser nula!"));
 	else
 		return ((unsigned int) areaChamas);
 }
@@ -738,7 +738,7 @@ std::string incendioObterTipoCasa(){
 
 	// Input Invalido
 	else
-		throw (Erro("Tipo de casa invalido!"));
+		throw (TipoCasaInvalido("Tipo de casa invalido!"));
 }
 
 unsigned int obterNumOcorrencia(){
@@ -751,7 +751,7 @@ unsigned int obterNumOcorrencia(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -759,7 +759,7 @@ unsigned int obterNumOcorrencia(){
 
 	// Verificar se a area de chamas introduzida nao foi absurda
 	if (numOcorrencia <= 0)
-		throw (Erro("O numero de ocorrencia nao pode ser nulo nem negativo!"));
+		throw (InputInvalido("O numero de ocorrencia nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numOcorrencia);
 }
@@ -774,7 +774,7 @@ unsigned int obterIdPosto(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -782,7 +782,7 @@ unsigned int obterIdPosto(){
 
 	// Verificar se o numero de identificacao introduzido nao foi absurdo
 	if (numId <= 0)
-		throw (Erro("O numero de identificacao do posto nao pode ser nulo nem negativo!"));
+		throw (InputInvalido("O numero de identificacao do posto nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numId);
 
@@ -798,7 +798,7 @@ unsigned int obterIdAcidente(){
 		// Limpar as flags de erro e limpar a stream, lançar a exceção
 		std::cin.clear();
 		std::cin.ignore(1000,'\n');
-		throw (Erro("Input Invalido!"));
+		throw (InputInvalido("Input Invalido!"));
 	}
 
 	// Limpar a stream mesmo que não tenha ocorrido qualquer erro, para garantir que está sempre limpa e vazia
@@ -806,7 +806,7 @@ unsigned int obterIdAcidente(){
 
 	// Verificar se o numero de identificacao introduzido nao foi absurdo
 	if (numId <= 0)
-		throw (Erro("O numero de identificacao do acidente nao pode ser nulo nem negativo!"));
+		throw (InputInvalido("O numero de identificacao do acidente nao pode ser nulo nem negativo!"));
 	else
 		return ((unsigned int) numId);
 
