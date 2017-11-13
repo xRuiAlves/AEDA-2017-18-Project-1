@@ -6,6 +6,7 @@
  * Classe Erro utilizada para tratamento de exceções no decorrer do programa.
  */
 class Erro {
+private:
 	const std::string info;		/**< Informação do erro que ocorreu aquando uma exceção */
 public:
 	/**
@@ -21,20 +22,44 @@ public:
 	const std::string getInfo() const { return info; }
 };
 
-class DataInvalida : public Erro { } ;
+class DataInvalida : public Erro {
+public:
+	DataInvalida(const std::string &info) : Erro(info) { }
+};
 
-class LocalidadeInexistente : public Erro { } ;
+class LocalidadeInexistente : public Erro {
+public:
+	LocalidadeInexistente(const std::string &info) : Erro(info) { }
+};
 
-class InputInvalido : public Erro { } ;
+class InputInvalido : public Erro {
+public:
+	InputInvalido(const std::string &info) : Erro(info) { }
+};
 
-class TipoAcidenteInvalido : public Erro { } ;
+class TipoAcidenteInvalido : public Erro {
+public:
+	TipoAcidenteInvalido(const std::string &info) : Erro(info) { }
+};
 
-class TipoCasaInvalido : public Erro { } ;
+class TipoCasaInvalido : public Erro {
+public:
+	TipoCasaInvalido(const std::string &info) : Erro(info) { }
+};
 
-class FicheiroNaoEncontrado : public Erro { } ;
+class FicheiroNaoEncontrado : public Erro {
+public:
+	FicheiroNaoEncontrado(const std::string &info) : Erro(info) { }
+};
 
-class MeiosInsuficientes : public Erro { } ;
+class MeiosInsuficientes : public Erro {
+public:
+	MeiosInsuficientes(const std::string &info) : Erro(info) { }
+};
 
-class MeiosInexistentes : public Erro { } ;
+class MeiosInexistentes : public Erro {
+public:
+	MeiosInexistentes(const std::string &info) : Erro(info) { }
+};
 
 #endif /* ERRO_H_ */
