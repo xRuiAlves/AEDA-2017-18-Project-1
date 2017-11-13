@@ -62,11 +62,10 @@ public:
 	~ProtecaoCivil();
 
 	/**
-	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil
+	 * @brief Adiciona um acidente ao vetor de acidentes da Proteção Civil, lançando as exceções MeiosInsuficientes ou MeiosInexistentes caso necessário.
 	 * @param acidente - Apontador para o acidente a dar entrada na Proteção Civil
-	 * @return Retorna 0 se a inserção tiver sucesso (todos as necessidades foram supridas) , 1 se apenas parte das necessidades forem supridas ou 2 caso não haja quaisquer meios para suprir as necessidades do acidente
 	 */
-	unsigned short addAcidente(Acidente* acidente);
+	void addAcidente(Acidente* acidente);
 
 	/**
 	 * @brief Adiciona um acidente de viação ao vetor de acidentes da Proteção Civil

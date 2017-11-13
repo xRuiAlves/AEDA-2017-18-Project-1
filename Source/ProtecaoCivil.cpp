@@ -274,41 +274,38 @@ ProtecaoCivil::~ProtecaoCivil() {
 	}
 }
 
-unsigned short ProtecaoCivil::addAcidente(Acidente* acidente){
+void ProtecaoCivil::addAcidente(Acidente* acidente){
 	// Ordenar os postos por distancia ao local onde ocorreu este acidente
 	ordenarPostosDistLocal(acidente->getLocal()->getNome());
 
+	unsigned short addSuccess;
+
 	// Acidentes de Viacao
 	if (acidente->getTipoAcidente() == "Acidente de Viacao"){
-		unsigned short addSuccess = addAcidenteViacao(dynamic_cast<AcidenteViacao*>(acidente));
-
-		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
-			acidentes.push_back(acidente);
-		}
-
-		return addSuccess;
+		addSuccess = addAcidenteViacao(dynamic_cast<AcidenteViacao*>(acidente));
 	}
 
 	// Incendios
 	else if ((acidente->getTipoAcidente() == "Incendio Florestal") || (acidente->getTipoAcidente() == "Incendio Domestico")){
-		unsigned short addSuccess =  addIncendio(dynamic_cast<Incendio*>(acidente));
-
-		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
-			acidentes.push_back(acidente);
-		}
-
-		return addSuccess;
+		addSuccess =  addIncendio(dynamic_cast<Incendio*>(acidente));
 	}
 
 	// Assaltos
 	else {
-		unsigned short addSuccess = addAssalto(dynamic_cast<Assalto*>(acidente));
+		addSuccess = addAssalto(dynamic_cast<Assalto*>(acidente));
+	}
 
-		if (addSuccess != 2){	// Se foram acionados meios para este acidente, ele pertence agora à protecao civil
-			acidentes.push_back(acidente);
-		}
-
-		return addSuccess;
+	// Verificar o grau de sucesso da adicao de meios para tratar a ocorrencia
+	if (addSuccess == 0){	// Se foram acionados todos os meios para este acidente, ele pertence agora à protecao civil
+		acidentes.push_back(acidente);
+		return;
+	}
+	else if (addSuccess == 1){	// Foram acionados alguns meios para este acidente, mas não todos. Adicionar o acidente à proteção civil, mas notificar lançando uma exceção
+		acidentes.push_back(acidente);
+		throw MeiosInsuficientes("O acidente foi adicionado a' base de dados da Protecao Civil, mas nem todas as necessidades do acidente foram supridas.");
+	}
+	else{	// Nao foram acionados quaisquer meios para este acidente, pelo que este nao foi adicionado ha base de dados da proteção civil
+		throw MeiosInexistentes("Nao ha quaisquer meios capazes de suprir as necessidades deste acidente, pelo que nao foi adicionado a' base de dados da Protecao Civil");
 	}
 }
 
