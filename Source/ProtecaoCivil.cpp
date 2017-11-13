@@ -13,7 +13,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroLocais);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroLocais + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroLocais + "\" no construtor de ProtecaoCivil.");
 
 	// Preencher o vetor de locais com o conteudo do ficheiro
 	std::string line, nomeLocal;
@@ -46,7 +46,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroPostos);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" no construtor de ProtecaoCivil.");
 
 	// Preencher o vetor de postos com o conteudo do ficheiro
 	std::string tipoPosto, tipoVeiculo;
@@ -66,7 +66,7 @@ void ProtecaoCivil::openFiles(){
 		// obter indice do local no vetor
 		indexLocal = findLocal(nomeLocal);
 		if(indexLocal == -1){		// Este local nao foi encontrado no vetor de locais da protecao civil
-			throw Erro("O local \"" + nomeLocal + "\" nao foi encontrado no vetor de locais da Protecao Civil, no construtor de ProtecaoCivil.");
+			throw LocalidadeInexistente("O local \"" + nomeLocal + "\" nao foi encontrado no vetor de locais da Protecao Civil, no construtor de ProtecaoCivil.");
 		}
 
 		// obter num. de socorristas
@@ -117,7 +117,7 @@ void ProtecaoCivil::openFiles(){
 	istr.open(ficheiroAcidentes);
 
 	if(!istr.is_open())	// ficheiro nao foi aberto com sucesso
-		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroAcidentes + "\" no construtor de ProtecaoCivil.");
+		throw FicheiroNaoEncontrado("Falha ao abrir o ficheiro \"" + ficheiroAcidentes + "\" no construtor de ProtecaoCivil.");
 
 	// Preencher o vetor de Acidentes com o conteúdo do ficheiro
 	std::string data, tipoAcidente, tipoIncendio, tipoCasa, tipoEstrada, atribuicao, tipoVeiculos;
@@ -135,7 +135,7 @@ void ProtecaoCivil::openFiles(){
 		// obter indice do local no vetor
 		indexLocal = findLocal(nomeLocal);
 		if(indexLocal == -1){		// Este local nao foi encontrado no vetor de locais da protecao civil
-			throw Erro("O local \"" + nomeLocal + "\" nao foi encontrado no vetor de locais da Protecao Civil, no construtor de ProtecaoCivil.");
+			throw LocalidadeInexistente("O local \"" + nomeLocal + "\" nao foi encontrado no vetor de locais da Protecao Civil, no construtor de ProtecaoCivil.");
 		}
 
 		// obter a data
@@ -908,7 +908,7 @@ void ProtecaoCivil::gravar() const{
 
 	// Veficar se não houve erro ao abrir o ficheiro
 	if(!ostr.is_open())
-		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos postos da Protecao Civil.");
+		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos postos da Protecao Civil.");
 
 	// Escrever no ficheiro a info. de todos os postos
 	for (unsigned int i=0 ; i<postos.size() ; i++){
@@ -927,7 +927,7 @@ void ProtecaoCivil::gravar() const{
 
 	// Verificar se não houve erro abrir o ficheiro
 	if(!ostr.is_open())
-		throw Erro("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos acidentes ao abrigo da Protecao Civil.");
+		throw LocalidadeInexistente("Falha ao abrir o ficheiro \"" + ficheiroPostos + "\" ao guardar o estado atual dos acidentes ao abrigo da Protecao Civil.");
 
 	// Escrever no ficheiro a info. de todos os acidentes
 	for (unsigned int i=0 ; i<acidentes.size() ; i++){
