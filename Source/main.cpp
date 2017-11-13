@@ -129,16 +129,22 @@ void declararOcorrencia(ProtecaoCivil &protecaoCivil){
 	}
 
 	// Adicionar o acidente à protecao civil
-	unsigned short sucessoAcidente = protecaoCivil.addAcidente(acidente);
+	try{
+		protecaoCivil.addAcidente(acidente);
+	}
+	catch(MeiosInsuficientes &e){
+		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
+	catch(MeiosInexistentes &e){
+		std::cout << '\n' << e.getInfo() << std::endl << std::endl;
+		pause();
+		return;
+	}
 
-	// Informar o utilizador do grau de sucesso desta adicao
-	if (sucessoAcidente==0)
-		std::cout << "\nO acidente foi adicionado com sucesso e todos os meios necessarios foram devidamente acionados.\n\n";
-	else if (sucessoAcidente==1)
-		std::cout << "\nO acidente foi adicionado, mas as necessidades do acidente nao foram totalmente supridas.\n\n";
-	else
-		std::cout << "\nNao ha quaisquer meios para socorrer este acidente de momento, pelo que este nao foi adicionado.\n\n";
-
+	// Nao ocorreu qualquer erro! A adicao teve sucesso total!
+	std::cout << "\nO acidente foi adicionado com sucesso e todos os meios necessarios foram devidamente acionados.\n\n";
 	pause();
 }
 
