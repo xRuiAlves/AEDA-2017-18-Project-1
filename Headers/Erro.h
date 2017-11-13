@@ -21,7 +21,17 @@ public:
 	const std::string getInfo() const { return info; }
 };
 
-class ErroInput : public Erro { } ;
+class DataInvalida : public Erro { } ;
+
+class LocalidadeInexistente : public Erro { } ;
+
+class InputInvalido : public Erro { } ;
+
+class TipoAcidenteInvalido : public Erro { } ;
+
+class TipoCasaInvalido : public Erro { } ;
+
+class FicheiroNaoEncontrado : public Erro { } ;
 
 class MeiosInsuficientes : public Erro { } ;
 
