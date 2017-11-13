@@ -21,4 +21,10 @@ public:
 	const std::string getInfo() const { return info; }
 };
 
+class ErroInput : public Erro { } ;
+
+class MeiosInsuficientes : public Erro { } ;
+
+class MeiosInexistentes : public Erro { } ;
+
 #endif /* ERRO_H_ */
