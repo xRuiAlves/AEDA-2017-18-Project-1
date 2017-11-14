@@ -545,11 +545,14 @@ std::string lerData(){
 	else if ((data.at(9) < '0') || (data.at(9) > '9'))				// Verificar se xxxA é um dígito
 		throw (DataInvalida("Data Invalida!"));
 
-
 	// Verificar se a data segue os padrões normais de datas
 	int dia = stoi(data.substr(0,2));
 	int mes = stoi(data.substr(3,2));
 	int ano = stoi(data.substr(6,4));
+
+	// Verificar se o mes esta dentro dos limites reais
+	if(mes<0 || mes>12)
+		throw (DataInvalida("Data Invalida!"));
 
 	switch(mes){
 	case 1: case 3: case 5: case 7: case 8: case 10: case 12:		// Meses com 31 dias
