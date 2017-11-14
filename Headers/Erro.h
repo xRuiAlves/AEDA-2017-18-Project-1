@@ -22,43 +22,107 @@ public:
 	const std::string getInfo() const { return info; }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Data Inválida
+ */
 class DataInvalida : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe DataInvalida
+	 */
 	DataInvalida(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Localidade Inexistente
+ */
 class LocalidadeInexistente : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe LocalidadeInexistente
+	 */
 	LocalidadeInexistente(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Input Inválido
+ */
 class InputInvalido : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe InputInvalido
+	 */
 	InputInvalido(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Tipo de Acidente Inválido
+ */
 class TipoAcidenteInvalido : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe TipoAcidenteInvalido
+	 */
 	TipoAcidenteInvalido(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Tipo de Casa Invalido
+ */
 class TipoCasaInvalido : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe TipoCasaInvalido
+	 */
 	TipoCasaInvalido(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Ficheiro não Encontrado
+ */
 class FicheiroNaoEncontrado : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe FicheiroNaoEncontrado
+	 */
 	FicheiroNaoEncontrado(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Meios Insuficientes
+ */
 class MeiosInsuficientes : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe MeiosInsuficientes
+	 */
 	MeiosInsuficientes(const std::string &info) : Erro(info) { }
 };
 
+
+
+/**
+ * Classe utilizada para lançar exceções do tipo Meios Inexistentes
+ */
 class MeiosInexistentes : public Erro {
 public:
+	/**
+	 * @brief Construtor da classe MeiosInexistentes
+	 */
 	MeiosInexistentes(const std::string &info) : Erro(info) { }
 };
 
