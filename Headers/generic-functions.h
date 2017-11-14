@@ -74,6 +74,11 @@ bool compararAcidentesTipo(Acidente* a1, Acidente* a2);
 bool compararAcidentesData(Acidente* a1, Acidente* a2);
 
 /**
+ * @brief Imprime no ecrã um menu de boas vindas
+ */
+void printWelcomeMenu();
+
+/**
  * @brief Imprime no ecrã o menu principal
  */
 void printMainMenu();
@@ -172,6 +177,24 @@ unsigned int obterIdPosto();
  * @return Retorna um número de identificação de um acidente, se a leitura for bem sucedida
  */
 unsigned int obterIdAcidente();
+
+/**
+ * @brief Lê do utilizador um ficheiro de postos
+ * @return Retorna o ficheiro de postos lido do utilizador
+ */
+std::string lerFicheiroPostos();
+
+/**
+ * @brief Lê do utilizador um ficheiro de acidentes
+ * @return Retorna o ficheiro de acidentes lido do utilizador
+ */
+std::string lerFicheiroAcidentes();
+
+/**
+ * @brief Lê do utilizador um ficheiro de locais
+ * @return Retorna o ficheiro de locais lido do utilizador
+ */
+std::string lerFicheiroLocais();
 
 /**
  * @brief Faz uma pausa, pedindo ao utilizador que prima enter para continuar.

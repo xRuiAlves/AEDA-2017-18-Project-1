@@ -15,6 +15,14 @@ int main(){
 	///////////////////////////////////////////////////////////////////////
 	// Criar Proteção Civil e verificar se não houve erros na sua abertura
 
+	printWelcomeMenu();
+
+	std::string ficheiroPostos, ficheiroAcidentes, ficheiroLocais;
+
+	ficheiroPostos = lerFicheiroPostos();
+	ficheiroAcidentes = lerFicheiroAcidentes();
+	ficheiroLocais = lerFicheiroLocais();
+
 	ProtecaoCivil protecaoCivil("postos","acidentes","locais");
 	try{	// Ler info dos ficheiros e verificar que nao ha erros na sua abertura
 		protecaoCivil.openFiles();
@@ -829,4 +837,45 @@ void pause(){
 		return;
 	else 				// The user pressed keys other than enter, clear the stream from that input
 		std::cin.ignore(1000,'\n');
+}
+
+void printWelcomeMenu(){
+	unsigned int headerSize = 80;
+	std::string welcomeMessage = "PROTECAO CIVIL";
+
+	// Escrever uma mensagem de bem-vindo
+	for (unsigned int i=0 ; i<headerSize ; i++) { std::cout << '-'; }
+	std::cout << std::endl;
+	for (unsigned int i=0 ; i<headerSize ; i++) { std::cout << '-'; }
+	std::cout << std::endl << std::endl;
+	for (unsigned int i=0 ; i<(headerSize-welcomeMessage.size())/2 ; i++) { std::cout << ' '; }
+	std::cout << welcomeMessage << std::endl << std::endl;
+	for (unsigned int i=0 ; i<headerSize ; i++) { std::cout << '-'; }
+	std::cout << std::endl;
+	for (unsigned int i=0 ; i<headerSize ; i++) { std::cout << '-'; }
+	std::cout << std::endl << std::endl;
+}
+
+std::string lerFicheiroPostos(){
+	std::string ficheiroPostos;
+	std::cout << "\nIndique o nome do ficheiro de postos: ";
+	getline(std::cin, ficheiroPostos);
+
+	return ficheiroPostos;
+}
+
+std::string lerFicheiroAcidentes(){
+	std::string ficheiroAcidentes;
+	std::cout << "\nIndique o nome do ficheiro de acidentes: ";
+	getline(std::cin, ficheiroAcidentes);
+
+	return ficheiroAcidentes;
+}
+
+std::string lerFicheiroLocais(){
+	std::string ficheiroLocais;
+	std::cout << "\nIndique o nome do ficheiro de locais: ";
+	getline(std::cin, ficheiroLocais);
+
+	return ficheiroLocais;
 }
