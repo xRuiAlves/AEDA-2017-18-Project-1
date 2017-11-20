@@ -1,11 +1,21 @@
-1/Porto/50/40/Policia/Moto
-2/Braga/60/15/Policia/Carro
-3/Lisboa/70/20/Inem/Ambulancia
-4/Braganca/60/30/Inem/Carro
-5/Guarda/20/3/Inem/Moto
-6/Viana do Castelo/35/17/Bombeiros/8/9
-7/Leiria/10/10/Bombeiros/4/6
-8/Leiria/20/4/Inem/Moto
+18/Coimbra/10/5/Inem/Carro
+19/Aveiro/16/4/Inem/Ambulancia
+7/Leiria/4/10/Bombeiros/2/6
 9/Leiria/26/12/Inem/Carro
-10/Viana do Castelo/54/30/Policia/Moto
+8/Leiria/22/6/Inem/Moto
+20/Viseu/4/1/Policia/Carro
+17/Castelo Branco/4/2/Inem/Moto
+1/Porto/50/40/Policia/Moto
+15/Santarem/15/7/Policia/Moto
+5/Guarda/20/3/Inem/Moto
+16/Portalegre/10/4/Bombeiros/3/1
+21/Vila Real/10/8/Policia/Moto
+2/Braga/60/15/Policia/Carro
 11/Braga/30/5/Inem/Moto
+3/Lisboa/68/19/Inem/Ambulancia
+6/Viana do Castelo/32/17/Bombeiros/7/9
+10/Viana do Castelo/54/30/Policia/Moto
+14/Setubal/8/3/Policia/Carro
+4/Braganca/60/30/Inem/Carro
+13/Beja/6/2/Bombeiros/2/0
+12/Faro/10/10/Inem/Carro
