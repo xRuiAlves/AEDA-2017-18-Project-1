@@ -1,8 +1,8 @@
-# AEDA1718-1
+# AEDA 2017-2018 Project #1 - Classes Hierarchy and Linear Containers
 
 </br>First project for the "Algorithms and Data Structures" course (2nd year, 1st semester).
-</br></br>
-<b>Project's Final Grade: 20</b>
+</br><b>Course's Repository:</b> https://github.com/xRuiAlves/AEDA-2017-18
+</br><b>Project's Final Grade: 20</b>
 </br></br>
 The project's goal was to take advantage of C++'s classes the most we could, using all the concepts associated to it (Class inheritance, encapsulation and polymorphism).
 </br></br> 
